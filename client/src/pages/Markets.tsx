@@ -201,7 +201,7 @@ export default function Markets() {
               width: "40px", height: "40px", borderRadius: "50%", overflow: "hidden",
               filter: "drop-shadow(0 0 10px rgba(123,47,190,0.5))",
             }}>
-              <img src="/manus-storage/cookie-logo-original_830062d7.webp" alt="$COOK" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <img src="/cookie-logo.webp" alt="$COOK" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
             <div>
               <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 800, fontSize: "1.75rem", color: "#ffffff", margin: 0, letterSpacing: "-0.03em" }}>

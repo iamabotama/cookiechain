@@ -64,7 +64,7 @@ export default function Footer() {
         {/* Logo row */}
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "3rem" }}>
           <div style={{ width: "32px", height: "32px", borderRadius: "50%", overflow: "hidden", filter: "drop-shadow(0 0 6px rgba(37,99,235,0.4))" }}>
-            <img src="/manus-storage/cookie-logo-original_830062d7.webp" alt="Cookie Chain" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <img src="/cookie-logo.webp" alt="Cookie Chain" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
           </div>
           <span style={{
             fontFamily: "'Space Grotesk', sans-serif",

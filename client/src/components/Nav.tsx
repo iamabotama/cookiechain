@@ -8,7 +8,7 @@
 import { useEffect, useState } from "react";
 import { LINKS } from "@/lib/links";
 
-const COOKIE_LOGO = "/manus-storage/cookie-logo-original_830062d7.webp";
+const COOKIE_LOGO = "/cookie-logo.webp";
 
 const navLinks = [
   { label: "Overview", href: "#overview" },

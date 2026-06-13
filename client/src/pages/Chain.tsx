@@ -11,7 +11,7 @@ import { ArrowLeft, ExternalLink, Cpu, Zap, Box, Clock, Activity, Shield } from 
 import StreamCanvas from "../components/StreamCanvas";
 
 const COOKIESCAN_URL = "https://cookiescan.io";
-const COOKIE_LOGO = "/manus-storage/cookie-logo-original_830062d7.webp";
+const COOKIE_LOGO = "/cookie-logo.webp";
 
 // DexScreener for price context
 const DEXSCREENER_API = "https://api.dexscreener.com/latest/dex/tokens/36ZrtQoab5MhhySaP1YSTwUahSk6GRVUTtZ6cuVfm9e1";

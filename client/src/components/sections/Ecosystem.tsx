@@ -14,7 +14,7 @@ const DAPPS = [
     desc: "The native staking platform for $COOK. Earn rewards while securing the network. LST pool with community-governed reward rates.",
     href: LINKS.cookoven,
     color: "#2563EB",
-    logo: "/manus-storage/cookoven_53ada27b.png",
+    logo: "https://cookoven.xyz/assets/cookoven-CWUUnBt5.png",
   },
   {
     name: "CookieSwap",
@@ -22,7 +22,7 @@ const DAPPS = [
     desc: "Decentralized exchange native to Cookie Chain. Swap, provide liquidity, and earn fees on the SVM network.",
     href: LINKS.cookieswap,
     color: "#7B2FBE",
-    logo: "/manus-storage/cookieswap_1148c2fd.png",
+    logo: "https://cookieswap.fun/_next/static/media/logo.bc35bf03.png",
   },
   {
     name: "CandyShop",
@@ -30,7 +30,7 @@ const DAPPS = [
     desc: "Swap interface powered by CookieScan. Fast, lightweight token swaps directly within the Cookie Chain explorer.",
     href: LINKS.candyshop,
     color: "#BAE6FD",
-    logo: "/manus-storage/candyshop_cf5e5b1c.png",
+    logo: "https://swap.cookiescan.io/candyshoplogo.png",
   },
   {
     name: "CookieBox",
@@ -38,7 +38,7 @@ const DAPPS = [
     desc: "The Cookie Chain app hub. Access ecosystem tools, portfolio tracking, and community features in one place.",
     href: LINKS.cookiebox,
     color: "#60A5FA",
-    logo: "/manus-storage/cookiebox_782add47.png",
+    logo: "https://cookiebox.app/assets/images/cookieboxlogo.png",
   },
   {
     name: "BakedBazaar",
@@ -46,7 +46,7 @@ const DAPPS = [
     desc: "The NFT marketplace for Cookie Chain. List, bid, and collect digital assets on the community chain.",
     href: LINKS.bakedbazaar,
     color: "#7B2FBE",
-    logo: "/manus-storage/bakedbazaar_1cdc15d0.png",
+    logo: "https://bakedbazaar.art/assets/baked-bazaar-logo-DkfJaY9t.png",
   },
   {
     name: "CookieScan",
@@ -54,7 +54,7 @@ const DAPPS = [
     desc: "Block explorer and analytics for Cookie Chain. Verify transactions, inspect wallets, and audit the reserve in real time.",
     href: LINKS.cookiescan,
     color: "#2563EB",
-    logo: "/manus-storage/cookiescan_175d5034.png",
+    logo: "https://cookiescan.io/newlogo.png",
   },
   {
     name: "gorboy",
@@ -62,7 +62,7 @@ const DAPPS = [
     desc: "Community platform on Cookie Chain. The original gorboy community, now living on the chain they helped build.",
     href: LINKS.gorboy,
     color: "#BAE6FD",
-    logo: "/manus-storage/gorboy_fdc6b7ac.png",
+    logo: "https://cdn.prod.website-files.com/691828ee7c1ee38a958dda54/6a03adbc5f009a668a39f520_gorboy_logo-p-500.png",
   },
   {
     name: "Cookienet Bridge",
@@ -70,7 +70,7 @@ const DAPPS = [
     desc: "The official equity bridge between Solana and Cookie Chain. Move $COOK between chains with 6-of-11 multi-sig security.",
     href: LINKS.bridge,
     color: "#60A5FA",
-    logo: "/manus-storage/cookiebridge_b2326a59.png",
+    logo: "https://cookiescan.io/attached_assets/cookie.png",
   },
 ];
 

@@ -23,6 +23,17 @@
     <meta name="twitter:title" content="Cookie Chain — $COOK | Community SVM Blockchain" />
     <meta name="twitter:description" content="A high-performance SVM Layer 1 built by the community that chose to stay. Fixed 1B supply. ~100.4% equity-backed bridge. 6-of-11 multi-sig governance." />
     <meta name="twitter:image" content="https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cc-hero-v3-fycfSqHn94rbr25XpikzPM.webp" />
+    <!-- GitHub Pages SPA routing: decode redirect from 404.html -->
+    <script>
+      (function() {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
