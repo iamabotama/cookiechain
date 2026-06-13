@@ -13,8 +13,7 @@ import { marked } from "marked";
 const WHITEPAPER_URL =
   "https://raw.githubusercontent.com/iamabotama/cookienetsites/refs/heads/main/whitepaper.md";
 
-const COOKIE_LOGO =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cookie-logo-fWmv2g5Wz8eBdEaWBKfGXt.webp";
+const COOKIE_LOGO = "/cookie-logo.webp";
 
 interface TocItem {
   id: string;
