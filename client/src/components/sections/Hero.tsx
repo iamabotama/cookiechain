@@ -5,25 +5,49 @@
  * Logo: actual cookie sticker logo with subtle blue glow
  */
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { LINKS } from "@/lib/links";
 
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cc-hero-v3-fycfSqHn94rbr25XpikzPM.webp";
+const COOKIESCAN_RPC = "https://rpc.cookiescan.io";
 
-const CHAIN_STATS = [
-  { label: "Current Slot", value: "5,570,342", live: true },
-  { label: "Block Height", value: "5,529,536", live: false },
-  { label: "TPS", value: "10", live: true },
-  { label: "Avg Fee / TX", value: "0.000005 COOK", live: false },
-];
+function fmtNum(n: number): string {
+  return n.toLocaleString("en-US");
+}
 
 export default function Hero() {
   const [visible, setVisible] = useState(false);
+  const [slot, setSlot] = useState("—");
+  const [blockHeight, setBlockHeight] = useState("—");
+  const [tps, setTps] = useState("—");
+
+  const fetchChainStats = useCallback(async () => {
+    try {
+      const [slotRes, heightRes, perfRes] = await Promise.all([
+        fetch(COOKIESCAN_RPC, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "getSlot", params: [] }) }),
+        fetch(COOKIESCAN_RPC, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ jsonrpc: "2.0", id: 2, method: "getBlockHeight", params: [] }) }),
+        fetch(COOKIESCAN_RPC, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ jsonrpc: "2.0", id: 3, method: "getRecentPerformanceSamples", params: [1] }) }),
+      ]);
+      const [slotData, heightData, perfData] = await Promise.all([slotRes.json(), heightRes.json(), perfRes.json()]);
+      if (slotData.result) setSlot(fmtNum(slotData.result));
+      if (heightData.result) setBlockHeight(fmtNum(heightData.result));
+      if (perfData.result?.[0]) {
+        const s = perfData.result[0];
+        setTps(fmtNum(Math.round(s.numTransactions / s.samplePeriodSecs)));
+      }
+    } catch { /* silent fail */ }
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 100);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    fetchChainStats();
+    const interval = setInterval(fetchChainStats, 5_000);
+    return () => clearInterval(interval);
+  }, [fetchChainStats]);
 
   return (
     <section
@@ -183,7 +207,12 @@ export default function Hero() {
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
           }}>
-            {CHAIN_STATS.map((stat, i) => (
+            {[
+              { label: "Current Slot", value: slot, live: true },
+              { label: "Block Height", value: blockHeight, live: false },
+              { label: "TPS", value: tps, live: true },
+              { label: "Avg Fee / TX", value: "0.000005 COOK", live: false },
+            ].map((stat, i) => (
               <div key={stat.label} style={{
                 padding: "1.25rem 0",
                 borderLeft: i > 0 ? "1px solid rgba(255,255,255,0.06)" : "none",

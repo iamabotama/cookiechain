@@ -24,22 +24,22 @@ const CONFIG = {
   CURVE_INTENSITY_MIN: 0.15,
   CURVE_INTENSITY_MAX: 0.55,
 
-  PARTICLES_PER_STREAM_MIN: 3,
-  PARTICLES_PER_STREAM_MAX: 9,
-  PARTICLE_SIZE_MIN: 2,
-  PARTICLE_SIZE_MAX: 5.5,
-  PARTICLE_GLOW_MIN: 18,
-  PARTICLE_GLOW_MAX: 38,
+  PARTICLES_PER_STREAM_MIN: 4,
+  PARTICLES_PER_STREAM_MAX: 10,
+  PARTICLE_SIZE_MIN: 3,
+  PARTICLE_SIZE_MAX: 7,
+  PARTICLE_GLOW_MIN: 30,
+  PARTICLE_GLOW_MAX: 60,
   PARTICLE_SPEED_MIN: 0.00025,
   PARTICLE_SPEED_MAX: 0.00075,
   PARTICLE_SPACING: 0.14,
 
-  LINE_WIDTH_MIN: 0.8,
-  LINE_WIDTH_MAX: 2.2,
-  LINE_OPACITY_MIN: 0.25,
-  LINE_OPACITY_MAX: 0.55,
-  LINE_GLOW_MIN: 6,
-  LINE_GLOW_MAX: 18,
+  LINE_WIDTH_MIN: 1.5,
+  LINE_WIDTH_MAX: 3.5,
+  LINE_OPACITY_MIN: 0.55,
+  LINE_OPACITY_MAX: 0.85,
+  LINE_GLOW_MIN: 14,
+  LINE_GLOW_MAX: 32,
 
   FADE_IN_TIME: 700,
   LIFETIME_MIN: 4500,
@@ -219,7 +219,11 @@ function drawStream(ctx: CanvasRenderingContext2D, stream: Stream) {
   ctx.strokeStyle = `rgba(${stream.color}, ${stream.lineOpacity})`;
   ctx.lineWidth = stream.lineWidth;
   ctx.shadowBlur = stream.lineGlow;
-  ctx.shadowColor = `rgba(${stream.color}, 0.8)`;
+  ctx.shadowColor = `rgba(${stream.color}, 1)`;
+  ctx.stroke();
+  // Second pass for extra glow intensity
+  ctx.shadowBlur = stream.lineGlow * 1.8;
+  ctx.shadowColor = `rgba(${stream.color}, 0.5)`;
   ctx.stroke();
 
   for (const particle of stream.particles) {

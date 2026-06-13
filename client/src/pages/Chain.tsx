@@ -8,6 +8,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { Link } from "wouter";
 import { ArrowLeft, ExternalLink, Cpu, Zap, Box, Clock, Activity, Shield } from "lucide-react";
+import StreamCanvas from "../components/StreamCanvas";
 
 const COOKIESCAN_URL = "https://cookiescan.io";
 const COOKIE_LOGO = "/manus-storage/cookie-logo-original_830062d7.webp";
@@ -173,16 +174,12 @@ export default function Chain() {
           position: "relative",
           overflow: "hidden",
         }}>
-          {/* Subtle violet glow behind text */}
-          <div style={{
-            position: "absolute",
-            top: "20%",
-            left: "-10%",
-            width: "400px",
-            height: "400px",
-            background: "radial-gradient(circle, rgba(123,47,190,0.12) 0%, transparent 70%)",
-            pointerEvents: "none",
-          }} />
+          {/* Live stream animation — low density, slow, behind text */}
+          <StreamCanvas
+            style={{ zIndex: 0, opacity: 1 }}
+            maxStreams={7}
+            spawnRate={0.01}
+          />
 
           {/* Section label */}
           <div style={{
