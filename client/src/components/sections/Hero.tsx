@@ -47,12 +47,7 @@ export default function Hero() {
         backgroundRepeat: "no-repeat",
       }} />
 
-      {/* Left gradient fade for text readability */}
-      <div style={{
-        position: "absolute",
-        inset: 0,
-        background: "linear-gradient(90deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 38%, rgba(0,0,0,0.25) 60%, rgba(0,0,0,0) 100%)",
-      }} />
+      {/* No full-width overlay — text panel handles contrast directly */}
 
       {/* Top vignette */}
       <div style={{
@@ -93,9 +88,20 @@ export default function Hero() {
           justifyContent: "center",
           paddingTop: "8rem",
           paddingBottom: "6rem",
-          maxWidth: "680px",
         }}
       >
+        {/* Dark frosted panel — deliberate text punch-out over the vivid hero image */}
+        <div style={{
+          background: "rgba(0,0,0,0.58)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
+          borderRadius: "1.25rem",
+          border: "1px solid rgba(255,255,255,0.08)",
+          padding: "2.5rem 2.75rem 2.25rem",
+          maxWidth: "600px",
+          width: "fit-content",
+          boxShadow: "0 8px 40px rgba(0,0,0,0.4)",
+        }}>
         {/* Label */}
         <div className="section-label" style={{
           opacity: visible ? 1 : 0,
@@ -115,16 +121,15 @@ export default function Hero() {
           letterSpacing: "-0.03em",
           color: "#ffffff",
           marginBottom: "1.5rem",
+          textShadow: "0 2px 40px rgba(0,0,0,0.8), 0 0 80px rgba(0,0,0,0.6)",
           opacity: visible ? 1 : 0,
           transform: visible ? "translateY(0)" : "translateY(20px)",
           transition: "opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s",
         }}>
           The community chain<br />
           <span style={{
-            background: "linear-gradient(135deg, #7B2FBE 0%, #2563EB 50%, #BAE6FD 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
+            color: "#7DD3FC",
+            textShadow: "0 0 30px rgba(125,211,252,0.7), 0 0 60px rgba(96,165,250,0.4)",
           }}>
             built to last.
           </span>
@@ -135,9 +140,10 @@ export default function Hero() {
           fontFamily: "'DM Sans', sans-serif",
           fontSize: "1.125rem",
           lineHeight: 1.65,
-          color: "rgba(255,255,255,0.62)",
+          color: "rgba(255,255,255,0.85)",
           marginBottom: "2.5rem",
           maxWidth: "520px",
+          textShadow: "0 1px 20px rgba(0,0,0,0.9)",
           opacity: visible ? 1 : 0,
           transform: visible ? "translateY(0)" : "translateY(20px)",
           transition: "opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s",
@@ -181,13 +187,14 @@ export default function Hero() {
           opacity: visible ? 1 : 0,
           transition: "opacity 0.7s ease 0.4s",
         }}>
-          <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.3)", marginRight: "0.5rem" }}>
+          <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.65)", marginRight: "0.5rem" }}>
             Solana CA (sCOOK):
           </span>
-          <code className="address-mono" style={{ fontSize: "0.7rem" }}>
+          <code className="address-mono" style={{ fontSize: "0.7rem", color: "rgba(186,230,253,0.85)" }}>
             {LINKS.ca_solana}
           </code>
         </div>
+        </div> {/* end frosted panel */}
       </div>
 
       {/* Chain stat bar */}
