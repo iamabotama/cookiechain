@@ -112,6 +112,23 @@ export default function Nav() {
             {/* Divider */}
             <div style={{ width: "1px", height: "18px", background: "rgba(255,255,255,0.12)", margin: "0 0.25rem" }} />
             <a
+              href="https://cookiechain.wtf"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: "0.875rem",
+                fontWeight: 500,
+                color: "rgba(255,255,255,0.55)",
+                textDecoration: "none",
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#7DD3FC")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.55)")}
+            >
+              <span style={{ whiteSpace: "nowrap" }}>Community ↗</span>
+            </a>
+            <a
               href={NAV_CHAIN}
               style={{
                 fontFamily: "'DM Sans', sans-serif",
@@ -218,6 +235,17 @@ export default function Nav() {
             ))}
             {/* Divider */}
             <div style={{ height: "1px", background: "rgba(255,255,255,0.08)", margin: "0.25rem 0" }} />
+            <a href="https://cookiechain.wtf" target="_blank" rel="noopener noreferrer" style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontSize: "1.125rem",
+              fontWeight: 600,
+              color: "#7DD3FC",
+              textDecoration: "none",
+            }}
+              onClick={() => setMobileOpen(false)}
+            >
+              Community ↗
+            </a>
             <a href={NAV_CHAIN} style={{
               fontFamily: "'Space Grotesk', sans-serif",
               fontSize: "1.125rem",
