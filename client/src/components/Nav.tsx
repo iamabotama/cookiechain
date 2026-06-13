@@ -19,6 +19,7 @@ const navLinks = [
 ];
 
 const NAV_WHITEPAPER = "/whitepaper";
+const NAV_MARKETS = "/markets";
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -83,7 +84,7 @@ export default function Nav() {
           </a>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-4">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -107,6 +108,23 @@ export default function Nav() {
 
           {/* CTA */}
           <div className="hidden md:flex items-center gap-3">
+            {/* Divider */}
+            <div style={{ width: "1px", height: "18px", background: "rgba(255,255,255,0.12)", margin: "0 0.25rem" }} />
+            <a
+              href={NAV_MARKETS}
+              style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: "0.875rem",
+                fontWeight: 500,
+                color: "rgba(255,255,255,0.55)",
+                textDecoration: "none",
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#4ADE80")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.55)")}
+            >
+              Markets
+            </a>
             <a
               href={NAV_WHITEPAPER}
               style={{
