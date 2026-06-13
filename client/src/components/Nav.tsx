@@ -216,6 +216,41 @@ export default function Nav() {
                 {link.label}
               </a>
             ))}
+            {/* Divider */}
+            <div style={{ height: "1px", background: "rgba(255,255,255,0.08)", margin: "0.25rem 0" }} />
+            <a href={NAV_CHAIN} style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontSize: "1.125rem",
+              fontWeight: 600,
+              color: "#A78BFA",
+              textDecoration: "none",
+            }}
+              onClick={() => setMobileOpen(false)}
+            >
+              The Chain
+            </a>
+            <a href={NAV_MARKETS} style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontSize: "1.125rem",
+              fontWeight: 600,
+              color: "#60A5FA",
+              textDecoration: "none",
+            }}
+              onClick={() => setMobileOpen(false)}
+            >
+              Markets
+            </a>
+            <a href={NAV_WHITEPAPER} style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontSize: "1.125rem",
+              fontWeight: 600,
+              color: "#BAE6FD",
+              textDecoration: "none",
+            }}
+              onClick={() => setMobileOpen(false)}
+            >
+              Whitepaper
+            </a>
             <div className="flex gap-3 mt-2">
               <a href={LINKS.buy_cook} target="_blank" rel="noopener noreferrer"
                 className="btn-primary" style={{ fontSize: "0.875rem" }}>
