@@ -9,6 +9,14 @@ import { LINKS } from "@/lib/links";
 
 const DAPPS = [
   {
+    name: "cookiechain.wtf",
+    tag: "COMMUNITY SITE",
+    desc: "The community-built home of Cookie Chain culture. Ecosystem links, lore, and the vibe that started it all — built by the community, for the community.",
+    href: "https://cookiechain.wtf",
+    color: "#7DD3FC",
+    logo: "/cookie-logo.webp",
+  },
+  {
     name: "Cookoven",
     tag: "STAKING",
     desc: "The native staking platform for $COOK. Earn rewards while securing the network. LST pool with community-governed reward rates.",
