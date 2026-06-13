@@ -47,34 +47,7 @@ export default function Hero() {
         backgroundRepeat: "no-repeat",
       }} />
 
-      {/* No full-width overlay — text panel handles contrast directly */}
-
-      {/* Top vignette */}
-      <div style={{
-        position: "absolute",
-        top: 0, left: 0, right: 0,
-        height: "120px",
-        background: "linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 100%)",
-      }} />
-
-      {/* Bottom gradient for stat bar */}
-      <div style={{
-        position: "absolute",
-        bottom: 0, left: 0, right: 0,
-        height: "200px",
-        background: "linear-gradient(to top, rgba(0,0,0,1) 0%, transparent 100%)",
-      }} />
-
-      {/* Subtle violet glow behind text */}
-      <div style={{
-        position: "absolute",
-        left: "-10%",
-        top: "20%",
-        width: "500px",
-        height: "500px",
-        background: "radial-gradient(ellipse, rgba(123,47,190,0.12) 0%, transparent 70%)",
-        pointerEvents: "none",
-      }} />
+      {/* No overlays — image shows at full vibrancy, frosted panel handles text contrast */}
 
       {/* Main content */}
       <div
