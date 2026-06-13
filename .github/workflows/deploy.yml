@@ -1,0 +1,46 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    name: Build and deploy to cookiechain.io
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Write CNAME
+        run: echo "cookiechain.io" > dist/public/CNAME
+
+      - name: Deploy to cookiechain.io repo
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.DEPLOY_TOKEN }}
+          external_repository: iamabotama/cookiechain.io
+          publish_branch: main
+          publish_dir: ./dist/public
+          force_orphan: true
+          commit_message: "deploy: ${{ github.sha }} — ${{ github.event.head_commit.message }}"
