@@ -14,7 +14,7 @@ const DAPPS = [
     desc: "The native staking platform for $COOK. Earn rewards while securing the network. LST pool with community-governed reward rates.",
     href: LINKS.cookoven,
     color: "#2563EB",
-    icon: "🍳",
+    logo: "/manus-storage/cookoven_53ada27b.png",
   },
   {
     name: "CookieSwap",
@@ -22,7 +22,7 @@ const DAPPS = [
     desc: "Decentralized exchange native to Cookie Chain. Swap, provide liquidity, and earn fees on the SVM network.",
     href: LINKS.cookieswap,
     color: "#7B2FBE",
-    icon: "🔄",
+    logo: "/manus-storage/cookieswap_1148c2fd.png",
   },
   {
     name: "CandyShop",
@@ -30,7 +30,7 @@ const DAPPS = [
     desc: "Swap interface powered by CookieScan. Fast, lightweight token swaps directly within the Cookie Chain explorer.",
     href: LINKS.candyshop,
     color: "#BAE6FD",
-    icon: "🍬",
+    logo: "/manus-storage/candyshop_cf5e5b1c.png",
   },
   {
     name: "CookieBox",
@@ -38,7 +38,7 @@ const DAPPS = [
     desc: "The Cookie Chain app hub. Access ecosystem tools, portfolio tracking, and community features in one place.",
     href: LINKS.cookiebox,
     color: "#60A5FA",
-    icon: "📦",
+    logo: "/manus-storage/cookiebox_782add47.png",
   },
   {
     name: "BakedBazaar",
@@ -46,7 +46,7 @@ const DAPPS = [
     desc: "The NFT marketplace for Cookie Chain. List, bid, and collect digital assets on the community chain.",
     href: LINKS.bakedbazaar,
     color: "#7B2FBE",
-    icon: "🏪",
+    logo: "/manus-storage/bakedbazaar_1cdc15d0.png",
   },
   {
     name: "CookieScan",
@@ -54,7 +54,7 @@ const DAPPS = [
     desc: "Block explorer and analytics for Cookie Chain. Verify transactions, inspect wallets, and audit the reserve in real time.",
     href: LINKS.cookiescan,
     color: "#2563EB",
-    icon: "🔍",
+    logo: "/manus-storage/cookiescan_175d5034.png",
   },
   {
     name: "gorboy",
@@ -62,7 +62,7 @@ const DAPPS = [
     desc: "Community platform on Cookie Chain. The original gorboy community, now living on the chain they helped build.",
     href: LINKS.gorboy,
     color: "#BAE6FD",
-    icon: "🤖",
+    logo: "/manus-storage/gorboy_fdc6b7ac.png",
   },
   {
     name: "Cookienet Bridge",
@@ -70,7 +70,7 @@ const DAPPS = [
     desc: "The official equity bridge between Solana and Cookie Chain. Move $COOK between chains with 6-of-11 multi-sig security.",
     href: LINKS.bridge,
     color: "#60A5FA",
-    icon: "🌉",
+    logo: "/manus-storage/cookiebridge_b2326a59.png",
   },
 ];
 
@@ -176,7 +176,24 @@ export default function Ecosystem() {
               }}
             >
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1rem" }}>
-                <span style={{ fontSize: "1.75rem" }}>{app.icon}</span>
+                <div style={{
+                  width: "48px",
+                  height: "48px",
+                  borderRadius: "0.5rem",
+                  overflow: "hidden",
+                  background: "rgba(255,255,255,0.04)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexShrink: 0,
+                }}>
+                  <img
+                    src={app.logo}
+                    alt={app.name}
+                    style={{ width: "100%", height: "100%", objectFit: "contain", padding: "4px" }}
+                    onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = "none"; }}
+                  />
+                </div>
                 <span style={{
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: "0.6rem",
