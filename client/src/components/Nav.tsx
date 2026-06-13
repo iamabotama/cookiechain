@@ -1,13 +1,14 @@
 /*
- * COOKIE CHAIN NAV
- * Design: Transparent on load, opaque blur on scroll — mirrors Solana.com nav behavior
- * Logo: Amber C-chain mark + "COOKIE CHAIN" wordmark in Space Grotesk
+ * COOKIE CHAIN NAV — v2
+ * Design: Transparent on load, opaque blur on scroll
+ * Logo: actual cookie sticker with subtle blue glow + "COOKIE CHAIN" wordmark
+ * Colors: electric blue primary, ice blue hover
  */
 
 import { useEffect, useState } from "react";
 import { LINKS } from "@/lib/links";
 
-const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cookiechain-logo-BGKnVNhsxP8SqdU5Bb2HpX.webp";
+const COOKIE_LOGO = "/manus-storage/cookie-logo-original_830062d7.webp";
 
 const navLinks = [
   { label: "Overview", href: "#overview" },
@@ -38,7 +39,7 @@ export default function Nav() {
     <header
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
-        background: scrolled ? "rgba(0,0,0,0.88)" : "transparent",
+        background: scrolled ? "rgba(0,0,0,0.90)" : "transparent",
         backdropFilter: scrolled ? "blur(20px)" : "none",
         borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "none",
       }}
@@ -46,14 +47,31 @@ export default function Nav() {
       <div className="container">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5 group">
-            <CookieLogo />
+          <a href="#" className="flex items-center gap-2.5 group" style={{ textDecoration: "none" }}>
+            <div style={{
+              width: "36px",
+              height: "36px",
+              borderRadius: "50%",
+              overflow: "hidden",
+              flexShrink: 0,
+              filter: "drop-shadow(0 0 8px rgba(37,99,235,0.4))",
+              transition: "filter 0.2s ease",
+            }}
+              onMouseEnter={(e) => (e.currentTarget.style.filter = "drop-shadow(0 0 14px rgba(37,99,235,0.7))")}
+              onMouseLeave={(e) => (e.currentTarget.style.filter = "drop-shadow(0 0 8px rgba(37,99,235,0.4))")}
+            >
+              <img
+                src={COOKIE_LOGO}
+                alt="Cookie Chain"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            </div>
             <span
               style={{
                 fontFamily: "'Space Grotesk', sans-serif",
                 fontWeight: 700,
                 fontSize: "1rem",
-                letterSpacing: "0.04em",
+                letterSpacing: "0.05em",
                 color: "#ffffff",
               }}
             >
@@ -72,12 +90,12 @@ export default function Nav() {
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.875rem",
                   fontWeight: 500,
-                  color: "rgba(255,255,255,0.7)",
+                  color: "rgba(255,255,255,0.65)",
                   transition: "color 0.2s",
                   textDecoration: "none",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#ffffff")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.7)")}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#BAE6FD")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.65)")}
               >
                 {link.label}
               </a>
@@ -90,7 +108,7 @@ export default function Nav() {
               href={LINKS.buy_cook}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-amber"
+              className="btn-primary"
               style={{ fontSize: "0.875rem", padding: "0.5rem 1.25rem" }}
             >
               Buy $COOK
@@ -125,7 +143,7 @@ export default function Nav() {
       {/* Mobile menu */}
       {mobileOpen && (
         <div style={{
-          background: "rgba(0,0,0,0.96)",
+          background: "rgba(0,0,0,0.97)",
           backdropFilter: "blur(20px)",
           borderTop: "1px solid rgba(255,255,255,0.06)",
         }}>
@@ -148,7 +166,7 @@ export default function Nav() {
             ))}
             <div className="flex gap-3 mt-2">
               <a href={LINKS.buy_cook} target="_blank" rel="noopener noreferrer"
-                className="btn-amber" style={{ fontSize: "0.875rem" }}>
+                className="btn-primary" style={{ fontSize: "0.875rem" }}>
                 Buy $COOK
               </a>
               <a href={LINKS.cookiescan} target="_blank" rel="noopener noreferrer"
@@ -160,24 +178,5 @@ export default function Nav() {
         </div>
       )}
     </header>
-  );
-}
-
-// Inline SVG cookie-chain logo mark
-function CookieLogo() {
-  return (
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Cookie circle */}
-      <circle cx="16" cy="16" r="14" fill="#1a1a1a" stroke="#F5A623" strokeWidth="1.5"/>
-      {/* Chain links */}
-      <path d="M10 16c0-2.2 1.8-4 4-4h4c2.2 0 4 1.8 4 4s-1.8 4-4 4h-4c-2.2 0-4-1.8-4-4z"
-        stroke="#F5A623" strokeWidth="1.5" fill="none"/>
-      <path d="M13 16h6" stroke="#F5A623" strokeWidth="1.5" strokeLinecap="round"/>
-      {/* Cookie dots */}
-      <circle cx="11" cy="11" r="1.2" fill="#F5A623" opacity="0.6"/>
-      <circle cx="21" cy="11" r="1.2" fill="#14F195" opacity="0.6"/>
-      <circle cx="11" cy="21" r="1.2" fill="#14F195" opacity="0.6"/>
-      <circle cx="21" cy="21" r="1.2" fill="#F5A623" opacity="0.6"/>
-    </svg>
   );
 }

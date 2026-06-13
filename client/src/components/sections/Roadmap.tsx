@@ -11,7 +11,7 @@ const PHASES = [
     phase: "Phase 0",
     title: "Genesis & Launch",
     status: "complete",
-    color: "#14F195",
+    color: "#60A5FA",
     items: [
       "Gorbagana snapshot captured (12,528 wallets)",
       "Cookie Chain SVM mainnet launched May 26, 2026",
@@ -25,7 +25,7 @@ const PHASES = [
     phase: "Phase 1",
     title: "Ecosystem Foundation",
     status: "active",
-    color: "#F5A623",
+    color: "#2563EB",
     items: [
       "Cookoven staking platform deployment",
       "CookieSwap DEX launch",
@@ -39,7 +39,7 @@ const PHASES = [
     phase: "Phase 2",
     title: "Bridge Evolution",
     status: "upcoming",
-    color: "#9945FF",
+    color: "#7B2FBE",
     items: [
       "Hyperlane Warp Routes integration (burn/mint)",
       "Removal of equity reserve dependency",
@@ -52,7 +52,7 @@ const PHASES = [
     phase: "Phase 3",
     title: "Full Decentralization",
     status: "future",
-    color: "#444444",
+    color: "#334155",
     items: [
       "Broader DAO governance structure",
       "On-chain proposal and voting system",
@@ -109,11 +109,12 @@ export default function Roadmap() {
               marginBottom: "1rem",
             }}
           >
-            Where we're going.
+            Steady progress.<br />No detours.
           </h2>
           <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "1rem", maxWidth: "520px", lineHeight: 1.65 }}>
-            Cookie Chain launched with a working product, not a promise. The roadmap builds on
-            a foundation that already exists — every phase listed here has a clear technical path.
+            Phase 0 shipped on schedule. Phase 1 is underway. Every milestone on this roadmap
+            builds on infrastructure that already exists and a community that has demonstrated
+            it shows up — consistently, without drama, over the long term.
           </p>
         </div>
 
@@ -203,7 +204,7 @@ export default function Roadmap() {
                         width: "5px",
                         height: "5px",
                         borderRadius: "50%",
-                        background: phase.status === "complete" ? "#14F195" : phase.color,
+                        background: phase.status === "complete" ? "#60A5FA" : phase.color,
                         marginTop: "0.45rem",
                         flexShrink: 0,
                       }} />

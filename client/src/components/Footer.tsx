@@ -63,7 +63,9 @@ export default function Footer() {
       <div className="container" style={{ paddingTop: "4rem", paddingBottom: "3rem" }}>
         {/* Logo row */}
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "3rem" }}>
-          <CookieLogo />
+          <div style={{ width: "32px", height: "32px", borderRadius: "50%", overflow: "hidden", filter: "drop-shadow(0 0 6px rgba(37,99,235,0.4))" }}>
+            <img src="/manus-storage/cookie-logo-original_830062d7.webp" alt="Cookie Chain" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          </div>
           <span style={{
             fontFamily: "'Space Grotesk', sans-serif",
             fontWeight: 700,
@@ -163,17 +165,4 @@ export default function Footer() {
   );
 }
 
-function CookieLogo() {
-  return (
-    <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="16" cy="16" r="14" fill="#1a1a1a" stroke="#F5A623" strokeWidth="1.5"/>
-      <path d="M10 16c0-2.2 1.8-4 4-4h4c2.2 0 4 1.8 4 4s-1.8 4-4 4h-4c-2.2 0-4-1.8-4-4z"
-        stroke="#F5A623" strokeWidth="1.5" fill="none"/>
-      <path d="M13 16h6" stroke="#F5A623" strokeWidth="1.5" strokeLinecap="round"/>
-      <circle cx="11" cy="11" r="1.2" fill="#F5A623" opacity="0.6"/>
-      <circle cx="21" cy="11" r="1.2" fill="#14F195" opacity="0.6"/>
-      <circle cx="11" cy="21" r="1.2" fill="#14F195" opacity="0.6"/>
-      <circle cx="21" cy="21" r="1.2" fill="#F5A623" opacity="0.6"/>
-    </svg>
-  );
-}
+

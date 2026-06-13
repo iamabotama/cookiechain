@@ -9,11 +9,11 @@ import { useEffect, useRef, useState } from "react";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
 const ALLOCATIONS = [
-  { name: "Vault 0 (Bridge Reserve)", value: 59.02, color: "#F5A623", desc: "Undistributed reserve; source of cCOOK for bridge entries" },
-  { name: "Genesis & Community Holders", value: 27.98, color: "#14F195", desc: "12,528 wallets — snapshot distribution to legacy $GOR holders" },
-  { name: "LST / Staking Rewards", value: 10.09, color: "#9945FF", desc: "Staking reward distribution pool" },
-  { name: "Bridge Reserve Wallet", value: 1.72, color: "#FF6B35", desc: "Bridge liquidity and claims support buffer" },
-  { name: "Other / Rounding", value: 1.19, color: "#444444", desc: "Reconciliation buffer" },
+  { name: "Vault 0 (Bridge Reserve)", value: 59.02, color: "#2563EB", desc: "Undistributed reserve; source of cCOOK for bridge entries" },
+  { name: "Genesis & Community Holders", value: 27.98, color: "#7B2FBE", desc: "12,528 wallets — snapshot distribution to legacy $GOR holders" },
+  { name: "LST / Staking Rewards", value: 10.09, color: "#BAE6FD", desc: "Staking reward distribution pool" },
+  { name: "Bridge Reserve Wallet", value: 1.72, color: "#60A5FA", desc: "Bridge liquidity and claims support buffer" },
+  { name: "Other / Rounding", value: 1.19, color: "#334155", desc: "Reconciliation buffer" },
 ];
 
 const KEY_STATS = [
@@ -68,9 +68,24 @@ export default function Tokenomics() {
     <section
       id="tokenomics"
       ref={ref}
-      style={{ background: "#000000", padding: "6rem 0" }}
+      style={{
+        background: "#000000",
+        padding: "6rem 0",
+        position: "relative",
+        overflow: "hidden",
+      }}
     >
-      <div className="container">
+      {/* Subtle network grid background */}
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        backgroundImage: `url(https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cc-tokenomics-v2-7ePTX2xNdMHhLJce87xbMj.webp)`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        opacity: 0.4,
+        pointerEvents: "none",
+      }} />
+      <div className="container" style={{ position: "relative", zIndex: 1 }}>
         {/* Header */}
         <div
           style={{
@@ -128,7 +143,7 @@ export default function Tokenomics() {
                   fontFamily: "'Space Grotesk', sans-serif",
                   fontWeight: 700,
                   fontSize: "1.5rem",
-                  color: stat.highlight ? (stat.value === "None" ? "#14F195" : "#F5A623") : "#ffffff",
+                  color: stat.highlight ? (stat.value === "None" ? "#BAE6FD" : "#60A5FA") : "#ffffff",
                   marginBottom: "0.25rem",
                   letterSpacing: "-0.02em",
                 }}
@@ -247,7 +262,7 @@ export default function Tokenomics() {
                 rel="noopener noreferrer"
                 style={{
                   fontSize: "0.8rem",
-                  color: "#F5A623",
+                  color: "#60A5FA",
                   textDecoration: "none",
                   display: "inline-flex",
                   alignItems: "center",

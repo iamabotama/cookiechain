@@ -1,15 +1,14 @@
 /*
- * HERO SECTION
- * Design: Full-bleed black hero with amber/mint/purple 3D ribbon right side
- * Left: Large bold white display type, subtext, two CTAs
- * Bottom: Chain stat bar
- * Mirrors Solana hero structure
+ * HERO SECTION — v2
+ * Design: Pure black + violet/electric-blue/ice ribbons (right side)
+ * Headline: longevity / persistence / maturity messaging
+ * Logo: actual cookie sticker logo with subtle blue glow
  */
 
 import { useEffect, useState } from "react";
 import { LINKS } from "@/lib/links";
 
-const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cookiechain-hero-bg-9ChBGnoAZ5JWfiw5ZsKkxN.webp";
+const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cc-hero-v2-SjRAkmCXBVT8AzRJ2K9iCm.webp";
 
 const CHAIN_STATS = [
   { label: "Current Slot", value: "5,570,342", live: true },
@@ -52,17 +51,34 @@ export default function Hero() {
       <div style={{
         position: "absolute",
         inset: 0,
-        background: "linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.88) 45%, rgba(0,0,0,0.3) 70%, transparent 100%)",
+        background: "linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.92) 40%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.1) 100%)",
+      }} />
+
+      {/* Top vignette */}
+      <div style={{
+        position: "absolute",
+        top: 0, left: 0, right: 0,
+        height: "120px",
+        background: "linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 100%)",
       }} />
 
       {/* Bottom gradient for stat bar */}
       <div style={{
         position: "absolute",
-        bottom: 0,
-        left: 0,
-        right: 0,
+        bottom: 0, left: 0, right: 0,
         height: "200px",
         background: "linear-gradient(to top, rgba(0,0,0,1) 0%, transparent 100%)",
+      }} />
+
+      {/* Subtle violet glow behind text */}
+      <div style={{
+        position: "absolute",
+        left: "-10%",
+        top: "20%",
+        width: "500px",
+        height: "500px",
+        background: "radial-gradient(ellipse, rgba(123,47,190,0.12) 0%, transparent 70%)",
+        pointerEvents: "none",
       }} />
 
       {/* Main content */}
@@ -77,7 +93,7 @@ export default function Hero() {
           justifyContent: "center",
           paddingTop: "8rem",
           paddingBottom: "6rem",
-          maxWidth: "640px",
+          maxWidth: "680px",
         }}
       >
         {/* Label */}
@@ -90,7 +106,7 @@ export default function Hero() {
           Community SVM · Launched May 26, 2026
         </div>
 
-        {/* Headline */}
+        {/* Headline — longevity / persistence messaging */}
         <h1 style={{
           fontFamily: "'Space Grotesk', sans-serif",
           fontWeight: 700,
@@ -105,12 +121,12 @@ export default function Hero() {
         }}>
           The community chain<br />
           <span style={{
-            background: "linear-gradient(135deg, #F5A623 0%, #14F195 100%)",
+            background: "linear-gradient(135deg, #7B2FBE 0%, #2563EB 50%, #BAE6FD 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
           }}>
-            that stayed.
+            built to last.
           </span>
         </h1>
 
@@ -119,16 +135,14 @@ export default function Hero() {
           fontFamily: "'DM Sans', sans-serif",
           fontSize: "1.125rem",
           lineHeight: 1.65,
-          color: "rgba(255,255,255,0.65)",
+          color: "rgba(255,255,255,0.62)",
           marginBottom: "2.5rem",
           maxWidth: "520px",
           opacity: visible ? 1 : 0,
           transform: visible ? "translateY(0)" : "translateY(20px)",
           transition: "opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s",
         }}>
-          Cookie Chain is a high-performance, community-operated SVM Layer 1 blockchain.
-          Fixed 1B supply. ~100.4% backed equity bridge. 6-of-11 multi-sig governance.
-          Built by the people who rescued a broken chain and built something better.
+          A high-performance SVM Layer 1 built by the community that chose to stay. Fixed 1B supply. ~100.4% equity-backed bridge. 6-of-11 multi-sig governance. Every metric trending forward — no pivots, no resets, no signs of stopping.
         </p>
 
         {/* CTAs */}
@@ -146,7 +160,7 @@ export default function Hero() {
               e.preventDefault();
               document.querySelector("#tokenomics")?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="btn-amber"
+            className="btn-primary"
           >
             View Tokenomics
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -169,7 +183,7 @@ export default function Hero() {
           opacity: visible ? 1 : 0,
           transition: "opacity 0.7s ease 0.4s",
         }}>
-          <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.35)", marginRight: "0.5rem" }}>
+          <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.3)", marginRight: "0.5rem" }}>
             Solana CA (sCOOK):
           </span>
           <code className="address-mono" style={{ fontSize: "0.7rem" }}>
@@ -183,8 +197,8 @@ export default function Hero() {
         position: "relative",
         zIndex: 10,
         borderTop: "1px solid rgba(255,255,255,0.06)",
-        background: "rgba(0,0,0,0.6)",
-        backdropFilter: "blur(10px)",
+        background: "rgba(0,0,0,0.7)",
+        backdropFilter: "blur(12px)",
       }}>
         <div className="container">
           <div style={{
@@ -204,9 +218,9 @@ export default function Hero() {
                       width: "6px",
                       height: "6px",
                       borderRadius: "50%",
-                      background: "#14F195",
+                      background: "#60A5FA",
                       display: "inline-block",
-                      boxShadow: "0 0 6px #14F195",
+                      boxShadow: "0 0 6px #60A5FA",
                       animation: "pulse 2s infinite",
                     }} />
                   )}
@@ -222,7 +236,7 @@ export default function Hero() {
                 <div style={{
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.75rem",
-                  color: "rgba(255,255,255,0.45)",
+                  color: "rgba(255,255,255,0.4)",
                 }}>
                   {stat.label}
                 </div>
@@ -235,7 +249,7 @@ export default function Hero() {
       <style>{`
         @keyframes pulse {
           0%, 100% { opacity: 1; }
-          50% { opacity: 0.4; }
+          50% { opacity: 0.35; }
         }
       `}</style>
     </section>

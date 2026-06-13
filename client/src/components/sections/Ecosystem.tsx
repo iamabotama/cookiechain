@@ -13,7 +13,7 @@ const DAPPS = [
     tag: "STAKING",
     desc: "The native staking platform for $COOK. Earn rewards while securing the network. LST pool with community-governed reward rates.",
     href: LINKS.cookoven,
-    color: "#F5A623",
+    color: "#2563EB",
     icon: "🍳",
   },
   {
@@ -21,7 +21,7 @@ const DAPPS = [
     tag: "DEX",
     desc: "Decentralized exchange native to Cookie Chain. Swap, provide liquidity, and earn fees on the SVM network.",
     href: LINKS.cookieswap,
-    color: "#14F195",
+    color: "#7B2FBE",
     icon: "🔄",
   },
   {
@@ -29,7 +29,7 @@ const DAPPS = [
     tag: "SWAP",
     desc: "Swap interface powered by CookieScan. Fast, lightweight token swaps directly within the Cookie Chain explorer.",
     href: LINKS.candyshop,
-    color: "#9945FF",
+    color: "#BAE6FD",
     icon: "🍬",
   },
   {
@@ -37,7 +37,7 @@ const DAPPS = [
     tag: "APP",
     desc: "The Cookie Chain app hub. Access ecosystem tools, portfolio tracking, and community features in one place.",
     href: LINKS.cookiebox,
-    color: "#F5A623",
+    color: "#60A5FA",
     icon: "📦",
   },
   {
@@ -45,7 +45,7 @@ const DAPPS = [
     tag: "NFT MARKETPLACE",
     desc: "The NFT marketplace for Cookie Chain. List, bid, and collect digital assets on the community chain.",
     href: LINKS.bakedbazaar,
-    color: "#14F195",
+    color: "#7B2FBE",
     icon: "🏪",
   },
   {
@@ -53,7 +53,7 @@ const DAPPS = [
     tag: "EXPLORER",
     desc: "Block explorer and analytics for Cookie Chain. Verify transactions, inspect wallets, and audit the reserve in real time.",
     href: LINKS.cookiescan,
-    color: "#9945FF",
+    color: "#2563EB",
     icon: "🔍",
   },
   {
@@ -61,7 +61,7 @@ const DAPPS = [
     tag: "COMMUNITY",
     desc: "Community platform on Cookie Chain. The original gorboy community, now living on the chain they helped build.",
     href: LINKS.gorboy,
-    color: "#F5A623",
+    color: "#BAE6FD",
     icon: "🤖",
   },
   {
@@ -69,7 +69,7 @@ const DAPPS = [
     tag: "BRIDGE",
     desc: "The official equity bridge between Solana and Cookie Chain. Move $COOK between chains with 6-of-11 multi-sig security.",
     href: LINKS.bridge,
-    color: "#14F195",
+    color: "#60A5FA",
     icon: "🌉",
   },
 ];
@@ -132,7 +132,7 @@ export default function Ecosystem() {
             >
               Build on the chain<br />
               <span style={{
-                background: "linear-gradient(135deg, #F5A623 0%, #14F195 100%)",
+                background: "linear-gradient(135deg, #7B2FBE 0%, #2563EB 55%, #BAE6FD 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -254,9 +254,9 @@ export default function Ecosystem() {
                 }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget as HTMLElement;
-                  el.style.borderColor = "rgba(245,166,35,0.4)";
+                  el.style.borderColor = "rgba(37,99,235,0.45)";
                   el.style.color = "#ffffff";
-                  el.style.background = "#1a1a1a";
+                  el.style.background = "rgba(37,99,235,0.08)";
                 }}
                 onMouseLeave={(e) => {
                   const el = e.currentTarget as HTMLElement;

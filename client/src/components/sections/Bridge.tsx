@@ -7,7 +7,7 @@
 import { useEffect, useRef, useState } from "react";
 import { LINKS } from "@/lib/links";
 
-const BRIDGE_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cookiechain-bridge-visual-4DKbERrwFEViQTyeKmK8XK.webp";
+const BRIDGE_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cc-bridge-v2-Re3cF6hEhJUTpdDXTwnepT.webp";
 
 const ENTER_STEPS = [
   { n: "01", text: "User deposits sCOOK into the Solana multi-sig lock wallet." },
@@ -33,14 +33,14 @@ const LOCK_WALLET_COMPONENTS = [
     label: "Team Operations",
     amount: "~100M sCOOK",
     pct: "~10%",
-    color: "#9945FF",
+    color: "#7B2FBE",
     desc: "Marketing, rewards, future fees. Locked; moves only by 6-of-11 multi-sig.",
   },
   {
     label: "User Bridge Deposits",
     amount: "~22.8M sCOOK",
     pct: "~2.28%",
-    color: "#14F195",
+    color: "#60A5FA",
     desc: "sCOOK deposited by users entering Cookie Chain since launch.",
   },
 ];
@@ -125,9 +125,9 @@ export default function Bridge() {
                     padding: "0.5rem 1rem",
                     borderRadius: "9999px",
                     border: "1px solid",
-                    borderColor: activeTab === tab ? "#F5A623" : "rgba(255,255,255,0.12)",
-                    background: activeTab === tab ? "rgba(245,166,35,0.1)" : "transparent",
-                    color: activeTab === tab ? "#F5A623" : "rgba(255,255,255,0.5)",
+                    borderColor: activeTab === tab ? "#2563EB" : "rgba(255,255,255,0.12)",
+                    background: activeTab === tab ? "rgba(37,99,235,0.12)" : "transparent",
+                    color: activeTab === tab ? "#60A5FA" : "rgba(255,255,255,0.5)",
                     fontFamily: "'Space Grotesk', sans-serif",
                     fontWeight: 600,
                     fontSize: "0.75rem",
@@ -156,7 +156,7 @@ export default function Bridge() {
                   <div style={{
                     fontFamily: "'JetBrains Mono', monospace",
                     fontSize: "0.7rem",
-                    color: "#F5A623",
+                    color: "#60A5FA",
                     fontWeight: 500,
                     paddingTop: "0.15rem",
                     flexShrink: 0,
@@ -204,11 +204,11 @@ export default function Bridge() {
             <div style={{
               marginTop: "1.25rem",
               padding: "1rem",
-              background: "rgba(20,241,149,0.05)",
+              background: "rgba(37,99,235,0.06)",
               borderRadius: "0.5rem",
-              border: "1px solid rgba(20,241,149,0.15)",
+              border: "1px solid rgba(37,99,235,0.18)",
             }}>
-              <div style={{ fontSize: "0.8rem", color: "#14F195", fontWeight: 600, marginBottom: "0.25rem" }}>
+              <div style={{ fontSize: "0.8rem", color: "#60A5FA", fontWeight: 600, marginBottom: "0.25rem" }}>
                 Approval threshold
               </div>
               <div style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.5 }}>
@@ -264,8 +264,8 @@ export default function Bridge() {
           <div style={{
             marginTop: "2rem",
             padding: "1.25rem 1.5rem",
-            background: "rgba(153,69,255,0.06)",
-            border: "1px solid rgba(153,69,255,0.2)",
+            background: "rgba(123,47,190,0.07)",
+            border: "1px solid rgba(123,47,190,0.22)",
             borderRadius: "0.75rem",
             display: "flex",
             gap: "1rem",
@@ -275,8 +275,8 @@ export default function Bridge() {
               width: "8px",
               height: "8px",
               borderRadius: "50%",
-              background: "#9945FF",
-              boxShadow: "0 0 8px #9945FF",
+              background: "#7B2FBE",
+              boxShadow: "0 0 8px #7B2FBE",
               marginTop: "0.35rem",
               flexShrink: 0,
             }} />

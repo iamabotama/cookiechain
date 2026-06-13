@@ -7,13 +7,13 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const SPEED_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cookiechain-speed-bg-QChNhEPpG675mNp9cqVffP.webp";
+const SPEED_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cc-speed-v2-2esYhXjC8DwC2DBeLGDn9w.webp";
 
 const METRICS = [
   {
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M10 2L12.5 7.5H18L13.5 11L15.5 17L10 13.5L4.5 17L6.5 11L2 7.5H7.5L10 2Z" stroke="#F5A623" strokeWidth="1.5" strokeLinejoin="round"/>
+        <path d="M10 2L12.5 7.5H18L13.5 11L15.5 17L10 13.5L4.5 17L6.5 11L2 7.5H7.5L10 2Z" stroke="#2563EB" strokeWidth="1.5" strokeLinejoin="round"/>
       </svg>
     ),
     value: "~100.4%",
@@ -23,8 +23,8 @@ const METRICS = [
   {
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <circle cx="10" cy="10" r="7" stroke="#14F195" strokeWidth="1.5"/>
-        <path d="M10 6v4l3 2" stroke="#14F195" strokeWidth="1.5" strokeLinecap="round"/>
+        <circle cx="10" cy="10" r="7" stroke="#60A5FA" strokeWidth="1.5"/>
+        <path d="M10 6v4l3 2" stroke="#60A5FA" strokeWidth="1.5" strokeLinecap="round"/>
       </svg>
     ),
     value: "6-of-11",
@@ -34,8 +34,8 @@ const METRICS = [
   {
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <rect x="3" y="3" width="14" height="14" rx="2" stroke="#9945FF" strokeWidth="1.5"/>
-        <path d="M7 10h6M10 7v6" stroke="#9945FF" strokeWidth="1.5" strokeLinecap="round"/>
+        <rect x="3" y="3" width="14" height="14" rx="2" stroke="#7B2FBE" strokeWidth="1.5"/>
+        <path d="M7 10h6M10 7v6" stroke="#7B2FBE" strokeWidth="1.5" strokeLinecap="round"/>
       </svg>
     ),
     value: "12,528",
@@ -45,7 +45,7 @@ const METRICS = [
   {
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M3 10h14M10 3l7 7-7 7" stroke="#F5A623" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M3 10h14M10 3l7 7-7 7" stroke="#BAE6FD" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
     value: "1:1",
@@ -125,7 +125,7 @@ export default function Performance() {
             >
               Built to last.<br />
               <span style={{
-                background: "linear-gradient(135deg, #F5A623 0%, #14F195 100%)",
+                background: "linear-gradient(135deg, #7B2FBE 0%, #2563EB 55%, #BAE6FD 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -140,10 +140,7 @@ export default function Performance() {
               maxWidth: "440px",
               marginBottom: "2rem",
             }}>
-              Cookie Chain's equity bridge model is not experimental. It mirrors proven reserve
-              structures used by WBTC, stablecoin bridges, and early chain migrations.
-              Every reserve wallet has a single defined purpose. Every movement requires
-              6-of-11 community approval. Every balance is public.
+              Cookie Chain launched with a working product, not a promise. Consistent slot progression, steady validator participation, and a growing dApp ecosystem — every data point points in one direction. The infrastructure was designed for the long term, and the numbers reflect it.
             </p>
             <a
               href="https://app.squads.so/squads/DoYYCtcG2vfrE3HtxBBXiNVieMutvWBXsgbF3SKtYCyx/treasury"

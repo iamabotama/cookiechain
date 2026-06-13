@@ -10,67 +10,67 @@ const GOV_CARDS = [
   {
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <rect x="3" y="11" width="18" height="11" rx="2" stroke="#F5A623" strokeWidth="1.5"/>
-        <path d="M7 11V7a5 5 0 0110 0v4" stroke="#F5A623" strokeWidth="1.5" strokeLinecap="round"/>
+        <rect x="3" y="11" width="18" height="11" rx="2" stroke="#2563EB" strokeWidth="1.5"/>
+        <path d="M7 11V7a5 5 0 0110 0v4" stroke="#2563EB" strokeWidth="1.5" strokeLinecap="round"/>
       </svg>
     ),
     title: "6-of-11 Multi-Sig",
     desc: "All bridge releases and treasury movements require approval from 6 of 11 community signers on both chains simultaneously. Cookiequads on Cookie Chain. Squads on Solana.",
-    color: "#F5A623",
+    color: "#2563EB",
   },
   {
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="8" r="4" stroke="#14F195" strokeWidth="1.5"/>
-        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#14F195" strokeWidth="1.5" strokeLinecap="round"/>
+        <circle cx="12" cy="8" r="4" stroke="#7B2FBE" strokeWidth="1.5"/>
+        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#7B2FBE" strokeWidth="1.5" strokeLinecap="round"/>
       </svg>
     ),
     title: "Community Signers",
     desc: "All 11 signers are long-standing community members with 8–11 months of continuous involvement predating Cookie Chain's launch. They built the rescue — they didn't arrive at launch.",
-    color: "#14F195",
+    color: "#7B2FBE",
   },
   {
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M12 3L4 7v5c0 5 3.5 9.7 8 11 4.5-1.3 8-6 8-11V7L12 3z" stroke="#9945FF" strokeWidth="1.5" strokeLinejoin="round"/>
-        <path d="M9 12l2 2 4-4" stroke="#9945FF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M12 3L4 7v5c0 5 3.5 9.7 8 11 4.5-1.3 8-6 8-11V7L12 3z" stroke="#BAE6FD" strokeWidth="1.5" strokeLinejoin="round"/>
+        <path d="M9 12l2 2 4-4" stroke="#BAE6FD" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
     title: "Single-Purpose Wallets",
     desc: "Each reserve wallet has one defined purpose. The equity reserve is used exclusively for user exits. The team operations allocation is never used for bridge settlement. No commingling.",
-    color: "#9945FF",
+    color: "#BAE6FD",
   },
   {
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M3 12h18M12 3l9 9-9 9" stroke="#F5A623" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M3 12h18M12 3l9 9-9 9" stroke="#60A5FA" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
     title: "Fully Auditable",
     desc: "Every custodied wallet is publicly identified with its exact on-chain address. Any unauthorized movement would be immediately visible to all holders. Real-time verification at cookiescan.io.",
-    color: "#F5A623",
+    color: "#60A5FA",
   },
   {
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#14F195" strokeWidth="1.5" strokeLinejoin="round"/>
-        <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="#14F195" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#2563EB" strokeWidth="1.5" strokeLinejoin="round"/>
+        <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="#2563EB" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
     title: "Expanding Signer Pool",
     desc: "As the project matures, the signer pool will expand. Any change will maintain the approval threshold above 50% of the pool. Expanded signer transparency, including verified identities, is under consideration.",
-    color: "#14F195",
+    color: "#2563EB",
   },
   {
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="9" stroke="#9945FF" strokeWidth="1.5"/>
-        <path d="M12 8v4l3 3" stroke="#9945FF" strokeWidth="1.5" strokeLinecap="round"/>
+        <circle cx="12" cy="12" r="9" stroke="#7B2FBE" strokeWidth="1.5"/>
+        <path d="M12 8v4l3 3" stroke="#7B2FBE" strokeWidth="1.5" strokeLinecap="round"/>
       </svg>
     ),
     title: "Future: Broader DAO",
     desc: "Governance is planned to expand to a broader DAO structure as the ecosystem matures. The current multi-sig model is a transitional phase toward fully decentralized community governance.",
-    color: "#9945FF",
+    color: "#7B2FBE",
   },
 ];
 
