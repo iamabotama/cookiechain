@@ -1,13 +1,12 @@
 /*
  * PERFORMANCE SECTION
- * Design: Speed-line light streak background (amber/mint/purple)
+ * Design: Live particle stream canvas animation — NO static image, NO opacity overlays, NO fades
+ * Full vibrancy: ice-blue (0,180,255) + violet (123,47,190) + electric-blue (37,99,235)
  * Mirrors Solana's "fastest growing financial platform" section
- * Shows chain performance stats + supply reconciliation
  */
 
 import { useEffect, useRef, useState } from "react";
-
-const SPEED_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cc-speed-v3-WhTBcaTmiiSFJxeybnFdJS.webp";
+import StreamCanvas from "../StreamCanvas";
 
 const METRICS = [
   {
@@ -77,24 +76,12 @@ export default function Performance() {
         padding: "6rem 0",
       }}
     >
-      {/* Speed-line background */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: `url(${SPEED_BG})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          opacity: 0.65,
-        }}
+      {/* Live particle stream animation — full vibrancy, zero overlays */}
+      <StreamCanvas
+        style={{ zIndex: 1 }}
+        maxStreams={14}
+        spawnRate={0.018}
       />
-
-      {/* Top/bottom fade */}
-      <div style={{
-        position: "absolute",
-        inset: 0,
-        background: "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 80%, rgba(0,0,0,1) 100%)",
-      }} />
 
       <div className="container" style={{ position: "relative", zIndex: 10 }}>
         <div
@@ -121,6 +108,7 @@ export default function Performance() {
                 color: "#ffffff",
                 lineHeight: 1.1,
                 marginBottom: "1.5rem",
+                textShadow: "0 2px 20px rgba(0,0,0,0.8)",
               }}
             >
               Built to last.<br />
@@ -134,11 +122,12 @@ export default function Performance() {
               </span>
             </h2>
             <p style={{
-              color: "rgba(255,255,255,0.6)",
+              color: "rgba(255,255,255,0.75)",
               fontSize: "1rem",
               lineHeight: 1.7,
               maxWidth: "440px",
               marginBottom: "2rem",
+              textShadow: "0 1px 8px rgba(0,0,0,0.9)",
             }}>
               Cookie Chain launched with a working product, not a promise. Consistent slot progression, steady validator participation, and a growing dApp ecosystem — every data point points in one direction. The infrastructure was designed for the long term, and the numbers reflect it.
             </p>
@@ -159,9 +148,9 @@ export default function Performance() {
               <div
                 key={m.label}
                 style={{
-                  background: "rgba(0,0,0,0.7)",
-                  backdropFilter: "blur(12px)",
-                  border: "1px solid rgba(255,255,255,0.08)",
+                  background: "rgba(0,0,0,0.72)",
+                  backdropFilter: "blur(16px)",
+                  border: "1px solid rgba(255,255,255,0.1)",
                   borderRadius: "0.75rem",
                   padding: "1.25rem",
                   opacity: visible ? 1 : 0,
@@ -183,7 +172,7 @@ export default function Performance() {
                 <div style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.7)", fontWeight: 600, marginBottom: "0.25rem" }}>
                   {m.label}
                 </div>
-                <div style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.35)", lineHeight: 1.4 }}>
+                <div style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.4)", lineHeight: 1.4 }}>
                   {m.sub}
                 </div>
               </div>
