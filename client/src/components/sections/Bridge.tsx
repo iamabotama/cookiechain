@@ -7,7 +7,7 @@
 import { useEffect, useRef, useState } from "react";
 import { LINKS } from "@/lib/links";
 
-const BRIDGE_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cc-bridge-v2-Re3cF6hEhJUTpdDXTwnepT.webp";
+const BRIDGE_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cc-bridge-v3-HoiJzTu5TraFD9bwPP9a6n.webp";
 
 const ENTER_STEPS = [
   { n: "01", text: "User deposits sCOOK into the Solana multi-sig lock wallet." },
@@ -105,7 +105,7 @@ export default function Bridge() {
           transition: "opacity 0.6s ease 0.15s, transform 0.6s ease 0.15s",
         }} className="flex-col-mobile">
           {/* Bridge visual */}
-          <div style={{ borderRadius: "1rem", overflow: "hidden", border: "1px solid rgba(255,255,255,0.06)" }}>
+          <div style={{ borderRadius: "1rem", overflow: "hidden", border: "1px solid rgba(123,47,190,0.25)", boxShadow: "0 0 40px rgba(123,47,190,0.15)" }}>
             <img
               src={BRIDGE_IMG}
               alt="Cookie Chain Equity Bridge"

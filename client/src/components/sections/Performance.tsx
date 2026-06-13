@@ -7,7 +7,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const SPEED_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cc-speed-v2-2esYhXjC8DwC2DBeLGDn9w.webp";
+const SPEED_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cc-speed-v3-WhTBcaTmiiSFJxeybnFdJS.webp";
 
 const METRICS = [
   {
@@ -85,7 +85,7 @@ export default function Performance() {
           backgroundImage: `url(${SPEED_BG})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          opacity: 0.35,
+          opacity: 0.65,
         }}
       />
 

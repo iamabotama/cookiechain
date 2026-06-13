@@ -18,6 +18,8 @@ const navLinks = [
   { label: "Ecosystem", href: "#ecosystem" },
 ];
 
+const NAV_WHITEPAPER = "/whitepaper";
+
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -70,9 +72,10 @@ export default function Nav() {
               style={{
                 fontFamily: "'Space Grotesk', sans-serif",
                 fontWeight: 700,
-                fontSize: "1rem",
+                fontSize: "0.9rem",
                 letterSpacing: "0.05em",
                 color: "#ffffff",
+                whiteSpace: "nowrap",
               }}
             >
               COOKIE CHAIN
@@ -80,7 +83,7 @@ export default function Nav() {
           </a>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -104,6 +107,21 @@ export default function Nav() {
 
           {/* CTA */}
           <div className="hidden md:flex items-center gap-3">
+            <a
+              href={NAV_WHITEPAPER}
+              style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: "0.875rem",
+                fontWeight: 500,
+                color: "rgba(255,255,255,0.55)",
+                textDecoration: "none",
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#60A5FA")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.55)")}
+            >
+              Whitepaper
+            </a>
             <a
               href={LINKS.buy_cook}
               target="_blank"

@@ -8,7 +8,7 @@
 import { useEffect, useState } from "react";
 import { LINKS } from "@/lib/links";
 
-const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cc-hero-v2-SjRAkmCXBVT8AzRJ2K9iCm.webp";
+const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cc-hero-v3-fycfSqHn94rbr25XpikzPM.webp";
 
 const CHAIN_STATS = [
   { label: "Current Slot", value: "5,570,342", live: true },
@@ -51,7 +51,7 @@ export default function Hero() {
       <div style={{
         position: "absolute",
         inset: 0,
-        background: "linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.92) 40%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.1) 100%)",
+        background: "linear-gradient(90deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 38%, rgba(0,0,0,0.25) 60%, rgba(0,0,0,0) 100%)",
       }} />
 
       {/* Top vignette */}
@@ -168,12 +168,10 @@ export default function Hero() {
             </svg>
           </a>
           <a
-            href={LINKS.whitepaper}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/whitepaper"
             className="btn-outline"
           >
-            Read Whitepaper ↗
+            Read Whitepaper
           </a>
         </div>
 
