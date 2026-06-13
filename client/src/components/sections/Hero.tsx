@@ -176,6 +176,31 @@ export default function Hero() {
           >
             Read Whitepaper
           </a>
+          <a
+            href="/chain"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.4rem",
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: 500,
+              fontSize: "0.9rem",
+              color: "rgba(167,139,250,0.9)",
+              textDecoration: "none",
+              padding: "0.5rem 0",
+              transition: "color 0.2s ease",
+              whiteSpace: "nowrap",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#A78BFA")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(167,139,250,0.9)")}
+          >
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }}>
+              <circle cx="8" cy="8" r="6" stroke="#A78BFA" strokeWidth="1.5"/>
+              <circle cx="8" cy="8" r="2" fill="#A78BFA"/>
+              <path d="M8 2v2M8 12v2M2 8h2M12 8h2" stroke="#A78BFA" strokeWidth="1.5" strokeLinecap="round"/>
+            </svg>
+            Explore The Chain
+          </a>
         </div>
 
         {/* Token address */}
