@@ -141,7 +141,7 @@ export default function Hero() {
           }}>
             The community chain<br />
             <span style={{
-              color: "#7DD3FC",
+              color: "#38BDF8",
               textShadow: "0 0 30px rgba(125,211,252,0.7), 0 0 60px rgba(96,165,250,0.4)",
             }}>
               built to last.

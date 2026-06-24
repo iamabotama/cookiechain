@@ -272,7 +272,7 @@ export default function Whitepaper() {
           font-weight: 600;
           font-size: 1.1rem;
           letter-spacing: -0.01em;
-          color: #BAE6FD;
+          color: #38BDF8;
           margin: 2rem 0 0.75rem 0;
           line-height: 1.4;
         }
@@ -302,7 +302,7 @@ export default function Whitepaper() {
         }
 
         .wp-content a:hover {
-          color: #BAE6FD;
+          color: #38BDF8;
           border-bottom-color: rgba(186,230,253,0.5);
         }
 
@@ -343,7 +343,7 @@ export default function Whitepaper() {
           font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
           font-size: 0.875em;
           background: rgba(37,99,235,0.10);
-          color: #BAE6FD;
+          color: #38BDF8;
           padding: 0.15em 0.45em;
           border-radius: 0.25rem;
           border: 1px solid rgba(37,99,235,0.2);

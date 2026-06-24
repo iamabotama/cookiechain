@@ -19,11 +19,11 @@ interface PriceData {
 }
 
 const CHAIN_FACTS = [
-  { icon: <Box size={18} />, label: "Total Supply", value: "1,000,000,000", unit: "$COOK", note: "Fixed forever. No minting authority.", color: "#BAE6FD" },
+  { icon: <Box size={18} />, label: "Total Supply", value: "1,000,000,000", unit: "$COOK", note: "Fixed forever. No minting authority.", color: "#38BDF8" },
   { icon: <Shield size={18} />, label: "Bridge Backing", value: "~100.4%", unit: "equity-backed", note: "Bridge reserve exceeds circulating sCOOK supply.", color: "#A78BFA" },
   { icon: <Zap size={18} />, label: "Consensus", value: "SVM", unit: "Layer 1", note: "Solana Virtual Machine — battle-tested execution.", color: "#60A5FA" },
   { icon: <Cpu size={18} />, label: "Governance", value: "6-of-11", unit: "multi-sig", note: "No single point of control. Community-secured.", color: "#818CF8" },
-  { icon: <Clock size={18} />, label: "Genesis", value: "May 26, 2026", unit: "launched", note: "12,528 genesis wallets honored from snapshot.", color: "#7DD3FC" },
+  { icon: <Clock size={18} />, label: "Genesis", value: "May 26, 2026", unit: "launched", note: "12,528 genesis wallets honored from snapshot.", color: "#38BDF8" },
   { icon: <Activity size={18} />, label: "Circulating", value: "~607.2M", unit: "$COOK", note: "Remaining held in bridge reserve wallet.", color: "#93C5FD" },
 ];
 
@@ -71,7 +71,7 @@ export default function Chain() {
         justifyContent: "space-between",
       }}>
         <Link href="/" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", color: "var(--cook-text-secondary)", textDecoration: "none", fontSize: "0.875rem", transition: "color 0.2s" }}
-          onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.color = "#BAE6FD")}
+          onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.color = "#38BDF8")}
           onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.color = "var(--cook-text-secondary)")}
         >
           <ArrowLeft size={16} /> Back to Home
@@ -85,7 +85,7 @@ export default function Chain() {
           {price && (
             <span style={{ fontSize: "0.8rem", color: "var(--cook-text-muted)", fontFamily: "'DM Sans', sans-serif" }}>
               · $COOK{" "}
-              <span style={{ color: "#BAE6FD", fontWeight: 600 }}>
+              <span style={{ color: "#38BDF8", fontWeight: 600 }}>
                 ${parseFloat(price.priceUsd).toFixed(8)}
               </span>
               {" "}
@@ -98,7 +98,7 @@ export default function Chain() {
 
         <a href={COOKIESCAN_URL} target="_blank" rel="noopener noreferrer"
           style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", color: "var(--cook-text-secondary)", textDecoration: "none", fontSize: "0.8rem", transition: "color 0.2s" }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = "#BAE6FD")}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "#38BDF8")}
           onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cook-text-secondary)")}
         >
           Open CookieScan <ExternalLink size={13} />
@@ -136,7 +136,7 @@ export default function Chain() {
 
           <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 800, fontSize: "clamp(2.5rem, 4vw, 3.75rem)", lineHeight: 1.05, letterSpacing: "-0.04em", color: "var(--cook-text-primary)", margin: "0 0 1rem" }}>
             One Billion<br />
-            <span style={{ color: "#7DD3FC", textShadow: "0 0 40px rgba(125,211,252,0.5), 0 0 80px rgba(96,165,250,0.25)" }}>
+            <span style={{ color: "#38BDF8", textShadow: "0 0 40px rgba(125,211,252,0.5), 0 0 80px rgba(96,165,250,0.25)" }}>
               Tokens.
             </span>
           </h1>
@@ -150,7 +150,7 @@ export default function Chain() {
             lineHeight: 1.05,
             letterSpacing: "-0.04em",
             margin: "0 0 2.5rem",
-            background: "linear-gradient(135deg, #7B2FBE 0%, #2563EB 50%, #7DD3FC 100%)",
+            background: "linear-gradient(135deg, #7B2FBE 0%, #2563EB 50%, #38BDF8 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
@@ -181,7 +181,7 @@ export default function Chain() {
               </div>
               <div>
                 <div style={{ fontSize: "0.7rem", color: "var(--cook-text-muted)", fontFamily: "'DM Sans', sans-serif", marginBottom: "0.2rem", textTransform: "uppercase", letterSpacing: "0.08em" }}>Price</div>
-                <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: "1.25rem", color: "#BAE6FD" }}>${parseFloat(price.priceUsd).toFixed(8)}</div>
+                <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: "1.25rem", color: "#38BDF8" }}>${parseFloat(price.priceUsd).toFixed(8)}</div>
               </div>
               <div>
                 <div style={{ fontSize: "0.7rem", color: "var(--cook-text-muted)", fontFamily: "'DM Sans', sans-serif", marginBottom: "0.2rem", textTransform: "uppercase", letterSpacing: "0.08em" }}>24h</div>
@@ -260,7 +260,7 @@ export default function Chain() {
               </span>
               <a href={COOKIESCAN_URL} target="_blank" rel="noopener noreferrer"
                 style={{ display: "inline-flex", alignItems: "center", gap: "0.3rem", color: "var(--cook-text-secondary)", textDecoration: "none", fontSize: "0.75rem", fontFamily: "'DM Sans', sans-serif", transition: "color 0.2s" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#BAE6FD")}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#38BDF8")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cook-text-secondary)")}
               >
                 Open full <ExternalLink size={11} />

@@ -31,13 +31,13 @@ const GOV_CARDS = [
   {
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <path d="M12 3L4 7v5c0 5 3.5 9.7 8 11 4.5-1.3 8-6 8-11V7L12 3z" stroke="#BAE6FD" strokeWidth="1.5" strokeLinejoin="round"/>
-        <path d="M9 12l2 2 4-4" stroke="#BAE6FD" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M12 3L4 7v5c0 5 3.5 9.7 8 11 4.5-1.3 8-6 8-11V7L12 3z" stroke="#38BDF8" strokeWidth="1.5" strokeLinejoin="round"/>
+        <path d="M9 12l2 2 4-4" stroke="#38BDF8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
     title: "Single-Purpose Wallets",
     desc: "Each reserve wallet has one defined purpose. The equity reserve is used exclusively for user exits. The team operations allocation is never used for bridge settlement. No commingling.",
-    color: "#BAE6FD",
+    color: "#38BDF8",
   },
   {
     icon: (

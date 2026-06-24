@@ -12,7 +12,7 @@ const DAPPS = [
     tag: "COMMUNITY SITE",
     desc: "The community-built home of Cookie Chain culture. Ecosystem links, lore, and the vibe that started it all — built by the community, for the community.",
     href: "https://cookiechain.wtf",
-    color: "#7DD3FC",
+    color: "#38BDF8",
     logo: "/cookie-logo.webp",
   },
   {
@@ -36,7 +36,7 @@ const DAPPS = [
     tag: "SWAP",
     desc: "Swap interface powered by CookieScan. Fast, lightweight token swaps directly within the Cookie Chain explorer.",
     href: LINKS.candyshop,
-    color: "#BAE6FD",
+    color: "#38BDF8",
     logo: "https://swap.cookiescan.io/candyshoplogo.png",
   },
   {
@@ -68,7 +68,7 @@ const DAPPS = [
     tag: "COMMUNITY",
     desc: "Community platform on Cookie Chain. The original gorboy community, now living on the chain they helped build.",
     href: LINKS.gorboy,
-    color: "#BAE6FD",
+    color: "#38BDF8",
     logo: "https://cdn.prod.website-files.com/691828ee7c1ee38a958dda54/6a03adbc5f009a668a39f520_gorboy_logo-p-500.png",
   },
   {
@@ -137,7 +137,7 @@ export default function Ecosystem() {
             }}>
               Build on the chain<br />
               <span style={{
-                background: "linear-gradient(135deg, #7B2FBE 0%, #2563EB 55%, #BAE6FD 100%)",
+                background: "linear-gradient(135deg, #7B2FBE 0%, #2563EB 55%, #38BDF8 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",

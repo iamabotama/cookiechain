@@ -10,7 +10,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 const ALLOCATIONS = [
   { name: "Vault 0 (Bridge Reserve)", value: 59.02, color: "#2563EB", desc: "Undistributed reserve; source of cCOOK for bridge entries" },
   { name: "Genesis & Community Holders", value: 27.98, color: "#7B2FBE", desc: "12,528 wallets — snapshot distribution to legacy $GOR holders" },
-  { name: "LST / Staking Rewards", value: 10.09, color: "#BAE6FD", desc: "Staking reward distribution pool" },
+  { name: "LST / Staking Rewards", value: 10.09, color: "#38BDF8", desc: "Staking reward distribution pool" },
   { name: "Bridge Reserve Wallet", value: 1.72, color: "#60A5FA", desc: "Bridge liquidity and claims support buffer" },
   { name: "Other / Rounding", value: 1.19, color: "#334155", desc: "Reconciliation buffer" },
 ];
@@ -135,7 +135,7 @@ export default function Tokenomics() {
                 fontFamily: "'Space Grotesk', sans-serif",
                 fontWeight: 700,
                 fontSize: "1.5rem",
-                color: stat.highlight ? (stat.value === "None" ? "#BAE6FD" : "#60A5FA") : "var(--cook-text-primary)",
+                color: stat.highlight ? (stat.value === "None" ? "#38BDF8" : "#60A5FA") : "var(--cook-text-primary)",
                 marginBottom: "0.25rem",
                 letterSpacing: "-0.02em",
               }}>

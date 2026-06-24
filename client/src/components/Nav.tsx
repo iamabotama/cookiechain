@@ -101,7 +101,7 @@ export default function Nav() {
                   transition: "color 0.2s",
                   textDecoration: "none",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#BAE6FD")}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#38BDF8")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cook-nav-text)")}
               >
                 {link.label}
@@ -127,7 +127,7 @@ export default function Nav() {
                 textDecoration: "none",
                 transition: "color 0.2s",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "#7DD3FC")}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#38BDF8")}
               onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cook-nav-text)")}
             >
               <span style={{ whiteSpace: "nowrap" }}>Community ↗</span>
@@ -247,7 +247,7 @@ export default function Nav() {
               fontFamily: "'Space Grotesk', sans-serif",
               fontSize: "1.125rem",
               fontWeight: 600,
-              color: "#7DD3FC",
+              color: "#38BDF8",
               textDecoration: "none",
             }}
               onClick={() => setMobileOpen(false)}
@@ -280,7 +280,7 @@ export default function Nav() {
               fontFamily: "'Space Grotesk', sans-serif",
               fontSize: "1.125rem",
               fontWeight: 600,
-              color: "#BAE6FD",
+              color: "#38BDF8",
               textDecoration: "none",
             }}
               onClick={() => setMobileOpen(false)}

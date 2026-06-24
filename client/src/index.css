@@ -4,7 +4,7 @@
  * Fonts: Space Grotesk (display), DM Sans (body), JetBrains Mono (code/addresses)
  * Primary:  #7B2FBE  (Deep Violet)
  * Electric: #2563EB  (Electric Blue / Corporate Blue)
- * Ice:      #BAE6FD  (Ice Blue / Sky)
+ * Ice:      #38BDF8  (Ice Blue / Sky)
  * Accent:   #F5A623  (Cookie Amber — used sparingly for emphasis only)
  * Gradient: violet → electric blue → ice blue
  *
@@ -59,11 +59,11 @@
   /* Cookie Chain brand tokens — fixed, never change with theme */
   --color-cook-violet:     #7B2FBE;
   --color-cook-blue:       #2563EB;
-  --color-cook-ice:        #BAE6FD;
+  --color-cook-ice:        #38BDF8;
   --color-cook-amber:      #F5A623;
   --color-cook-violet-dim: rgba(123, 47, 190, 0.18);
   --color-cook-blue-dim:   rgba(37, 99, 235, 0.15);
-  --color-cook-ice-dim:    rgba(186, 230, 253, 0.10);
+  --color-cook-ice-dim:    rgba(56, 189, 248, 0.12);
 }
 
 /* ============================================================
@@ -94,7 +94,7 @@
   --ring: #2563EB;
   --chart-1: #7B2FBE;
   --chart-2: #2563EB;
-  --chart-3: #BAE6FD;
+  --chart-3: #38BDF8;
   --chart-4: #F5A623;
   --chart-5: #60A5FA;
   --sidebar: #080810;
@@ -251,7 +251,7 @@ html.light {
 
   /* Cook gradient text — violet → electric blue → ice (same in both themes) */
   .cook-gradient-text {
-    background: linear-gradient(135deg, #7B2FBE 0%, #2563EB 55%, #BAE6FD 100%);
+    background: linear-gradient(135deg, #7B2FBE 0%, #2563EB 55%, #38BDF8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -284,29 +284,24 @@ html.light {
     align-items: center;
     gap: 0.5rem;
     text-decoration: none;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1.5px solid transparent;
-    background:
-      linear-gradient(var(--cook-btn-glass-bg), var(--cook-btn-glass-bg)) padding-box,
-      linear-gradient(135deg, #7B2FBE 0%, #2563EB 55%, #7DD3FC 100%) border-box;
+    border: none;
+    background: linear-gradient(135deg, #7B2FBE 0%, #2563EB 55%, #0EA5E9 100%);
     box-shadow:
-      0 0 12px rgba(123,47,190,0.25),
-      inset 0 1px 0 rgba(255,255,255,0.08);
+      0 0 16px rgba(123,47,190,0.40),
+      0 0 32px rgba(37,99,235,0.20),
+      inset 0 1px 0 rgba(255,255,255,0.15);
   }
   .btn-primary:hover {
-    background:
-      linear-gradient(var(--cook-btn-glass-bg-h), var(--cook-btn-glass-bg-h)) padding-box,
-      linear-gradient(135deg, #9333EA 0%, #3B82F6 55%, #BAE6FD 100%) border-box;
+    background: linear-gradient(135deg, #9333EA 0%, #3B82F6 55%, #38BDF8 100%);
     box-shadow:
-      0 0 24px rgba(123,47,190,0.45),
-      0 0 48px rgba(37,99,235,0.2),
-      inset 0 1px 0 rgba(255,255,255,0.14);
-    transform: scale(1.02);
+      0 0 28px rgba(123,47,190,0.55),
+      0 0 56px rgba(37,99,235,0.30),
+      inset 0 1px 0 rgba(255,255,255,0.20);
+    transform: scale(1.03);
   }
   .btn-primary:active { transform: scale(0.97); }
 
-  /* Legacy alias */
+  /* Legacy alias — same vivid gradient as btn-primary */
   .btn-amber {
     color: #ffffff;
     font-family: 'Space Grotesk', sans-serif;
@@ -318,20 +313,14 @@ html.light {
     align-items: center;
     gap: 0.5rem;
     text-decoration: none;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1.5px solid transparent;
-    background:
-      linear-gradient(var(--cook-btn-glass-bg), var(--cook-btn-glass-bg)) padding-box,
-      linear-gradient(135deg, #7B2FBE 0%, #2563EB 55%, #7DD3FC 100%) border-box;
-    box-shadow: 0 0 12px rgba(123,47,190,0.25), inset 0 1px 0 rgba(255,255,255,0.08);
+    border: none;
+    background: linear-gradient(135deg, #7B2FBE 0%, #2563EB 55%, #0EA5E9 100%);
+    box-shadow: 0 0 16px rgba(123,47,190,0.40), inset 0 1px 0 rgba(255,255,255,0.15);
   }
   .btn-amber:hover {
-    background:
-      linear-gradient(var(--cook-btn-glass-bg-h), var(--cook-btn-glass-bg-h)) padding-box,
-      linear-gradient(135deg, #9333EA 0%, #3B82F6 55%, #BAE6FD 100%) border-box;
-    box-shadow: 0 0 24px rgba(123,47,190,0.45), 0 0 48px rgba(37,99,235,0.2), inset 0 1px 0 rgba(255,255,255,0.14);
-    transform: scale(1.02);
+    background: linear-gradient(135deg, #9333EA 0%, #3B82F6 55%, #38BDF8 100%);
+    box-shadow: 0 0 28px rgba(123,47,190,0.55), 0 0 56px rgba(37,99,235,0.30), inset 0 1px 0 rgba(255,255,255,0.20);
+    transform: scale(1.03);
   }
   .btn-amber:active { transform: scale(0.97); }
 

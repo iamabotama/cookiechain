@@ -135,7 +135,7 @@ export default function Markets() {
         <Link
           href="/"
           style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", color: "var(--cook-text-secondary)", textDecoration: "none", fontSize: "0.875rem", fontFamily: "'DM Sans', sans-serif", transition: "color 0.2s" }}
-          onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.color = "#BAE6FD")}
+          onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.color = "#38BDF8")}
           onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => (e.currentTarget.style.color = "var(--cook-text-secondary)")}
         >
           <ArrowLeft size={16} /> Back to Home
@@ -164,7 +164,7 @@ export default function Markets() {
               transition: "color 0.2s",
               padding: "0.25rem",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#BAE6FD")}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#38BDF8")}
             onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cook-text-muted)")}
           >
             <RefreshCw size={14} style={{ animation: refreshing ? "spin 1s linear infinite" : "none" }} />
@@ -177,7 +177,7 @@ export default function Markets() {
           target="_blank"
           rel="noopener noreferrer"
           style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", color: "var(--cook-text-secondary)", textDecoration: "none", fontSize: "0.8rem", fontFamily: "'DM Sans', sans-serif", transition: "color 0.2s" }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = "#BAE6FD")}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "#38BDF8")}
           onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cook-text-secondary)")}
         >
           View on DexScreener <ExternalLink size={13} />
@@ -193,7 +193,7 @@ export default function Markets() {
             </div>
             <div>
               <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 800, fontSize: "1.75rem", color: "var(--cook-text-primary)", margin: 0, letterSpacing: "-0.03em" }}>
-                Cookie <span style={{ color: "#BAE6FD" }}>/ $COOK</span>
+                Cookie <span style={{ color: "#38BDF8" }}>/ $COOK</span>
               </h1>
               <p style={{ color: "var(--cook-text-muted)", fontSize: "0.8rem", margin: 0, fontFamily: "'DM Sans', sans-serif" }}>
                 Solana (sCOOK) · PumpSwap · Live data via DexScreener
@@ -208,7 +208,7 @@ export default function Markets() {
           ) : error ? (
             <p style={{ color: "#F87171", fontFamily: "'DM Sans', sans-serif" }}>
               Failed to load price data.{" "}
-              <button onClick={() => fetchData(true)} style={{ color: "#BAE6FD", background: "none", border: "none", cursor: "pointer", textDecoration: "underline" }}>Retry</button>
+              <button onClick={() => fetchData(true)} style={{ color: "#38BDF8", background: "none", border: "none", cursor: "pointer", textDecoration: "underline" }}>Retry</button>
             </p>
           ) : pair ? (
             <div style={{ display: "flex", alignItems: "baseline", gap: "1rem", flexWrap: "wrap" }}>
@@ -296,7 +296,7 @@ export default function Markets() {
             <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
               <div>
                 <div style={{ fontSize: "0.7rem", color: "var(--cook-text-muted)", fontFamily: "'DM Sans', sans-serif", marginBottom: "0.2rem" }}>Solana (sCOOK)</div>
-                <code style={{ fontSize: "0.72rem", color: "#BAE6FD", fontFamily: "'JetBrains Mono', monospace", wordBreak: "break-all" }}>
+                <code style={{ fontSize: "0.72rem", color: "#38BDF8", fontFamily: "'JetBrains Mono', monospace", wordBreak: "break-all" }}>
                   36ZrtQoab5MhhySaP1YSTwUahSk6GRVUTtZ6cuVfm9e1
                 </code>
               </div>
@@ -318,7 +318,7 @@ export default function Markets() {
               {[
                 { label: "Buy on CookieSwap", href: "https://cookieswap.fun", color: "#7B2FBE" },
                 { label: "Buy on CandyShop", href: "https://swap.cookiescan.io", color: "#2563EB" },
-                { label: "View on DexScreener", href: `https://dexscreener.com/solana/${PAIR_ADDRESS}`, color: "#BAE6FD" },
+                { label: "View on DexScreener", href: `https://dexscreener.com/solana/${PAIR_ADDRESS}`, color: "#38BDF8" },
                 { label: "View on CookieScan", href: "https://cookiescan.io", color: "var(--cook-text-secondary)" },
               ].map((link) => (
                 <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer"

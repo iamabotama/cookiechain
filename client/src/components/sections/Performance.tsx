@@ -43,7 +43,7 @@ const METRICS = [
   {
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path d="M3 10h14M10 3l7 7-7 7" stroke="#BAE6FD" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M3 10h14M10 3l7 7-7 7" stroke="#38BDF8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
     value: "1:1",
@@ -116,7 +116,7 @@ export default function Performance() {
             >
               Built to last.<br />
               <span style={{
-                background: "linear-gradient(135deg, #7B2FBE 0%, #2563EB 55%, #BAE6FD 100%)",
+                background: "linear-gradient(135deg, #7B2FBE 0%, #2563EB 55%, #38BDF8 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
