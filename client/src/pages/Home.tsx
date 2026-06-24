@@ -16,7 +16,7 @@ import Roadmap from "@/components/sections/Roadmap";
 
 export default function Home() {
   return (
-    <div style={{ background: "#000000", minHeight: "100vh" }}>
+    <div style={{ background: "var(--cook-bg)", minHeight: "100vh", transition: "background 0.3s ease" }}>
       <Nav />
       <Hero />
       <Tokenomics />

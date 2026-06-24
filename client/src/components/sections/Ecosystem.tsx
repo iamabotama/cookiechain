@@ -1,7 +1,6 @@
 /*
- * ECOSYSTEM SECTION
- * Design: Dark card grid with amber glow hover — mirrors Solana's institution cards
- * All URLs sourced from cookiechain.json
+ * ECOSYSTEM SECTION — theme-aware
+ * All colors via CSS variables (--cook-*) for automatic light/dark switching
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -109,7 +108,7 @@ export default function Ecosystem() {
     <section
       id="ecosystem"
       ref={ref}
-      style={{ background: "#050505", padding: "6rem 0" }}
+      style={{ background: "var(--cook-bg-2)", padding: "6rem 0", transition: "background 0.3s ease" }}
     >
       <div className="container">
         {/* Header */}
@@ -128,16 +127,14 @@ export default function Ecosystem() {
         >
           <div>
             <div className="section-label" style={{ marginBottom: "1rem" }}>Ecosystem</div>
-            <h2
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontWeight: 700,
-                fontSize: "clamp(2rem, 4vw, 3rem)",
-                letterSpacing: "-0.03em",
-                color: "#ffffff",
-                lineHeight: 1.1,
-              }}
-            >
+            <h2 style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontWeight: 700,
+              fontSize: "clamp(2rem, 4vw, 3rem)",
+              letterSpacing: "-0.03em",
+              color: "var(--cook-text-primary)",
+              lineHeight: 1.1,
+            }}>
               Build on the chain<br />
               <span style={{
                 background: "linear-gradient(135deg, #7B2FBE 0%, #2563EB 55%, #BAE6FD 100%)",
@@ -150,7 +147,7 @@ export default function Ecosystem() {
             </h2>
           </div>
           <div>
-            <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "1rem", lineHeight: 1.7 }}>
+            <p style={{ color: "var(--cook-text-secondary)", fontSize: "1rem", lineHeight: 1.7 }}>
               Cookie Chain's SVM compatibility means any Solana developer can deploy here with minimal
               changes. The ecosystem is growing — from DeFi primitives to NFT marketplaces to staking
               infrastructure, all built by the community.
@@ -159,14 +156,12 @@ export default function Ecosystem() {
         </div>
 
         {/* dApp cards */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-            gap: "1rem",
-            marginBottom: "4rem",
-          }}
-        >
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+          gap: "1rem",
+          marginBottom: "4rem",
+        }}>
           {DAPPS.map((app, i) => (
             <a
               key={app.name}
@@ -189,7 +184,7 @@ export default function Ecosystem() {
                   height: "48px",
                   borderRadius: "0.5rem",
                   overflow: "hidden",
-                  background: "rgba(255,255,255,0.04)",
+                  background: "var(--cook-logo-bg)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -219,19 +214,15 @@ export default function Ecosystem() {
                 fontFamily: "'Space Grotesk', sans-serif",
                 fontWeight: 700,
                 fontSize: "1rem",
-                color: "#ffffff",
+                color: "var(--cook-text-primary)",
                 marginBottom: "0.5rem",
               }}>
                 {app.name}
               </h3>
-              <p style={{ fontSize: "0.775rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.6 }}>
+              <p style={{ fontSize: "0.775rem", color: "var(--cook-text-secondary)", lineHeight: 1.6 }}>
                 {app.desc}
               </p>
-              <div style={{
-                marginTop: "1rem",
-                fontSize: "0.75rem",
-                color: app.color,
-              }}>
+              <div style={{ marginTop: "1rem", fontSize: "0.75rem", color: app.color }}>
                 Visit {app.name} ↗
               </div>
             </a>
@@ -239,18 +230,16 @@ export default function Ecosystem() {
         </div>
 
         {/* Community links */}
-        <div
-          style={{
-            opacity: visible ? 1 : 0,
-            transform: visible ? "translateY(0)" : "translateY(24px)",
-            transition: "opacity 0.6s ease 0.5s, transform 0.6s ease 0.5s",
-          }}
-        >
+        <div style={{
+          opacity: visible ? 1 : 0,
+          transform: visible ? "translateY(0)" : "translateY(24px)",
+          transition: "opacity 0.6s ease 0.5s, transform 0.6s ease 0.5s",
+        }}>
           <h3 style={{
             fontFamily: "'Space Grotesk', sans-serif",
             fontWeight: 700,
             fontSize: "1.25rem",
-            color: "#ffffff",
+            color: "var(--cook-text-primary)",
             marginBottom: "1.5rem",
           }}>
             Join the community
@@ -267,11 +256,11 @@ export default function Ecosystem() {
                   alignItems: "center",
                   gap: "0.5rem",
                   padding: "0.6rem 1.1rem",
-                  background: "#111111",
-                  border: "1px solid rgba(255,255,255,0.08)",
+                  background: "var(--cook-card-bg)",
+                  border: "1px solid var(--cook-border)",
                   borderRadius: "9999px",
                   textDecoration: "none",
-                  color: "rgba(255,255,255,0.7)",
+                  color: "var(--cook-text-secondary)",
                   fontSize: "0.85rem",
                   fontFamily: "'DM Sans', sans-serif",
                   fontWeight: 500,
@@ -280,14 +269,14 @@ export default function Ecosystem() {
                 onMouseEnter={(e) => {
                   const el = e.currentTarget as HTMLElement;
                   el.style.borderColor = "rgba(37,99,235,0.45)";
-                  el.style.color = "#ffffff";
+                  el.style.color = "var(--cook-text-primary)";
                   el.style.background = "rgba(37,99,235,0.08)";
                 }}
                 onMouseLeave={(e) => {
                   const el = e.currentTarget as HTMLElement;
-                  el.style.borderColor = "rgba(255,255,255,0.08)";
-                  el.style.color = "rgba(255,255,255,0.7)";
-                  el.style.background = "#111111";
+                  el.style.borderColor = "var(--cook-border)";
+                  el.style.color = "var(--cook-text-secondary)";
+                  el.style.background = "var(--cook-card-bg)";
                 }}
               >
                 <span>{link.icon}</span>

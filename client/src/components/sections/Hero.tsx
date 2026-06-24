@@ -1,14 +1,15 @@
 /*
- * HERO SECTION — v2
- * Design: Pure black + violet/electric-blue/ice ribbons (right side)
- * Headline: longevity / persistence / maturity messaging
- * Logo: actual cookie sticker logo with subtle blue glow
+ * HERO SECTION — v3 (theme-aware)
+ * Design: Pure black (dark) / pure white (light) + violet/electric-blue/ice ribbons (right side)
+ * All colors via CSS variables (--cook-*) for automatic light/dark switching
  */
 
 import { useEffect, useState, useCallback } from "react";
 import { LINKS } from "@/lib/links";
+import { useTheme } from "@/contexts/ThemeContext";
 
-const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cc-hero-v3-fycfSqHn94rbr25XpikzPM.webp";
+const HERO_BG_DARK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cc-hero-v3-fycfSqHn94rbr25XpikzPM.webp";
+const HERO_BG_LIGHT = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cc-hero-light-v1-c75qfAEzeM35cNG5eSLnku.webp";
 const COOKIESCAN_RPC = "https://rpc.cookiescan.io";
 
 function fmtNum(n: number): string {
@@ -20,6 +21,7 @@ export default function Hero() {
   const [slot, setSlot] = useState("—");
   const [blockHeight, setBlockHeight] = useState("—");
   const [tps, setTps] = useState("—");
+  const { isLight } = useTheme();
 
   const fetchChainStats = useCallback(async () => {
     try {
@@ -49,29 +51,42 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, [fetchChainStats]);
 
+  // Switch hero background based on theme
+  const heroBg = isLight ? HERO_BG_LIGHT : HERO_BG_DARK;
+  const panelBg = isLight ? "rgba(255,255,255,0.72)" : "rgba(0,0,0,0.58)";
+  const panelBorder = isLight ? "rgba(0,0,0,0.10)" : "rgba(255,255,255,0.08)";
+  const headlineColor = isLight ? "#0f0f14" : "#ffffff";
+  const bodyColor = isLight ? "rgba(15,15,20,0.85)" : "rgba(255,255,255,0.85)";
+  const caLabelColor = isLight ? "rgba(15,15,20,0.65)" : "rgba(255,255,255,0.65)";
+  const statBarBg = isLight ? "rgba(255,255,255,0.80)" : "rgba(0,0,0,0.7)";
+  const statBarBorder = isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.06)";
+  const statValueColor = isLight ? "#0f0f14" : "#ffffff";
+  const statLabelColor = isLight ? "rgba(15,15,20,0.5)" : "rgba(255,255,255,0.4)";
+  const statDivColor = isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.06)";
+
   return (
     <section
       id="overview"
       style={{
         position: "relative",
         minHeight: "100vh",
-        background: "#000000",
+        background: "var(--cook-bg)",
         overflow: "hidden",
         display: "flex",
         flexDirection: "column",
+        transition: "background 0.3s ease",
       }}
     >
       {/* Background ribbon image */}
       <div style={{
         position: "absolute",
         inset: 0,
-        backgroundImage: `url(${HERO_BG})`,
+        backgroundImage: `url(${heroBg})`,
         backgroundSize: "cover",
         backgroundPosition: "center right",
         backgroundRepeat: "no-repeat",
+        transition: "opacity 0.4s ease",
       }} />
-
-      {/* No overlays — image shows at full vibrancy, frosted panel handles text contrast */}
 
       {/* Main content */}
       <div
@@ -87,145 +102,144 @@ export default function Hero() {
           paddingBottom: "6rem",
         }}
       >
-        {/* Dark frosted panel — deliberate text punch-out over the vivid hero image */}
+        {/* Frosted panel — adapts to theme */}
         <div style={{
-          background: "rgba(0,0,0,0.58)",
+          background: panelBg,
           backdropFilter: "blur(12px)",
           WebkitBackdropFilter: "blur(12px)",
           borderRadius: "1.25rem",
-          border: "1px solid rgba(255,255,255,0.08)",
+          border: `1px solid ${panelBorder}`,
           padding: "2.5rem 2.75rem 2.25rem",
           maxWidth: "600px",
           width: "fit-content",
-          boxShadow: "0 8px 40px rgba(0,0,0,0.4)",
+          boxShadow: isLight ? "0 8px 40px rgba(0,0,0,0.12)" : "0 8px 40px rgba(0,0,0,0.4)",
+          transition: "background 0.3s ease, border-color 0.3s ease",
         }}>
-        {/* Label */}
-        <div className="section-label" style={{
-          opacity: visible ? 1 : 0,
-          transform: visible ? "translateY(0)" : "translateY(16px)",
-          transition: "opacity 0.6s ease, transform 0.6s ease",
-          marginBottom: "1.5rem",
-        }}>
-          Community SVM · Launched May 26, 2026
-        </div>
-
-        {/* Headline — longevity / persistence messaging */}
-        <h1 style={{
-          fontFamily: "'Space Grotesk', sans-serif",
-          fontWeight: 700,
-          fontSize: "clamp(2.75rem, 6vw, 5rem)",
-          lineHeight: 1.05,
-          letterSpacing: "-0.03em",
-          color: "#ffffff",
-          marginBottom: "1.5rem",
-          textShadow: "0 2px 40px rgba(0,0,0,0.8), 0 0 80px rgba(0,0,0,0.6)",
-          opacity: visible ? 1 : 0,
-          transform: visible ? "translateY(0)" : "translateY(20px)",
-          transition: "opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s",
-        }}>
-          The community chain<br />
-          <span style={{
-            color: "#7DD3FC",
-            textShadow: "0 0 30px rgba(125,211,252,0.7), 0 0 60px rgba(96,165,250,0.4)",
+          {/* Label */}
+          <div className="section-label" style={{
+            opacity: visible ? 1 : 0,
+            transform: visible ? "translateY(0)" : "translateY(16px)",
+            transition: "opacity 0.6s ease, transform 0.6s ease",
+            marginBottom: "1.5rem",
           }}>
-            built to last.
-          </span>
-        </h1>
+            Community SVM · Launched May 26, 2026
+          </div>
 
-        {/* Subtext */}
-        <p style={{
-          fontFamily: "'DM Sans', sans-serif",
-          fontSize: "1.125rem",
-          lineHeight: 1.65,
-          color: "rgba(255,255,255,0.85)",
-          marginBottom: "2.5rem",
-          maxWidth: "520px",
-          textShadow: "0 1px 20px rgba(0,0,0,0.9)",
-          opacity: visible ? 1 : 0,
-          transform: visible ? "translateY(0)" : "translateY(20px)",
-          transition: "opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s",
-        }}>
-          A high-performance SVM Layer 1 built by the community that chose to stay. Fixed 1B supply. ~100.4% equity-backed bridge. 6-of-11 multi-sig governance. Every metric trending forward — no pivots, no resets, no signs of stopping.
-        </p>
+          {/* Headline */}
+          <h1 style={{
+            fontFamily: "'Space Grotesk', sans-serif",
+            fontWeight: 700,
+            fontSize: "clamp(2.75rem, 6vw, 5rem)",
+            lineHeight: 1.05,
+            letterSpacing: "-0.03em",
+            color: headlineColor,
+            marginBottom: "1.5rem",
+            textShadow: isLight ? "none" : "0 2px 40px rgba(0,0,0,0.8), 0 0 80px rgba(0,0,0,0.6)",
+            opacity: visible ? 1 : 0,
+            transform: visible ? "translateY(0)" : "translateY(20px)",
+            transition: "opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s, color 0.3s ease",
+          }}>
+            The community chain<br />
+            <span style={{
+              color: "#7DD3FC",
+              textShadow: "0 0 30px rgba(125,211,252,0.7), 0 0 60px rgba(96,165,250,0.4)",
+            }}>
+              built to last.
+            </span>
+          </h1>
 
-        {/* CTAs */}
-        <div style={{
-          display: "flex",
-          gap: "1rem",
-          flexWrap: "wrap",
-          opacity: visible ? 1 : 0,
-          transform: visible ? "translateY(0)" : "translateY(20px)",
-          transition: "opacity 0.7s ease 0.3s, transform 0.7s ease 0.3s",
-        }}>
-          <a
-            href="#tokenomics"
-            onClick={(e) => {
-              e.preventDefault();
-              document.querySelector("#tokenomics")?.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="btn-primary"
-          >
-            View Tokenomics
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </a>
-          <a
-            href="/whitepaper"
-            className="btn-outline"
-          >
-            Read Whitepaper
-          </a>
-          <a
-            href="/chain"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.4rem",
-              fontFamily: "'DM Sans', sans-serif",
-              fontWeight: 500,
-              fontSize: "0.9rem",
-              color: "rgba(167,139,250,0.9)",
-              textDecoration: "none",
-              padding: "0.5rem 0",
-              transition: "color 0.2s ease",
-              whiteSpace: "nowrap",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#A78BFA")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(167,139,250,0.9)")}
-          >
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }}>
-              <circle cx="8" cy="8" r="6" stroke="#A78BFA" strokeWidth="1.5"/>
-              <circle cx="8" cy="8" r="2" fill="#A78BFA"/>
-              <path d="M8 2v2M8 12v2M2 8h2M12 8h2" stroke="#A78BFA" strokeWidth="1.5" strokeLinecap="round"/>
-            </svg>
-            Explore The Chain
-          </a>
+          {/* Subtext */}
+          <p style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: "1.125rem",
+            lineHeight: 1.65,
+            color: bodyColor,
+            marginBottom: "2.5rem",
+            maxWidth: "520px",
+            textShadow: isLight ? "none" : "0 1px 20px rgba(0,0,0,0.9)",
+            opacity: visible ? 1 : 0,
+            transform: visible ? "translateY(0)" : "translateY(20px)",
+            transition: "opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s, color 0.3s ease",
+          }}>
+            A high-performance SVM Layer 1 built by the community that chose to stay. Fixed 1B supply. ~100.4% equity-backed bridge. 6-of-11 multi-sig governance. Every metric trending forward — no pivots, no resets, no signs of stopping.
+          </p>
+
+          {/* CTAs */}
+          <div style={{
+            display: "flex",
+            gap: "1rem",
+            flexWrap: "wrap",
+            opacity: visible ? 1 : 0,
+            transform: visible ? "translateY(0)" : "translateY(20px)",
+            transition: "opacity 0.7s ease 0.3s, transform 0.7s ease 0.3s",
+          }}>
+            <a
+              href="#tokenomics"
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector("#tokenomics")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="btn-primary"
+            >
+              View Tokenomics
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
+            <a href="/whitepaper" className="btn-outline">
+              Read Whitepaper
+            </a>
+            <a
+              href="/chain"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.4rem",
+                fontFamily: "'DM Sans', sans-serif",
+                fontWeight: 500,
+                fontSize: "0.9rem",
+                color: "rgba(167,139,250,0.9)",
+                textDecoration: "none",
+                padding: "0.5rem 0",
+                transition: "color 0.2s ease",
+                whiteSpace: "nowrap",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#A78BFA")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(167,139,250,0.9)")}
+            >
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0 }}>
+                <circle cx="8" cy="8" r="6" stroke="#A78BFA" strokeWidth="1.5"/>
+                <circle cx="8" cy="8" r="2" fill="#A78BFA"/>
+                <path d="M8 2v2M8 12v2M2 8h2M12 8h2" stroke="#A78BFA" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
+              Explore The Chain
+            </a>
+          </div>
+
+          {/* Token address */}
+          <div style={{
+            marginTop: "2rem",
+            opacity: visible ? 1 : 0,
+            transition: "opacity 0.7s ease 0.4s",
+          }}>
+            <span style={{ fontSize: "0.75rem", color: caLabelColor, marginRight: "0.5rem", transition: "color 0.3s" }}>
+              Solana CA (sCOOK):
+            </span>
+            <code className="address-mono" style={{ fontSize: "0.7rem", color: "rgba(186,230,253,0.85)" }}>
+              {LINKS.ca_solana}
+            </code>
+          </div>
         </div>
-
-        {/* Token address */}
-        <div style={{
-          marginTop: "2rem",
-          opacity: visible ? 1 : 0,
-          transition: "opacity 0.7s ease 0.4s",
-        }}>
-          <span style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.65)", marginRight: "0.5rem" }}>
-            Solana CA (sCOOK):
-          </span>
-          <code className="address-mono" style={{ fontSize: "0.7rem", color: "rgba(186,230,253,0.85)" }}>
-            {LINKS.ca_solana}
-          </code>
-        </div>
-        </div> {/* end frosted panel */}
       </div>
 
       {/* Chain stat bar */}
       <div style={{
         position: "relative",
         zIndex: 10,
-        borderTop: "1px solid rgba(255,255,255,0.06)",
-        background: "rgba(0,0,0,0.7)",
+        borderTop: `1px solid ${statBarBorder}`,
+        background: statBarBg,
         backdropFilter: "blur(12px)",
+        transition: "background 0.3s ease",
       }}>
         <div className="container">
           <div style={{
@@ -240,7 +254,7 @@ export default function Hero() {
             ].map((stat, i) => (
               <div key={stat.label} style={{
                 padding: "1.25rem 0",
-                borderLeft: i > 0 ? "1px solid rgba(255,255,255,0.06)" : "none",
+                borderLeft: i > 0 ? `1px solid ${statDivColor}` : "none",
                 paddingLeft: i > 0 ? "1.5rem" : "0",
                 paddingRight: "1.5rem",
               }}>
@@ -260,7 +274,8 @@ export default function Hero() {
                     fontFamily: "'Space Grotesk', sans-serif",
                     fontWeight: 700,
                     fontSize: "1.25rem",
-                    color: "#ffffff",
+                    color: statValueColor,
+                    transition: "color 0.3s ease",
                   }}>
                     {stat.value}
                   </span>
@@ -268,7 +283,8 @@ export default function Hero() {
                 <div style={{
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.75rem",
-                  color: "rgba(255,255,255,0.4)",
+                  color: statLabelColor,
+                  transition: "color 0.3s ease",
                 }}>
                   {stat.label}
                 </div>

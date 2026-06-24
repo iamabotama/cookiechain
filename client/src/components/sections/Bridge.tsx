@@ -1,7 +1,6 @@
 /*
- * BRIDGE SECTION
- * Design: Dark section with vault visual, step-by-step bridge mechanics
- * All URLs sourced from cookiechain.json
+ * BRIDGE SECTION — theme-aware
+ * All colors via CSS variables (--cook-*) for automatic light/dark switching
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -65,7 +64,7 @@ export default function Bridge() {
     <section
       id="bridge"
       ref={ref}
-      style={{ background: "#050505", padding: "6rem 0" }}
+      style={{ background: "var(--cook-bg-2)", padding: "6rem 0", transition: "background 0.3s ease" }}
     >
       <div className="container">
         {/* Header */}
@@ -81,13 +80,13 @@ export default function Bridge() {
             fontWeight: 700,
             fontSize: "clamp(2rem, 4vw, 3.25rem)",
             letterSpacing: "-0.03em",
-            color: "#ffffff",
+            color: "var(--cook-text-primary)",
             marginBottom: "1rem",
             maxWidth: "640px",
           }}>
             Every exit backed.<br />Every wallet public.<br />Every decision on-chain.
           </h2>
-          <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "1rem", maxWidth: "560px", lineHeight: 1.65 }}>
+          <p style={{ color: "var(--cook-text-secondary)", fontSize: "1rem", maxWidth: "560px", lineHeight: 1.65 }}>
             The Cookie Chain equity bridge is not a mint/burn system. It is a custody transfer backed
             by a purchased reserve — the same model used by WBTC and stablecoin bridges.
             No tokens are created or destroyed. The fixed 1B supply simply changes custody.
@@ -125,9 +124,9 @@ export default function Bridge() {
                     padding: "0.5rem 1rem",
                     borderRadius: "9999px",
                     border: "1px solid",
-                    borderColor: activeTab === tab ? "#2563EB" : "rgba(255,255,255,0.12)",
+                    borderColor: activeTab === tab ? "#2563EB" : "var(--cook-border)",
                     background: activeTab === tab ? "rgba(37,99,235,0.12)" : "transparent",
-                    color: activeTab === tab ? "#60A5FA" : "rgba(255,255,255,0.5)",
+                    color: activeTab === tab ? "#60A5FA" : "var(--cook-text-secondary)",
                     fontFamily: "'Space Grotesk', sans-serif",
                     fontWeight: 600,
                     fontSize: "0.75rem",
@@ -167,12 +166,13 @@ export default function Bridge() {
                   <div style={{
                     flex: 1,
                     padding: "0.875rem 1rem",
-                    background: "#0d0d0d",
+                    background: "var(--cook-card-bg)",
                     borderRadius: "0.5rem",
-                    border: "1px solid rgba(255,255,255,0.05)",
+                    border: "1px solid var(--cook-border)",
                     fontSize: "0.875rem",
-                    color: "rgba(255,255,255,0.75)",
+                    color: "var(--cook-text-secondary)",
                     lineHeight: 1.55,
+                    transition: "background 0.3s ease",
                   }}>
                     {step.text}
                   </div>
@@ -211,7 +211,7 @@ export default function Bridge() {
               <div style={{ fontSize: "0.8rem", color: "#60A5FA", fontWeight: 600, marginBottom: "0.25rem" }}>
                 Approval threshold
               </div>
-              <div style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.5 }}>
+              <div style={{ fontSize: "0.8rem", color: "var(--cook-text-secondary)", lineHeight: 1.5 }}>
                 Every bridge movement requires 6-of-11 multi-sig approval on both chains.
                 Cookie Squad on Cookie Chain. Squads on Solana.
               </div>
@@ -229,12 +229,12 @@ export default function Bridge() {
             fontFamily: "'Space Grotesk', sans-serif",
             fontWeight: 700,
             fontSize: "1.25rem",
-            color: "#ffffff",
+            color: "var(--cook-text-primary)",
             marginBottom: "0.5rem",
           }}>
             Solana Lock Wallet Composition
           </h3>
-          <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.4)", marginBottom: "1.5rem" }}>
+          <p style={{ fontSize: "0.8rem", color: "var(--cook-text-muted)", marginBottom: "1.5rem" }}>
             Address:{" "}
             <code className="address-mono">DoYYCtcG2vfrE3HtxBBXiNVieMutvWBXsgbF3SKtYCyx</code>
           </p>
@@ -243,7 +243,7 @@ export default function Bridge() {
             {LOCK_WALLET_COMPONENTS.map((comp) => (
               <div key={comp.label} className="cook-card" style={{ padding: "1.25rem" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
-                  <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: "0.875rem", color: "#ffffff" }}>
+                  <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: "0.875rem", color: "var(--cook-text-primary)" }}>
                     {comp.label}
                   </span>
                   <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: "1rem", color: comp.color }}>
@@ -253,7 +253,7 @@ export default function Bridge() {
                 <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.8rem", color: comp.color, marginBottom: "0.5rem" }}>
                   {comp.amount}
                 </div>
-                <div style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.4)", lineHeight: 1.5 }}>
+                <div style={{ fontSize: "0.75rem", color: "var(--cook-text-muted)", lineHeight: 1.5 }}>
                   {comp.desc}
                 </div>
               </div>
@@ -281,10 +281,10 @@ export default function Bridge() {
               flexShrink: 0,
             }} />
             <div>
-              <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: "0.875rem", color: "#ffffff", marginBottom: "0.25rem" }}>
+              <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: "0.875rem", color: "var(--cook-text-primary)", marginBottom: "0.25rem" }}>
                 Roadmap: Hyperlane Native Bridge
               </div>
-              <div style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.55 }}>
+              <div style={{ fontSize: "0.8rem", color: "var(--cook-text-secondary)", lineHeight: 1.55 }}>
                 The current equity bridge is transitional. The planned migration to Hyperlane Warp Routes
                 will replace custodial settlement with native burn/mint mechanics, removing reserve dependency
                 entirely and enabling trustless cross-chain transfers.

@@ -1,64 +1,87 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+/*
+ * ThemeContext — Cookie Chain light/dark theme system
+ * - Reads system preference (prefers-color-scheme) on first load
+ * - User toggle overrides and persists to localStorage
+ * - Applies .light class to <html> for light mode; no class = dark mode
+ */
 
-type Theme = "light" | "dark";
+import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
-interface ThemeContextType {
+type Theme = "dark" | "light";
+
+interface ThemeContextValue {
   theme: Theme;
-  toggleTheme?: () => void;
-  switchable: boolean;
+  toggleTheme: () => void;
+  isLight: boolean;
 }
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+const ThemeContext = createContext<ThemeContextValue>({
+  theme: "dark",
+  toggleTheme: () => {},
+  isLight: false,
+});
 
-interface ThemeProviderProps {
-  children: React.ReactNode;
-  defaultTheme?: Theme;
-  switchable?: boolean;
+function getInitialTheme(): Theme {
+  // 1. Check localStorage override
+  const stored = localStorage.getItem("cook-theme") as Theme | null;
+  if (stored === "light" || stored === "dark") return stored;
+  // 2. Fall back to system preference
+  if (window.matchMedia?.("(prefers-color-scheme: light)").matches) return "light";
+  return "dark";
 }
 
-export function ThemeProvider({
-  children,
-  defaultTheme = "light",
-  switchable = false,
-}: ThemeProviderProps) {
+function applyTheme(theme: Theme) {
+  const html = document.documentElement;
+  if (theme === "light") {
+    html.classList.add("light");
+  } else {
+    html.classList.remove("light");
+  }
+}
+
+export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
-    if (switchable) {
-      const stored = localStorage.getItem("theme");
-      return (stored as Theme) || defaultTheme;
-    }
-    return defaultTheme;
+    // SSR-safe: default to dark, will be corrected in useEffect
+    return "dark";
   });
 
+  // On mount: read real preference and apply
   useEffect(() => {
-    const root = document.documentElement;
-    if (theme === "dark") {
-      root.classList.add("dark");
-    } else {
-      root.classList.remove("dark");
-    }
+    const initial = getInitialTheme();
+    setTheme(initial);
+    applyTheme(initial);
+  }, []);
 
-    if (switchable) {
-      localStorage.setItem("theme", theme);
-    }
-  }, [theme, switchable]);
-
-  const toggleTheme = switchable
-    ? () => {
-        setTheme(prev => (prev === "light" ? "dark" : "light"));
+  // Listen for system preference changes (only if no localStorage override)
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-color-scheme: light)");
+    const handler = (e: MediaQueryListEvent) => {
+      if (!localStorage.getItem("cook-theme")) {
+        const next: Theme = e.matches ? "light" : "dark";
+        setTheme(next);
+        applyTheme(next);
       }
-    : undefined;
+    };
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  const toggleTheme = () => {
+    setTheme((prev) => {
+      const next: Theme = prev === "dark" ? "light" : "dark";
+      localStorage.setItem("cook-theme", next);
+      applyTheme(next);
+      return next;
+    });
+  };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, switchable }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, isLight: theme === "light" }}>
       {children}
     </ThemeContext.Provider>
   );
 }
 
 export function useTheme() {
-  const context = useContext(ThemeContext);
-  if (!context) {
-    throw new Error("useTheme must be used within ThemeProvider");
-  }
-  return context;
+  return useContext(ThemeContext);
 }

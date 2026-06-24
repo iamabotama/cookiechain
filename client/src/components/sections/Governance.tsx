@@ -1,7 +1,6 @@
 /*
- * GOVERNANCE SECTION
- * Design: Dark cards grid — mirrors Solana's "Build alongside our global community" section
- * Shows multi-sig structure, signer transparency, and DAO roadmap
+ * GOVERNANCE SECTION — theme-aware
+ * All colors via CSS variables (--cook-*) for automatic light/dark switching
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -91,7 +90,7 @@ export default function Governance() {
     <section
       id="governance"
       ref={ref}
-      style={{ background: "#000000", padding: "6rem 0" }}
+      style={{ background: "var(--cook-bg)", padding: "6rem 0", transition: "background 0.3s ease" }}
     >
       <div className="container">
         {/* Header */}
@@ -110,21 +109,19 @@ export default function Governance() {
         >
           <div>
             <div className="section-label" style={{ marginBottom: "1rem" }}>Governance & Security</div>
-            <h2
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontWeight: 700,
-                fontSize: "clamp(2rem, 4vw, 3rem)",
-                letterSpacing: "-0.03em",
-                color: "#ffffff",
-                lineHeight: 1.1,
-              }}
-            >
+            <h2 style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontWeight: 700,
+              fontSize: "clamp(2rem, 4vw, 3rem)",
+              letterSpacing: "-0.03em",
+              color: "var(--cook-text-primary)",
+              lineHeight: 1.1,
+            }}>
               Secured by the<br />community that built it.
             </h2>
           </div>
           <div>
-            <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "1rem", lineHeight: 1.7 }}>
+            <p style={{ color: "var(--cook-text-secondary)", fontSize: "1rem", lineHeight: 1.7 }}>
               Whether you're a holder, validator, builder, or bridge user — the governance
               model is designed to protect your position at every step. Transparent by default.
               Auditable in real time.
@@ -133,41 +130,38 @@ export default function Governance() {
         </div>
 
         {/* Cards grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "1px",
-            background: "rgba(255,255,255,0.05)",
-            borderRadius: "1rem",
-            overflow: "hidden",
-          }}
-        >
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          gap: "1px",
+          background: "var(--cook-border)",
+          borderRadius: "1rem",
+          overflow: "hidden",
+        }}>
           {GOV_CARDS.map((card, i) => (
             <div
               key={card.title}
               style={{
-                background: "#0a0a0a",
+                background: "var(--cook-surface)",
                 padding: "1.75rem",
                 transition: "background 0.25s ease",
                 opacity: visible ? 1 : 0,
                 transform: visible ? "translateY(0)" : "translateY(20px)",
-                transition2: `opacity 0.5s ease ${0.1 + i * 0.07}s, transform 0.5s ease ${0.1 + i * 0.07}s`,
               } as any}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#111111"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#0a0a0a"; }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--cook-card-bg-hover)"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--cook-surface)"; }}
             >
               <div style={{ marginBottom: "1rem" }}>{card.icon}</div>
               <h3 style={{
                 fontFamily: "'Space Grotesk', sans-serif",
                 fontWeight: 700,
                 fontSize: "1rem",
-                color: "#ffffff",
+                color: "var(--cook-text-primary)",
                 marginBottom: "0.5rem",
               }}>
                 {card.title}
               </h3>
-              <p style={{ fontSize: "0.825rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.6 }}>
+              <p style={{ fontSize: "0.825rem", color: "var(--cook-text-secondary)", lineHeight: 1.6 }}>
                 {card.desc}
               </p>
             </div>
@@ -175,21 +169,19 @@ export default function Governance() {
         </div>
 
         {/* Risk disclosure note */}
-        <div
-          style={{
-            marginTop: "3rem",
-            padding: "1.5rem",
-            background: "rgba(255,255,255,0.02)",
-            border: "1px solid rgba(255,255,255,0.06)",
-            borderRadius: "0.75rem",
-            opacity: visible ? 1 : 0,
-            transition: "opacity 0.6s ease 0.5s",
-          }}
-        >
-          <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: "0.8rem", color: "rgba(255,255,255,0.5)", marginBottom: "0.5rem", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+        <div style={{
+          marginTop: "3rem",
+          padding: "1.5rem",
+          background: "var(--cook-surface)",
+          border: "1px solid var(--cook-border)",
+          borderRadius: "0.75rem",
+          opacity: visible ? 1 : 0,
+          transition: "opacity 0.6s ease 0.5s, background 0.3s ease",
+        }}>
+          <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: "0.8rem", color: "var(--cook-text-secondary)", marginBottom: "0.5rem", letterSpacing: "0.08em", textTransform: "uppercase" }}>
             Risk Disclosure
           </div>
-          <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.35)", lineHeight: 1.65, maxWidth: "800px" }}>
+          <p style={{ fontSize: "0.8rem", color: "var(--cook-text-muted)", lineHeight: 1.65, maxWidth: "800px" }}>
             The Cookie Chain bridge is operated by community multi-signature wallets rather than autonomous smart contracts.
             Security depends on the integrity and key security of the signer group. Compromise or collusion of six signers
             could result in unauthorized movement of reserve funds. The planned migration to Hyperlane Warp Routes will

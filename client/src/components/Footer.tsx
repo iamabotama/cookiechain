@@ -1,8 +1,6 @@
 /*
- * FOOTER
- * Design: Pure black, small-caps category labels, clean link columns
- * Mirrors Solana Foundation footer exactly
- * All links sourced from cookiechain.json
+ * FOOTER — theme-aware
+ * All colors via CSS variables (--cook-*) for automatic light/dark switching
  */
 
 import { LINKS } from "@/lib/links";
@@ -59,7 +57,11 @@ export default function Footer() {
   };
 
   return (
-    <footer style={{ background: "#000000", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+    <footer style={{
+      background: "var(--cook-bg)",
+      borderTop: "1px solid var(--cook-border)",
+      transition: "background 0.3s ease, border-color 0.3s ease",
+    }}>
       <div className="container" style={{ paddingTop: "4rem", paddingBottom: "3rem" }}>
         {/* Logo row */}
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "3rem" }}>
@@ -71,7 +73,7 @@ export default function Footer() {
             fontWeight: 700,
             fontSize: "0.875rem",
             letterSpacing: "0.06em",
-            color: "#ffffff",
+            color: "var(--cook-text-primary)",
           }}>
             COOKIE CHAIN
           </span>
@@ -92,7 +94,7 @@ export default function Footer() {
                 fontWeight: 600,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
-                color: "rgba(255,255,255,0.3)",
+                color: "var(--cook-text-muted)",
                 marginBottom: "1rem",
               }}>
                 {col.label}
@@ -108,12 +110,12 @@ export default function Footer() {
                     style={{
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: "0.85rem",
-                      color: "rgba(255,255,255,0.55)",
+                      color: "var(--cook-text-secondary)",
                       textDecoration: "none",
                       transition: "color 0.2s",
                     }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = "#ffffff")}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.55)")}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "var(--cook-text-primary)")}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cook-text-secondary)")}
                   >
                     {link.text}
                   </a>
@@ -125,7 +127,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div style={{
-          borderTop: "1px solid rgba(255,255,255,0.06)",
+          borderTop: "1px solid var(--cook-border)",
           paddingTop: "1.5rem",
           display: "flex",
           justifyContent: "space-between",
@@ -133,7 +135,7 @@ export default function Footer() {
           flexWrap: "wrap",
           gap: "1rem",
         }}>
-          <div style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.25)" }}>
+          <div style={{ fontSize: "0.75rem", color: "var(--cook-text-muted)" }}>
             © 2026 Cookie Chain Community. Not financial advice. DYOR.
           </div>
           <div style={{ display: "flex", gap: "1.5rem" }}>
@@ -148,12 +150,12 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 style={{
                   fontSize: "0.75rem",
-                  color: "rgba(255,255,255,0.25)",
+                  color: "var(--cook-text-muted)",
                   textDecoration: "none",
                   transition: "color 0.2s",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.6)")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.25)")}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--cook-text-secondary)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cook-text-muted)")}
               >
                 {link.text}
               </a>
@@ -164,5 +166,3 @@ export default function Footer() {
     </footer>
   );
 }
-
-

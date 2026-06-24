@@ -1,12 +1,13 @@
 /*
- * COOKIE CHAIN NAV — v2
+ * COOKIE CHAIN NAV — v3 (theme-aware)
  * Design: Transparent on load, opaque blur on scroll
- * Logo: actual cookie sticker with subtle blue glow + "COOKIE CHAIN" wordmark
- * Colors: electric blue primary, ice blue hover
+ * Colors: all via CSS variables (--cook-*) so light/dark theme works automatically
  */
 
 import { useEffect, useState } from "react";
 import { LINKS } from "@/lib/links";
+import ThemeToggle from "@/components/ThemeToggle";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const COOKIE_LOGO = "/cookie-logo.webp";
 
@@ -25,6 +26,7 @@ const NAV_CHAIN = "/chain";
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { isLight } = useTheme();
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 40);
@@ -43,9 +45,9 @@ export default function Nav() {
     <header
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
       style={{
-        background: scrolled ? "rgba(0,0,0,0.90)" : "transparent",
+        background: scrolled ? "var(--cook-nav-scrolled)" : "var(--cook-nav-bg)",
         backdropFilter: scrolled ? "blur(20px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "none",
+        borderBottom: scrolled ? "1px solid var(--cook-nav-border)" : "none",
       }}
     >
       <div className="container">
@@ -76,7 +78,7 @@ export default function Nav() {
                 fontWeight: 700,
                 fontSize: "0.9rem",
                 letterSpacing: "0.05em",
-                color: "#ffffff",
+                color: "var(--cook-text-primary)",
                 whiteSpace: "nowrap",
               }}
             >
@@ -95,22 +97,24 @@ export default function Nav() {
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.875rem",
                   fontWeight: 500,
-                  color: "rgba(255,255,255,0.65)",
+                  color: "var(--cook-nav-text)",
                   transition: "color 0.2s",
                   textDecoration: "none",
                 }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "#BAE6FD")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.65)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cook-nav-text)")}
               >
                 {link.label}
               </a>
             ))}
           </nav>
 
-          {/* CTA */}
+          {/* CTA + ThemeToggle */}
           <div className="hidden md:flex items-center gap-3">
+            {/* Theme toggle */}
+            <ThemeToggle />
             {/* Divider */}
-            <div style={{ width: "1px", height: "18px", background: "rgba(255,255,255,0.12)", margin: "0 0.25rem" }} />
+            <div style={{ width: "1px", height: "18px", background: "var(--cook-border)", margin: "0 0.25rem" }} />
             <a
               href="https://cookiechain.wtf"
               target="_blank"
@@ -119,12 +123,12 @@ export default function Nav() {
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "0.875rem",
                 fontWeight: 500,
-                color: "rgba(255,255,255,0.55)",
+                color: "var(--cook-nav-text)",
                 textDecoration: "none",
                 transition: "color 0.2s",
               }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#7DD3FC")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.55)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cook-nav-text)")}
             >
               <span style={{ whiteSpace: "nowrap" }}>Community ↗</span>
             </a>
@@ -134,12 +138,12 @@ export default function Nav() {
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "0.875rem",
                 fontWeight: 500,
-                color: "rgba(255,255,255,0.55)",
+                color: "var(--cook-nav-text)",
                 textDecoration: "none",
                 transition: "color 0.2s",
               }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#A78BFA")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.55)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cook-nav-text)")}
             >
               <span style={{ whiteSpace: "nowrap" }}>The Chain</span>
             </a>
@@ -149,12 +153,12 @@ export default function Nav() {
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "0.875rem",
                 fontWeight: 500,
-                color: "rgba(255,255,255,0.55)",
+                color: "var(--cook-nav-text)",
                 textDecoration: "none",
                 transition: "color 0.2s",
               }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#4ADE80")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.55)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cook-nav-text)")}
             >
               Markets
             </a>
@@ -164,12 +168,12 @@ export default function Nav() {
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "0.875rem",
                 fontWeight: 500,
-                color: "rgba(255,255,255,0.55)",
+                color: "var(--cook-nav-text)",
                 textDecoration: "none",
                 transition: "color 0.2s",
               }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#60A5FA")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.55)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cook-nav-text)")}
             >
               Whitepaper
             </a>
@@ -194,27 +198,31 @@ export default function Nav() {
           </div>
 
           {/* Mobile hamburger */}
-          <button
-            className="md:hidden flex flex-col gap-1.5 p-2"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
-          >
-            <span className="block w-5 h-0.5 bg-white transition-all duration-200"
-              style={{ transform: mobileOpen ? "rotate(45deg) translate(2px, 2px)" : "none" }} />
-            <span className="block w-5 h-0.5 bg-white transition-all duration-200"
-              style={{ opacity: mobileOpen ? 0 : 1 }} />
-            <span className="block w-5 h-0.5 bg-white transition-all duration-200"
-              style={{ transform: mobileOpen ? "rotate(-45deg) translate(2px, -2px)" : "none" }} />
-          </button>
+          <div className="md:hidden flex items-center gap-3">
+            <ThemeToggle />
+            <button
+              className="flex flex-col gap-1.5 p-2"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
+              style={{ background: "none", border: "none" }}
+            >
+              <span className="block w-5 h-0.5 transition-all duration-200"
+                style={{ background: "var(--cook-text-primary)", transform: mobileOpen ? "rotate(45deg) translate(2px, 2px)" : "none" }} />
+              <span className="block w-5 h-0.5 transition-all duration-200"
+                style={{ background: "var(--cook-text-primary)", opacity: mobileOpen ? 0 : 1 }} />
+              <span className="block w-5 h-0.5 transition-all duration-200"
+                style={{ background: "var(--cook-text-primary)", transform: mobileOpen ? "rotate(-45deg) translate(2px, -2px)" : "none" }} />
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Mobile menu */}
       {mobileOpen && (
         <div style={{
-          background: "rgba(0,0,0,0.97)",
+          background: isLight ? "rgba(255,255,255,0.97)" : "rgba(0,0,0,0.97)",
           backdropFilter: "blur(20px)",
-          borderTop: "1px solid rgba(255,255,255,0.06)",
+          borderTop: "1px solid var(--cook-nav-border)",
         }}>
           <div className="container py-6 flex flex-col gap-4">
             {navLinks.map((link) => (
@@ -226,7 +234,7 @@ export default function Nav() {
                   fontFamily: "'Space Grotesk', sans-serif",
                   fontSize: "1.125rem",
                   fontWeight: 600,
-                  color: "rgba(255,255,255,0.85)",
+                  color: "var(--cook-text-primary)",
                   textDecoration: "none",
                 }}
               >
@@ -234,7 +242,7 @@ export default function Nav() {
               </a>
             ))}
             {/* Divider */}
-            <div style={{ height: "1px", background: "rgba(255,255,255,0.08)", margin: "0.25rem 0" }} />
+            <div style={{ height: "1px", background: "var(--cook-border)", margin: "0.25rem 0" }} />
             <a href="https://cookiechain.wtf" target="_blank" rel="noopener noreferrer" style={{
               fontFamily: "'Space Grotesk', sans-serif",
               fontSize: "1.125rem",

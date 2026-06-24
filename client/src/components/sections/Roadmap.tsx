@@ -1,7 +1,6 @@
 /*
- * ROADMAP SECTION
- * Design: Vertical timeline with amber/mint/purple phase markers
- * Data from whitepaper v2.0 roadmap section
+ * ROADMAP SECTION — theme-aware
+ * All colors via CSS variables (--cook-*) for automatic light/dark switching
  */
 
 import { useEffect, useRef, useState } from "react";
@@ -85,33 +84,29 @@ export default function Roadmap() {
 
   return (
     <section
-      style={{ background: "#000000", padding: "6rem 0" }}
+      style={{ background: "var(--cook-bg)", padding: "6rem 0", transition: "background 0.3s ease" }}
       ref={ref}
     >
       <div className="container">
         {/* Header */}
-        <div
-          style={{
-            marginBottom: "4rem",
-            opacity: visible ? 1 : 0,
-            transform: visible ? "translateY(0)" : "translateY(24px)",
-            transition: "opacity 0.6s ease, transform 0.6s ease",
-          }}
-        >
+        <div style={{
+          marginBottom: "4rem",
+          opacity: visible ? 1 : 0,
+          transform: visible ? "translateY(0)" : "translateY(24px)",
+          transition: "opacity 0.6s ease, transform 0.6s ease",
+        }}>
           <div className="section-label" style={{ marginBottom: "1rem" }}>Roadmap</div>
-          <h2
-            style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontWeight: 700,
-              fontSize: "clamp(2rem, 4vw, 3.25rem)",
-              letterSpacing: "-0.03em",
-              color: "#ffffff",
-              marginBottom: "1rem",
-            }}
-          >
+          <h2 style={{
+            fontFamily: "'Space Grotesk', sans-serif",
+            fontWeight: 700,
+            fontSize: "clamp(2rem, 4vw, 3.25rem)",
+            letterSpacing: "-0.03em",
+            color: "var(--cook-text-primary)",
+            marginBottom: "1rem",
+          }}>
             Steady progress.<br />No detours.
           </h2>
-          <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "1rem", maxWidth: "520px", lineHeight: 1.65 }}>
+          <p style={{ color: "var(--cook-text-secondary)", fontSize: "1rem", maxWidth: "520px", lineHeight: 1.65 }}>
             Phase 0 shipped on schedule. Phase 1 is underway. Every milestone on this roadmap
             builds on infrastructure that already exists and a community that has demonstrated
             it shows up — consistently, without drama, over the long term.
@@ -188,7 +183,7 @@ export default function Roadmap() {
                   fontFamily: "'Space Grotesk', sans-serif",
                   fontWeight: 700,
                   fontSize: "1.25rem",
-                  color: "#ffffff",
+                  color: "var(--cook-text-primary)",
                   marginBottom: "1rem",
                   letterSpacing: "-0.02em",
                 }}>
@@ -196,10 +191,7 @@ export default function Roadmap() {
                 </h3>
                 <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                   {phase.items.map((item) => (
-                    <div
-                      key={item}
-                      style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}
-                    >
+                    <div key={item} style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
                       <div style={{
                         width: "5px",
                         height: "5px",
@@ -210,7 +202,7 @@ export default function Roadmap() {
                       }} />
                       <span style={{
                         fontSize: "0.875rem",
-                        color: phase.status === "future" ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.65)",
+                        color: phase.status === "future" ? "var(--cook-text-muted)" : "var(--cook-text-secondary)",
                         lineHeight: 1.5,
                       }}>
                         {item}

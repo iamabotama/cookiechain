@@ -7,6 +7,10 @@
  * Ice:      #BAE6FD  (Ice Blue / Sky)
  * Accent:   #F5A623  (Cookie Amber — used sparingly for emphasis only)
  * Gradient: violet → electric blue → ice blue
+ *
+ * THEMING: All colors use CSS custom properties.
+ * :root = dark theme (default). .light class on <html> = light theme.
+ * prefers-color-scheme is read on first load; user toggle overrides via localStorage.
  */
 
 @import "tailwindcss";
@@ -52,7 +56,7 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* Cookie Chain brand tokens v2 */
+  /* Cookie Chain brand tokens — fixed, never change with theme */
   --color-cook-violet:     #7B2FBE;
   --color-cook-blue:       #2563EB;
   --color-cook-ice:        #BAE6FD;
@@ -60,13 +64,15 @@
   --color-cook-violet-dim: rgba(123, 47, 190, 0.18);
   --color-cook-blue-dim:   rgba(37, 99, 235, 0.15);
   --color-cook-ice-dim:    rgba(186, 230, 253, 0.10);
-  --color-cook-surface:    #0d0d0f;
-  --color-cook-surface-2:  #141418;
-  --color-cook-border:     rgba(255, 255, 255, 0.07);
 }
 
+/* ============================================================
+   DARK THEME (default)
+   ============================================================ */
 :root {
   --radius: 0.5rem;
+
+  /* shadcn tokens */
   --background: #000000;
   --foreground: #ffffff;
   --card: #0d0d0f;
@@ -86,7 +92,6 @@
   --border: rgba(255, 255, 255, 0.07);
   --input: rgba(255, 255, 255, 0.08);
   --ring: #2563EB;
-  /* Chart colors: violet, blue, ice, amber, mid-blue */
   --chart-1: #7B2FBE;
   --chart-2: #2563EB;
   --chart-3: #BAE6FD;
@@ -100,6 +105,103 @@
   --sidebar-accent-foreground: #ffffff;
   --sidebar-border: rgba(255, 255, 255, 0.07);
   --sidebar-ring: #2563EB;
+
+  /* ── Cook semantic theme tokens (dark) ── */
+  --cook-bg:              #000000;
+  --cook-bg-2:            #050505;
+  --cook-bg-3:            #0a0a0c;
+  --cook-surface:         #0d0d0f;
+  --cook-surface-2:       #141418;
+  --cook-border:          rgba(255, 255, 255, 0.07);
+  --cook-border-hover:    rgba(37, 99, 235, 0.35);
+  --cook-text-primary:    #ffffff;
+  --cook-text-secondary:  rgba(255, 255, 255, 0.55);
+  --cook-text-muted:      rgba(255, 255, 255, 0.35);
+  --cook-text-mono:       #7799bb;
+  --cook-section-label:   #7B9FD4;
+  --cook-card-bg:         #0d0d0f;
+  --cook-card-bg-hover:   #111116;
+  --cook-card-shadow:     0 0 24px rgba(37, 99, 235, 0.1), 0 0 60px rgba(123, 47, 190, 0.06);
+  --cook-nav-bg:          rgba(0, 0, 0, 0.0);
+  --cook-nav-scrolled:    rgba(0, 0, 0, 0.88);
+  --cook-nav-border:      rgba(255, 255, 255, 0.06);
+  --cook-nav-text:        rgba(255, 255, 255, 0.55);
+  --cook-scrollbar-track: #000;
+  --cook-scrollbar-thumb: #1e2a3a;
+  --cook-btn-glass-bg:    rgba(8, 6, 18, 0.82);
+  --cook-btn-glass-bg-h:  rgba(8, 6, 18, 0.65);
+  --cook-btn-outline-bg:  rgba(8, 6, 18, 0.5);
+  --cook-stat-divider:    rgba(255, 255, 255, 0.08);
+  --cook-address-bg:      rgba(37, 99, 235, 0.06);
+  --cook-address-color:   #7799bb;
+}
+
+/* ============================================================
+   LIGHT THEME — applied via .light class on <html>
+   ============================================================ */
+html.light {
+  /* shadcn tokens */
+  --background: #ffffff;
+  --foreground: #0f0f14;
+  --card: #f8f8fb;
+  --card-foreground: #0f0f14;
+  --popover: #ffffff;
+  --popover-foreground: #0f0f14;
+  --primary: #2563EB;
+  --primary-foreground: #ffffff;
+  --secondary: #f0f0f5;
+  --secondary-foreground: #0f0f14;
+  --muted: #f0f0f5;
+  --muted-foreground: #6b6b80;
+  --accent: #7B2FBE;
+  --accent-foreground: #ffffff;
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: rgba(0, 0, 0, 0.08);
+  --input: rgba(0, 0, 0, 0.06);
+  --ring: #2563EB;
+  --chart-1: #7B2FBE;
+  --chart-2: #2563EB;
+  --chart-3: #3B82F6;
+  --chart-4: #F5A623;
+  --chart-5: #60A5FA;
+  --sidebar: #f8f8fb;
+  --sidebar-foreground: #0f0f14;
+  --sidebar-primary: #2563EB;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f0f0f5;
+  --sidebar-accent-foreground: #0f0f14;
+  --sidebar-border: rgba(0, 0, 0, 0.08);
+  --sidebar-ring: #2563EB;
+
+  /* ── Cook semantic theme tokens (light) ── */
+  --cook-bg:              #ffffff;
+  --cook-bg-2:            #f8f8fb;
+  --cook-bg-3:            #f2f2f7;
+  --cook-surface:         #f8f8fb;
+  --cook-surface-2:       #f0f0f5;
+  --cook-border:          rgba(0, 0, 0, 0.08);
+  --cook-border-hover:    rgba(37, 99, 235, 0.4);
+  --cook-text-primary:    #0f0f14;
+  --cook-text-secondary:  rgba(15, 15, 20, 0.6);
+  --cook-text-muted:      rgba(15, 15, 20, 0.4);
+  --cook-text-mono:       #3B5A8A;
+  --cook-section-label:   #4A6FA5;
+  --cook-card-bg:         #ffffff;
+  --cook-card-bg-hover:   #f8f8fb;
+  --cook-card-shadow:     0 4px 24px rgba(37, 99, 235, 0.08), 0 1px 4px rgba(0,0,0,0.06);
+  --cook-nav-bg:          rgba(255, 255, 255, 0.0);
+  --cook-nav-scrolled:    rgba(255, 255, 255, 0.92);
+  --cook-nav-border:      rgba(0, 0, 0, 0.08);
+  --cook-nav-text:        rgba(15, 15, 20, 0.6);
+  --cook-scrollbar-track: #f0f0f5;
+  --cook-scrollbar-thumb: #c8c8d8;
+  --cook-btn-glass-bg:    rgba(255, 255, 255, 0.85);
+  --cook-btn-glass-bg-h:  rgba(255, 255, 255, 0.95);
+  --cook-btn-outline-bg:  rgba(255, 255, 255, 0.7);
+  --cook-stat-divider:    rgba(0, 0, 0, 0.08);
+  --cook-address-bg:      rgba(37, 99, 235, 0.06);
+  --cook-address-color:   #3B5A8A;
 }
 
 @layer base {
@@ -111,6 +213,7 @@
     font-family: 'DM Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Space Grotesk', sans-serif;
@@ -146,7 +249,7 @@
 
   .flex { min-height: 0; min-width: 0; }
 
-  /* Cook gradient text — violet → electric blue → ice */
+  /* Cook gradient text — violet → electric blue → ice (same in both themes) */
   .cook-gradient-text {
     background: linear-gradient(135deg, #7B2FBE 0%, #2563EB 55%, #BAE6FD 100%);
     -webkit-background-clip: text;
@@ -185,7 +288,7 @@
     -webkit-backdrop-filter: blur(12px);
     border: 1.5px solid transparent;
     background:
-      linear-gradient(rgba(8,6,18,0.82), rgba(8,6,18,0.82)) padding-box,
+      linear-gradient(var(--cook-btn-glass-bg), var(--cook-btn-glass-bg)) padding-box,
       linear-gradient(135deg, #7B2FBE 0%, #2563EB 55%, #7DD3FC 100%) border-box;
     box-shadow:
       0 0 12px rgba(123,47,190,0.25),
@@ -193,7 +296,7 @@
   }
   .btn-primary:hover {
     background:
-      linear-gradient(rgba(8,6,18,0.65), rgba(8,6,18,0.65)) padding-box,
+      linear-gradient(var(--cook-btn-glass-bg-h), var(--cook-btn-glass-bg-h)) padding-box,
       linear-gradient(135deg, #9333EA 0%, #3B82F6 55%, #BAE6FD 100%) border-box;
     box-shadow:
       0 0 24px rgba(123,47,190,0.45),
@@ -203,7 +306,7 @@
   }
   .btn-primary:active { transform: scale(0.97); }
 
-  /* Legacy alias — same glass treatment */
+  /* Legacy alias */
   .btn-amber {
     color: #ffffff;
     font-family: 'Space Grotesk', sans-serif;
@@ -219,22 +322,22 @@
     -webkit-backdrop-filter: blur(12px);
     border: 1.5px solid transparent;
     background:
-      linear-gradient(rgba(8,6,18,0.82), rgba(8,6,18,0.82)) padding-box,
+      linear-gradient(var(--cook-btn-glass-bg), var(--cook-btn-glass-bg)) padding-box,
       linear-gradient(135deg, #7B2FBE 0%, #2563EB 55%, #7DD3FC 100%) border-box;
     box-shadow: 0 0 12px rgba(123,47,190,0.25), inset 0 1px 0 rgba(255,255,255,0.08);
   }
   .btn-amber:hover {
     background:
-      linear-gradient(rgba(8,6,18,0.65), rgba(8,6,18,0.65)) padding-box,
+      linear-gradient(var(--cook-btn-glass-bg-h), var(--cook-btn-glass-bg-h)) padding-box,
       linear-gradient(135deg, #9333EA 0%, #3B82F6 55%, #BAE6FD 100%) border-box;
     box-shadow: 0 0 24px rgba(123,47,190,0.45), 0 0 48px rgba(37,99,235,0.2), inset 0 1px 0 rgba(255,255,255,0.14);
     transform: scale(1.02);
   }
   .btn-amber:active { transform: scale(0.97); }
 
-  /* Outline button — subtle glass, white border that glows on hover */
+  /* Outline button */
   .btn-outline {
-    color: rgba(255,255,255,0.85);
+    color: var(--cook-text-primary);
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 600;
     padding: 0.75rem 1.75rem;
@@ -248,14 +351,14 @@
     -webkit-backdrop-filter: blur(12px);
     border: 1.5px solid transparent;
     background:
-      linear-gradient(rgba(8,6,18,0.5), rgba(8,6,18,0.5)) padding-box,
-      linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(186,230,253,0.15) 100%) border-box;
+      linear-gradient(var(--cook-btn-outline-bg), var(--cook-btn-outline-bg)) padding-box,
+      linear-gradient(135deg, var(--cook-border) 0%, rgba(186,230,253,0.15) 100%) border-box;
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
   }
   .btn-outline:hover {
-    color: #ffffff;
+    color: var(--cook-text-primary);
     background:
-      linear-gradient(rgba(8,6,18,0.55), rgba(8,6,18,0.55)) padding-box,
+      linear-gradient(var(--cook-btn-outline-bg), var(--cook-btn-outline-bg)) padding-box,
       linear-gradient(135deg, rgba(186,230,253,0.6) 0%, rgba(37,99,235,0.4) 100%) border-box;
     box-shadow:
       0 0 16px rgba(186,230,253,0.2),
@@ -264,16 +367,16 @@
   }
   .btn-outline:active { transform: scale(0.97); }
 
-  /* Dark card with blue glow hover */
+  /* Dark/light card */
   .cook-card {
-    background: #0d0d0f;
-    border: 1px solid rgba(255,255,255,0.07);
+    background: var(--cook-card-bg);
+    border: 1px solid var(--cook-border);
     border-radius: 0.75rem;
     transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
   }
   .cook-card:hover {
-    border-color: rgba(37, 99, 235, 0.35);
-    box-shadow: 0 0 24px rgba(37, 99, 235, 0.1), 0 0 60px rgba(123, 47, 190, 0.06);
+    border-color: var(--cook-border-hover);
+    box-shadow: var(--cook-card-shadow);
     transform: translateY(-2px);
   }
 
@@ -290,46 +393,93 @@
 
   /* Stat divider */
   .stat-divider {
-    border-left: 1px solid rgba(255,255,255,0.08);
+    border-left: 1px solid var(--cook-stat-divider);
   }
 
   /* Mono address */
   .address-mono {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.75rem;
-    color: #7799bb;
-    background: rgba(37, 99, 235, 0.06);
+    color: var(--cook-address-color);
+    background: var(--cook-address-bg);
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
     word-break: break-all;
   }
 
-  /* Section label — ice blue */
+  /* Section label */
   .section-label {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: #7B9FD4;
+    color: var(--cook-section-label);
   }
 
   /* Nav scroll transition */
   .nav-scrolled {
-    background: rgba(0,0,0,0.88) !important;
+    background: var(--cook-nav-scrolled) !important;
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid var(--cook-nav-border);
+  }
+
+  /* Theme toggle button */
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid var(--cook-border);
+    background: var(--cook-surface);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--cook-text-secondary);
+  }
+  .theme-toggle:hover {
+    border-color: var(--cook-border-hover);
+    color: var(--cook-text-primary);
+  }
+
+  .theme-toggle-pill {
+    width: 32px;
+    height: 18px;
+    border-radius: 9999px;
+    background: var(--cook-surface-2);
+    border: 1px solid var(--cook-border);
+    position: relative;
+    transition: background 0.25s ease;
+    flex-shrink: 0;
+  }
+  .theme-toggle-pill.active {
+    background: linear-gradient(135deg, #7B2FBE, #2563EB);
+    border-color: transparent;
+  }
+  .theme-toggle-knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--cook-text-muted);
+    transition: transform 0.25s cubic-bezier(0.23, 1, 0.32, 1), background 0.25s ease;
+  }
+  .theme-toggle-pill.active .theme-toggle-knob {
+    transform: translateX(14px);
+    background: #ffffff;
   }
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #000; }
-::-webkit-scrollbar-thumb { background: #1e2a3a; border-radius: 3px; }
+::-webkit-scrollbar-track { background: var(--cook-scrollbar-track); }
+::-webkit-scrollbar-thumb { background: var(--cook-scrollbar-thumb); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #2563EB; }
 
 /* Selection */
-::selection { background: rgba(37, 99, 235, 0.35); color: #fff; }
+::selection { background: rgba(37, 99, 235, 0.35); color: var(--cook-text-primary); }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {

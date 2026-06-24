@@ -1,12 +1,11 @@
 /*
- * PERFORMANCE SECTION
- * Design: Live particle stream canvas animation — NO static image, NO opacity overlays, NO fades
- * Full vibrancy: ice-blue (0,180,255) + violet (123,47,190) + electric-blue (37,99,235)
- * Mirrors Solana's "fastest growing financial platform" section
+ * PERFORMANCE SECTION — theme-aware
+ * All colors via CSS variables (--cook-*) for automatic light/dark switching
  */
 
 import { useEffect, useRef, useState } from "react";
 import StreamCanvas from "../StreamCanvas";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const METRICS = [
   {
@@ -56,6 +55,7 @@ const METRICS = [
 export default function Performance() {
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const { isLight } = useTheme();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -66,17 +66,21 @@ export default function Performance() {
     return () => observer.disconnect();
   }, []);
 
+  const cardBg = isLight ? "rgba(255,255,255,0.85)" : "rgba(0,0,0,0.72)";
+  const cardBorder = isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.1)";
+
   return (
     <section
       ref={ref}
       style={{
         position: "relative",
-        background: "#000000",
+        background: "var(--cook-bg-2)",
         overflow: "hidden",
         padding: "6rem 0",
+        transition: "background 0.3s ease",
       }}
     >
-      {/* Live particle stream animation — full vibrancy, zero overlays */}
+      {/* Live particle stream animation */}
       <StreamCanvas
         style={{ zIndex: 1 }}
         maxStreams={14}
@@ -105,10 +109,9 @@ export default function Performance() {
                 fontWeight: 700,
                 fontSize: "clamp(2rem, 4vw, 3rem)",
                 letterSpacing: "-0.03em",
-                color: "#ffffff",
+                color: "var(--cook-text-primary)",
                 lineHeight: 1.1,
                 marginBottom: "1.5rem",
-                textShadow: "0 2px 20px rgba(0,0,0,0.8)",
               }}
             >
               Built to last.<br />
@@ -122,12 +125,11 @@ export default function Performance() {
               </span>
             </h2>
             <p style={{
-              color: "rgba(255,255,255,0.75)",
+              color: "var(--cook-text-secondary)",
               fontSize: "1rem",
               lineHeight: 1.7,
               maxWidth: "440px",
               marginBottom: "2rem",
-              textShadow: "0 1px 8px rgba(0,0,0,0.9)",
             }}>
               Cookie Chain launched with a working product, not a promise. Consistent slot progression, steady validator participation, and a growing dApp ecosystem — every data point points in one direction. The infrastructure was designed for the long term, and the numbers reflect it.
             </p>
@@ -148,9 +150,10 @@ export default function Performance() {
               <div
                 key={m.label}
                 style={{
-                  background: "rgba(0,0,0,0.72)",
+                  background: cardBg,
                   backdropFilter: "blur(16px)",
-                  border: "1px solid rgba(255,255,255,0.1)",
+                  WebkitBackdropFilter: "blur(16px)",
+                  border: `1px solid ${cardBorder}`,
                   borderRadius: "0.75rem",
                   padding: "1.25rem",
                   opacity: visible ? 1 : 0,
@@ -163,16 +166,16 @@ export default function Performance() {
                   fontFamily: "'Space Grotesk', sans-serif",
                   fontWeight: 700,
                   fontSize: "1.5rem",
-                  color: "#ffffff",
+                  color: "var(--cook-text-primary)",
                   letterSpacing: "-0.02em",
                   marginBottom: "0.25rem",
                 }}>
                   {m.value}
                 </div>
-                <div style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.7)", fontWeight: 600, marginBottom: "0.25rem" }}>
+                <div style={{ fontSize: "0.8rem", color: "var(--cook-text-secondary)", fontWeight: 600, marginBottom: "0.25rem" }}>
                   {m.label}
                 </div>
-                <div style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.4)", lineHeight: 1.4 }}>
+                <div style={{ fontSize: "0.7rem", color: "var(--cook-text-muted)", lineHeight: 1.4 }}>
                   {m.sub}
                 </div>
               </div>
