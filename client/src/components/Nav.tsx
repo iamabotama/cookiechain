@@ -1,7 +1,6 @@
 /*
- * COOKIE CHAIN NAV — v3 (theme-aware)
- * Design: Transparent on load, opaque blur on scroll
- * Colors: all via CSS variables (--cook-*) so light/dark theme works automatically
+ * COOKIE CHAIN NAV — v4 (xl breakpoint to prevent overlap)
+ * Hamburger kicks in at <1280px so the full nav never squishes
  */
 
 import { useEffect, useState } from "react";
@@ -41,6 +40,16 @@ export default function Nav() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
+  const linkStyle: React.CSSProperties = {
+    fontFamily: "'DM Sans', sans-serif",
+    fontSize: "0.8rem",
+    fontWeight: 500,
+    color: "var(--cook-nav-text)",
+    transition: "color 0.2s",
+    textDecoration: "none",
+    whiteSpace: "nowrap",
+  };
+
   return (
     <header
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
@@ -53,10 +62,12 @@ export default function Nav() {
       <div className="container">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href="https://cookiechain.wtf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 group" style={{ textDecoration: "none" }}>
+          <a href="https://cookiechain.wtf" target="_blank" rel="noopener noreferrer"
+            className="flex items-center gap-2 shrink-0"
+            style={{ textDecoration: "none" }}>
             <div style={{
-              width: "36px",
-              height: "36px",
+              width: "34px",
+              height: "34px",
               borderRadius: "50%",
               overflow: "hidden",
               flexShrink: 0,
@@ -66,41 +77,28 @@ export default function Nav() {
               onMouseEnter={(e) => (e.currentTarget.style.filter = "drop-shadow(0 0 14px rgba(37,99,235,0.7))")}
               onMouseLeave={(e) => (e.currentTarget.style.filter = "drop-shadow(0 0 8px rgba(37,99,235,0.4))")}
             >
-              <img
-                src={COOKIE_LOGO}
-                alt="Cookie Chain"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
+              <img src={COOKIE_LOGO} alt="Cookie Chain" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
-            <span
-              style={{
-                fontFamily: "'Space Grotesk', sans-serif",
-                fontWeight: 700,
-                fontSize: "0.9rem",
-                letterSpacing: "0.05em",
-                color: "var(--cook-text-primary)",
-                whiteSpace: "nowrap",
-              }}
-            >
+            <span style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontWeight: 700,
+              fontSize: "0.85rem",
+              letterSpacing: "0.05em",
+              color: "var(--cook-text-primary)",
+              whiteSpace: "nowrap",
+            }}>
               COOKIE CHAIN
             </span>
           </a>
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-4">
+          {/* Desktop nav — hidden below xl (1280px) */}
+          <nav className="hidden xl:flex items-center gap-3">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "0.875rem",
-                  fontWeight: 500,
-                  color: "var(--cook-nav-text)",
-                  transition: "color 0.2s",
-                  textDecoration: "none",
-                }}
+                style={linkStyle}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "#38BDF8")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cook-nav-text)")}
               >
@@ -109,102 +107,45 @@ export default function Nav() {
             ))}
           </nav>
 
-          {/* CTA + ThemeToggle */}
-          <div className="hidden md:flex items-center gap-3">
-            {/* Theme toggle */}
+          {/* CTA group — hidden below xl */}
+          <div className="hidden xl:flex items-center gap-2">
             <ThemeToggle />
-            {/* Divider */}
-            <div style={{ width: "1px", height: "18px", background: "var(--cook-border)", margin: "0 0.25rem" }} />
-            <a
-              href="https://cookiechain.wtf"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: "0.875rem",
-                fontWeight: 500,
-                color: "var(--cook-nav-text)",
-                textDecoration: "none",
-                transition: "color 0.2s",
-              }}
+            <div style={{ width: "1px", height: "16px", background: "var(--cook-border)", margin: "0 0.1rem" }} />
+            <a href="https://cookiechain.wtf" target="_blank" rel="noopener noreferrer"
+              style={linkStyle}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#38BDF8")}
               onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cook-nav-text)")}
-            >
-              <span style={{ whiteSpace: "nowrap" }}>Community ↗</span>
-            </a>
-            <a
-              href={NAV_CHAIN}
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: "0.875rem",
-                fontWeight: 500,
-                color: "var(--cook-nav-text)",
-                textDecoration: "none",
-                transition: "color 0.2s",
-              }}
+            >Community ↗</a>
+            <a href={NAV_CHAIN} style={linkStyle}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#A78BFA")}
               onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cook-nav-text)")}
-            >
-              <span style={{ whiteSpace: "nowrap" }}>The Chain</span>
-            </a>
-            <a
-              href={NAV_MARKETS}
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: "0.875rem",
-                fontWeight: 500,
-                color: "var(--cook-nav-text)",
-                textDecoration: "none",
-                transition: "color 0.2s",
-              }}
+            >The Chain</a>
+            <a href={NAV_MARKETS} style={linkStyle}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#4ADE80")}
               onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cook-nav-text)")}
-            >
-              Markets
-            </a>
-            <a
-              href={NAV_WHITEPAPER}
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: "0.875rem",
-                fontWeight: 500,
-                color: "var(--cook-nav-text)",
-                textDecoration: "none",
-                transition: "color 0.2s",
-              }}
+            >Markets</a>
+            <a href={NAV_WHITEPAPER} style={linkStyle}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#60A5FA")}
               onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cook-nav-text)")}
-            >
-              Whitepaper
-            </a>
-            <a
-              href={LINKS.buy_cook}
-              target="_blank"
-              rel="noopener noreferrer"
+            >Whitepaper</a>
+            <a href={LINKS.buy_cook} target="_blank" rel="noopener noreferrer"
               className="btn-primary"
-              style={{ fontSize: "0.875rem", padding: "0.5rem 1.25rem" }}
-            >
-              Buy $COOK
-            </a>
-            <a
-              href={LINKS.cookiescan}
-              target="_blank"
-              rel="noopener noreferrer"
+              style={{ fontSize: "0.8rem", padding: "0.45rem 1rem" }}
+            >Buy $COOK</a>
+            <a href={LINKS.cookiescan} target="_blank" rel="noopener noreferrer"
               className="btn-outline"
-              style={{ fontSize: "0.875rem", padding: "0.5rem 1.25rem" }}
-            >
-              Explorer ↗
-            </a>
+              style={{ fontSize: "0.8rem", padding: "0.45rem 1rem" }}
+            >Explorer ↗</a>
           </div>
 
-          {/* Mobile hamburger */}
-          <div className="md:hidden flex items-center gap-3">
+          {/* Hamburger — shown below xl */}
+          <div className="xl:hidden flex items-center gap-3">
             <ThemeToggle />
             <button
               className="flex flex-col gap-1.5 p-2"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
-              style={{ background: "none", border: "none" }}
+              style={{ background: "none", border: "none", cursor: "pointer" }}
             >
               <span className="block w-5 h-0.5 transition-all duration-200"
                 style={{ background: "var(--cook-text-primary)", transform: mobileOpen ? "rotate(45deg) translate(2px, 2px)" : "none" }} />
@@ -217,7 +158,7 @@ export default function Nav() {
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile / tablet menu */}
       {mobileOpen && (
         <div style={{
           background: isLight ? "rgba(255,255,255,0.97)" : "rgba(0,0,0,0.97)",
@@ -241,52 +182,23 @@ export default function Nav() {
                 {link.label}
               </a>
             ))}
-            {/* Divider */}
             <div style={{ height: "1px", background: "var(--cook-border)", margin: "0.25rem 0" }} />
-            <a href="https://cookiechain.wtf" target="_blank" rel="noopener noreferrer" style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: "1.125rem",
-              fontWeight: 600,
-              color: "#38BDF8",
-              textDecoration: "none",
-            }}
+            <a href="https://cookiechain.wtf" target="_blank" rel="noopener noreferrer"
+              style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "1.125rem", fontWeight: 600, color: "#38BDF8", textDecoration: "none" }}
               onClick={() => setMobileOpen(false)}
-            >
-              Community ↗
-            </a>
-            <a href={NAV_CHAIN} style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: "1.125rem",
-              fontWeight: 600,
-              color: "#A78BFA",
-              textDecoration: "none",
-            }}
+            >Community ↗</a>
+            <a href={NAV_CHAIN}
+              style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "1.125rem", fontWeight: 600, color: "#A78BFA", textDecoration: "none" }}
               onClick={() => setMobileOpen(false)}
-            >
-              The Chain
-            </a>
-            <a href={NAV_MARKETS} style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: "1.125rem",
-              fontWeight: 600,
-              color: "#60A5FA",
-              textDecoration: "none",
-            }}
+            >The Chain</a>
+            <a href={NAV_MARKETS}
+              style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "1.125rem", fontWeight: 600, color: "#60A5FA", textDecoration: "none" }}
               onClick={() => setMobileOpen(false)}
-            >
-              Markets
-            </a>
-            <a href={NAV_WHITEPAPER} style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              fontSize: "1.125rem",
-              fontWeight: 600,
-              color: "#38BDF8",
-              textDecoration: "none",
-            }}
+            >Markets</a>
+            <a href={NAV_WHITEPAPER}
+              style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "1.125rem", fontWeight: 600, color: "#38BDF8", textDecoration: "none" }}
               onClick={() => setMobileOpen(false)}
-            >
-              Whitepaper
-            </a>
+            >Whitepaper</a>
             <div className="flex gap-3 mt-2">
               <a href={LINKS.buy_cook} target="_blank" rel="noopener noreferrer"
                 className="btn-primary" style={{ fontSize: "0.875rem" }}>
