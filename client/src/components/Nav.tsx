@@ -53,7 +53,7 @@ export default function Nav() {
       <div className="container">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5 group" style={{ textDecoration: "none" }}>
+          <a href="https://cookiechain.wtf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2.5 group" style={{ textDecoration: "none" }}>
             <div style={{
               width: "36px",
               height: "36px",
