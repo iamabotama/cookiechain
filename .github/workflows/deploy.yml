@@ -9,7 +9,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    name: Build and deploy to cookiechain.io
+    name: Build and deploy to invest.cookiechain.wtf
 
     steps:
       - name: Checkout source
