@@ -31,7 +31,7 @@ jobs:
         run: pnpm build
 
       - name: Write CNAME
-        run: echo "cookiechain.io" > dist/public/CNAME
+        run: echo "invest.cookiechain.wtf" > dist/public/CNAME
 
       - name: Deploy to cookiechain.io repo
         uses: peaceiris/actions-gh-pages@v4
