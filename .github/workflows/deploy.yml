@@ -9,7 +9,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    name: Build and deploy to invest.cookiechain.wtf
+    name: Build and deploy to cookiechain.io
 
     steps:
       - name: Checkout source
@@ -31,7 +31,7 @@ jobs:
         run: pnpm build
 
       - name: Write CNAME
-        run: echo "invest.cookiechain.wtf" > dist/public/CNAME
+        run: echo "cookiechain.io" > dist/public/CNAME
 
       - name: Deploy to cookiechain.io repo
         uses: peaceiris/actions-gh-pages@v4
