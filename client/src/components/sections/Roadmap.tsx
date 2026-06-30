@@ -12,7 +12,7 @@ const PHASES = [
     status: "complete",
     color: "#60A5FA",
     items: [
-      "Gorbagana snapshot captured (12,528 wallets)",
+      "Genesis snapshot: 22,000-wallet community onboarded",
       "Cookie Chain SVM mainnet launched May 26, 2026",
       "sCOOK deployed on Solana (CA: 36ZrtQoab5...)",
       "Equity bridge operational (6-of-11 multi-sig)",
