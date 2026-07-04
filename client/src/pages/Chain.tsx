@@ -20,10 +20,10 @@ interface PriceData {
 
 const CHAIN_FACTS = [
   { icon: <Box size={18} />, label: "Total Supply", value: "1,000,000,000", unit: "$COOK", note: "Fixed forever. No minting authority.", color: "#38BDF8" },
-  { icon: <Shield size={18} />, label: "Bridge Backing", value: "~100.4%", unit: "equity-backed", note: "Bridge reserve exceeds circulating sCOOK supply.", color: "#A78BFA" },
+  { icon: <Shield size={18} />, label: "Bridge Backing", value: "~110%", unit: "equity-backed", note: "Bridge reserve exceeds circulating sCOOK supply.", color: "#A78BFA" },
   { icon: <Zap size={18} />, label: "Consensus", value: "SVM", unit: "Layer 1", note: "Solana Virtual Machine — battle-tested execution.", color: "#60A5FA" },
-  { icon: <Cpu size={18} />, label: "Governance", value: "6-of-11", unit: "multi-sig", note: "No single point of control. Community-secured.", color: "#818CF8" },
-  { icon: <Clock size={18} />, label: "Genesis", value: "May 26, 2026", unit: "launched", note: "12,528 genesis wallets honored from snapshot.", color: "#38BDF8" },
+  { icon: <Cpu size={18} />, label: "Governance", value: "6-of-10", unit: "multi-sig", note: "No single point of control. Community-secured.", color: "#818CF8" },
+  { icon: <Clock size={18} />, label: "Genesis", value: "May 26, 2026", unit: "launched", note: "279.86M cCOOK honored to snapshot holders at genesis.", color: "#38BDF8" },
   { icon: <Activity size={18} />, label: "Circulating", value: "~607.2M", unit: "$COOK", note: "Remaining held in bridge reserve wallet.", color: "#93C5FD" },
 ];
 

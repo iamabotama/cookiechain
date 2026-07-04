@@ -74,7 +74,7 @@ const DAPPS = [
   {
     name: "Cookienet Bridge",
     tag: "BRIDGE",
-    desc: "The official equity bridge between Solana and Cookie Chain. Move $COOK between chains with 6-of-11 multi-sig security.",
+    desc: "Bridge $COOK between Solana and Cookie Chain: instant via Hyperlane, or the legacy multi-sig-secured equity bridge.",
     href: LINKS.bridge,
     color: "#60A5FA",
     logo: "https://cookiescan.io/attached_assets/cookie.png",
@@ -84,7 +84,6 @@ const DAPPS = [
 const COMMUNITY_LINKS = [
   { label: "X / Twitter", href: LINKS.twitter, icon: "𝕏" },
   { label: "Telegram", href: LINKS.telegram, icon: "✈️" },
-  { label: "Discord", href: LINKS.discord, icon: "💬" },
   { label: "GitHub", href: LINKS.github, icon: "⌥" },
   { label: "Docs", href: LINKS.docs, icon: "📖" },
   { label: "Whitepaper", href: LINKS.whitepaper, icon: "📄" },

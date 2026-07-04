@@ -10,13 +10,13 @@ const BRIDGE_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3h
 
 const ENTER_STEPS = [
   { n: "01", text: "User deposits sCOOK into the Solana multi-sig lock wallet." },
-  { n: "02", text: "6-of-11 signers approve the release on Cookie Chain via Cookie Squad." },
+  { n: "02", text: "6-of-10 signers approve the release on Cookie Chain via Cookie Squad." },
   { n: "03", text: "An equal amount of cCOOK is released from Vault 0 to the user's Cookie Chain address." },
 ];
 
 const EXIT_STEPS = [
   { n: "01", text: "User's cCOOK is returned to Vault 0 on Cookie Chain." },
-  { n: "02", text: "6-of-11 signers approve the release on Solana via Squads." },
+  { n: "02", text: "6-of-10 signers approve the release on Solana via Squads." },
   { n: "03", text: "An equal amount of sCOOK is released from the Solana lock wallet to the user." },
 ];
 
@@ -33,7 +33,7 @@ const LOCK_WALLET_COMPONENTS = [
     amount: "~100M sCOOK",
     pct: "~10%",
     color: "#7B2FBE",
-    desc: "Marketing, rewards, future fees. Locked; moves only by 6-of-11 multi-sig.",
+    desc: "Marketing, rewards, future fees. Locked; moves only by 6-of-10 multi-sig.",
   },
   {
     label: "User Bridge Deposits",
@@ -212,7 +212,7 @@ export default function Bridge() {
                 Approval threshold
               </div>
               <div style={{ fontSize: "0.8rem", color: "var(--cook-text-secondary)", lineHeight: 1.5 }}>
-                Every bridge movement requires 6-of-11 multi-sig approval on both chains.
+                Legacy bridge movements require 6-of-10 multi-sig approval on both chains. Instant transfers run on the live Hyperlane bridge.
                 Cookie Squad on Cookie Chain. Squads on Solana.
               </div>
             </div>
@@ -282,10 +282,10 @@ export default function Bridge() {
             }} />
             <div>
               <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: "0.875rem", color: "var(--cook-text-primary)", marginBottom: "0.25rem" }}>
-                Roadmap: Hyperlane Native Bridge
+                Live: Hyperlane Bridge (July 3, 2026)
               </div>
               <div style={{ fontSize: "0.8rem", color: "var(--cook-text-secondary)", lineHeight: 1.55 }}>
-                The current equity bridge is transitional. The planned migration to Hyperlane Warp Routes
+                The Hyperlane Warp Route is live at hyperlane.cookiescan.io: instant, automated, collateral-type transfers. The legacy equity bridge remains available while the community discusses full migration; the original plan for Hyperlane Warp Routes
                 will replace custodial settlement with native burn/mint mechanics, removing reserve dependency
                 entirely and enabling trustless cross-chain transfers.
               </div>

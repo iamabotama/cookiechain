@@ -12,10 +12,10 @@ const PHASES = [
     status: "complete",
     color: "#60A5FA",
     items: [
-      "Genesis snapshot: 22,000-wallet community onboarded",
+      "Genesis snapshot: 279,862,165.78 cCOOK distributed to legacy holders",
       "Cookie Chain SVM mainnet launched May 26, 2026",
       "sCOOK deployed on Solana (CA: 36ZrtQoab5...)",
-      "Equity bridge operational (6-of-11 multi-sig)",
+      "Equity bridge operational (community multi-sig)",
       "CookieScan block explorer live",
       "Genesis airdrop distributed",
     ],
@@ -40,7 +40,7 @@ const PHASES = [
     status: "upcoming",
     color: "#7B2FBE",
     items: [
-      "Hyperlane Warp Routes integration (burn/mint)",
+      "Hyperlane Warp Route live July 3, 2026 (instant, collateral-type)",
       "Removal of equity reserve dependency",
       "Trustless cross-chain transfers",
       "Additional chain bridge support",

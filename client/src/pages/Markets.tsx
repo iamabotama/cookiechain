@@ -340,7 +340,7 @@ export default function Markets() {
             <div style={{ display: "flex", flexDirection: "column", gap: "0.6rem" }}>
               {[
                 { label: "Total Supply", value: "1,000,000,000 $COOK", highlight: true },
-                { label: "Circulating", value: "~607,200,000 $COOK" },
+                { label: "Circulating", value: "~584,263,027 $COOK" },
                 { label: "Bridge Reserve", value: "~392,800,000 $COOK" },
                 { label: "Additional Mint", value: "None — fixed supply", green: true },
               ].map((row) => (

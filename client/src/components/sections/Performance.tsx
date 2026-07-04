@@ -14,7 +14,7 @@ const METRICS = [
         <path d="M10 2L12.5 7.5H18L13.5 11L15.5 17L10 13.5L4.5 17L6.5 11L2 7.5H7.5L10 2Z" stroke="#2563EB" strokeWidth="1.5" strokeLinejoin="round"/>
       </svg>
     ),
-    value: "~100.4%",
+    value: "~110%",
     label: "Exit backing ratio",
     sub: "Every genesis holder's exit is covered",
   },
@@ -25,7 +25,7 @@ const METRICS = [
         <path d="M10 6v4l3 2" stroke="#60A5FA" strokeWidth="1.5" strokeLinecap="round"/>
       </svg>
     ),
-    value: "6-of-11",
+    value: "6-of-10",
     label: "Multi-sig threshold",
     sub: "Community governance on both chains",
   },

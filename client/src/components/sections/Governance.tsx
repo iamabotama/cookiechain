@@ -13,8 +13,8 @@ const GOV_CARDS = [
         <path d="M7 11V7a5 5 0 0110 0v4" stroke="#2563EB" strokeWidth="1.5" strokeLinecap="round"/>
       </svg>
     ),
-    title: "6-of-11 Multi-Sig",
-    desc: "All bridge releases and treasury movements require approval from 6 of 11 community signers on both chains simultaneously. Cookiequads on Cookie Chain. Squads on Solana.",
+    title: "6-of-10 Multi-Sig",
+    desc: "All bridge releases and treasury movements require approval from 6 of 10 community signers on both chains simultaneously. Cookiequads on Cookie Chain. Squads on Solana.",
     color: "#2563EB",
   },
   {
@@ -184,7 +184,7 @@ export default function Governance() {
           <p style={{ fontSize: "0.8rem", color: "var(--cook-text-muted)", lineHeight: 1.65, maxWidth: "800px" }}>
             The Cookie Chain bridge is operated by community multi-signature wallets rather than autonomous smart contracts.
             Security depends on the integrity and key security of the signer group. Compromise or collusion of six signers
-            could result in unauthorized movement of reserve funds. The planned migration to Hyperlane Warp Routes will
+            could result in unauthorized movement of reserve funds. The Hyperlane Warp Route (live July 3, 2026) will
             replace this dependency with native burn/mint mechanics. This is not financial advice. DYOR and verify on-chain.
           </p>
         </div>

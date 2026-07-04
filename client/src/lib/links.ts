@@ -13,7 +13,6 @@ export const LINKS = {
   // Community
   twitter: "https://x.com/TheCookieChain",
   telegram: "https://t.me/TheCookieNetChain",
-  discord: "https://discord.gg/cookiechain", // placeholder — not in JSON
 
   // Core sites
   community_site: "https://cookiechain.wtf",

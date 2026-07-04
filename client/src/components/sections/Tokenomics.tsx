@@ -9,7 +9,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 
 const ALLOCATIONS = [
   { name: "Vault 0 (Bridge Reserve)", value: 59.02, color: "#2563EB", desc: "Undistributed reserve; source of cCOOK for bridge entries" },
-  { name: "Genesis & Community Holders", value: 27.98, color: "#7B2FBE", desc: "12,528 wallets — snapshot distribution to legacy $GOR holders" },
+  { name: "Genesis & Community Holders", value: 27.98, color: "#7B2FBE", desc: "279,862,165.78 cCOOK snapshot distribution to legacy holders; 12,528 wallets hold COOK today" },
   { name: "LST / Staking Rewards", value: 10.09, color: "#38BDF8", desc: "Staking reward distribution pool" },
   { name: "Bridge Reserve Wallet", value: 1.72, color: "#60A5FA", desc: "Bridge liquidity and claims support buffer" },
   { name: "Other / Rounding", value: 1.19, color: "#334155", desc: "Reconciliation buffer" },
@@ -17,9 +17,9 @@ const ALLOCATIONS = [
 
 const KEY_STATS = [
   { label: "Total Supply", value: "1,000,000,000", unit: "$COOK", highlight: true },
-  { label: "Circulating Supply", value: "~607,200,000", unit: "sCOOK on Solana", highlight: false },
-  { label: "Exit Backing Ratio", value: "~100.4%", unit: "equity reserve", highlight: true },
-  { label: "Genesis Wallets Honored", value: "12,528", unit: "wallets", highlight: false },
+  { label: "Circulating Supply", value: "~584,263,027", unit: "sCOOK on Solana (Jul 3, 2026)", highlight: false },
+  { label: "Exit Backing Ratio", value: "~110%", unit: "equity reserve (Jul 3, 2026)", highlight: true },
+  { label: "COOK Holder Wallets", value: "12,528", unit: "wallets (live on cookiescan.io)", highlight: false },
   { label: "Decimals", value: "9", unit: "fixed", highlight: false },
   { label: "Further Minting", value: "None", unit: "fixed supply forever", highlight: true },
 ];

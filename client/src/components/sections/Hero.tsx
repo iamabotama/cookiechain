@@ -161,7 +161,7 @@ export default function Hero() {
             transform: visible ? "translateY(0)" : "translateY(20px)",
             transition: "opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s, color 0.3s ease",
           }}>
-            A high-performance SVM Layer 1 built by the community that chose to stay. Fixed 1B supply. ~100.4% equity-backed bridge. 6-of-11 multi-sig governance. Every metric trending forward — no pivots, no resets, no signs of stopping.
+            A high-performance SVM Layer 1 built by the community that chose to stay. Fixed 1B supply. ~110% equity-backed reserves. 6-of-10 multi-sig governance. Instant Hyperlane bridge. Every metric trending forward — no pivots, no resets, no signs of stopping.
           </p>
 
           {/* CTAs */}
