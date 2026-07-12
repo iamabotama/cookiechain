@@ -31,7 +31,7 @@ const METRICS = [
     value: "6-of-10",
     label: "Multi-sig threshold",
     sub: "Community governance on both chains",
-    prov: "snapshot" as ProvenanceKind, at: "Jul 3, 2026", source: "Squads / Cookiequads (live config)",
+    prov: "snapshot" as ProvenanceKind, at: "Jul 3, 2026", verifiedSince: "Jul 3, 2026", source: "Squads / Cookiequads (live config)",
     href: "https://app.squads.so/squads/DoYYCtcG2vfrE3HtxBBXiNVieMutvWBXsgbF3SKtYCyx/home",
   },
   {
@@ -56,7 +56,7 @@ const METRICS = [
     value: "1:1",
     label: "Bridge ratio",
     sub: "No minting, no burning — pure custody transfer",
-    prov: "fixed" as ProvenanceKind,
+    prov: "fixed" as ProvenanceKind, verifiedSince: "Jul 3, 2026",
     href: "https://invest.cookiechain.wtf/whitepaper",
   },
 ];
@@ -188,7 +188,7 @@ export default function Performance() {
                   {m.sub}
                 </div>
                 <div style={{ marginTop: "0.6rem" }}>
-                  <DataBadge kind={m.prov} source={m.source} at={m.at} href={m.href} />
+                  <DataBadge kind={m.prov} source={m.source} at={m.at} href={m.href} verifiedSince={(m as any).verifiedSince} />
                 </div>
               </div>
             ))}

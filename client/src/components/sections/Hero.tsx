@@ -22,6 +22,7 @@ export default function Hero() {
   const [slot, setSlot] = useState("—");
   const [blockHeight, setBlockHeight] = useState("—");
   const [tps, setTps] = useState("—");
+  const [statsAt, setStatsAt] = useState<Date | null>(null);
   const { isLight } = useTheme();
   const { pair } = useLivePair();
 
@@ -39,6 +40,7 @@ export default function Hero() {
         const s = perfData.result[0];
         setTps(fmtNum(Math.round(s.numTransactions / s.samplePeriodSecs)));
       }
+      if (slotData.result) setStatsAt(new Date());
     } catch { /* silent fail */ }
   }, []);
 
@@ -268,10 +270,10 @@ export default function Hero() {
             gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
           }}>
             {[
-              { label: "Current Slot", value: slot, live: true },
-              { label: "Block Height", value: blockHeight, live: false },
-              { label: "TPS", value: tps, live: true },
-              { label: "Avg Fee / TX", value: "0.000005 COOK", live: false },
+              { label: "Current Slot", value: slot, kind: "rpc" },
+              { label: "Block Height", value: blockHeight, kind: "rpc" },
+              { label: "TPS", value: tps, kind: "rpc" },
+              { label: "Avg Fee / TX", value: "0.000005 COOK", kind: "fixed" },
             ].map((stat, i) => (
               <div key={stat.label} style={{
                 padding: "1.25rem 0",
@@ -279,18 +281,7 @@ export default function Hero() {
                 paddingLeft: i > 0 ? "1.5rem" : "0",
                 paddingRight: "1.5rem",
               }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginBottom: "0.25rem" }}>
-                  {stat.live && (
-                    <span style={{
-                      width: "6px",
-                      height: "6px",
-                      borderRadius: "50%",
-                      background: "#60A5FA",
-                      display: "inline-block",
-                      boxShadow: "0 0 6px #60A5FA",
-                      animation: "pulse 2s infinite",
-                    }} />
-                  )}
+                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.25rem", flexWrap: "wrap" }}>
                   <span style={{
                     fontFamily: "'Space Grotesk', sans-serif",
                     fontWeight: 700,
@@ -300,6 +291,13 @@ export default function Hero() {
                   }}>
                     {stat.value}
                   </span>
+                  {stat.kind === "fixed" ? (
+                    <DataBadge kind="fixed" verifiedSince="Jul 3, 2026" href="https://docs.cookiechain.wtf" />
+                  ) : statsAt ? (
+                    <DataBadge kind="live" source="rpc.cookiescan.io" at={statsAt} cadence="refreshes every 5s" href="https://cookiescan.io" />
+                  ) : (
+                    <DataBadge kind="snapshot" at="Jul 3, 2026" source="cookiescan.io" href="https://cookiescan.io" />
+                  )}
                 </div>
                 <div style={{
                   fontFamily: "'DM Sans', sans-serif",

@@ -28,6 +28,7 @@ export function DataBadge({
   href,
   formula,
   cadence,
+  verifiedSince,
   style,
 }: {
   kind: ProvenanceKind;
@@ -36,6 +37,8 @@ export function DataBadge({
   href?: string;        // one-click verification link
   formula?: string;     // e.g. "total supply − lock vault"
   cadence?: string;     // e.g. "refreshes every 30s"
+  verifiedSince?: string; // "no change since" semantics: we re-check this
+                          // periodically and assert it has not changed
   style?: CSSProperties;
 }) {
   const meta = KIND_META[kind];
@@ -47,6 +50,7 @@ export function DataBadge({
   const tooltip = [
     kind === "live" ? `Live from ${source ?? "source"}` : kind === "snapshot" ? `On-chain verified ${when ?? ""}${source ? ` via ${source}` : ""}` : "Immutable protocol constant",
     kind === "live" && when ? `fetched ${when}` : null,
+    verifiedSince ? `No change since ${verifiedSince} — re-verified periodically; a change would be flagged` : null,
     cadence ?? null,
     formula ? `= ${formula}` : null,
     href ? "Click to verify at source" : null,
@@ -82,7 +86,11 @@ export function DataBadge({
       >
         {meta.symbol}
       </span>
-      {kind === "snapshot" && when ? `AS OF ${when.toUpperCase()}` : meta.label}
+      {verifiedSince
+        ? `\u2713 NO CHANGE SINCE ${verifiedSince.toUpperCase()}`
+        : kind === "snapshot" && when
+        ? `AS OF ${when.toUpperCase()}`
+        : meta.label}
     </span>
   );
 

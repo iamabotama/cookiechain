@@ -21,10 +21,10 @@ const ALLOCATIONS = [
 const SNAP = "Jul 3, 2026";
 const KEY_STATS: {
   label: string; value: string; unit: string; highlight: boolean;
-  prov: ProvenanceKind; source?: string; at?: string; href?: string; formula?: string;
+  prov: ProvenanceKind; source?: string; at?: string; href?: string; formula?: string; verifiedSince?: string;
 }[] = [
   { label: "Initial Mint", value: "1,000,000,000", unit: "$COOK — minting permanently disabled", highlight: true,
-    prov: "fixed", href: "https://solscan.io/token/36ZrtQoab5MhhySaP1YSTwUahSk6GRVUTtZ6cuVfm9e1" },
+    prov: "fixed", verifiedSince: "Jul 3, 2026", href: "https://solscan.io/token/36ZrtQoab5MhhySaP1YSTwUahSk6GRVUTtZ6cuVfm9e1" },
   { label: "Circulating Supply", value: "~584,263,027", unit: "sCOOK on Solana", highlight: false,
     prov: "snapshot", at: SNAP, source: "Solscan", formula: "total supply − lock vault",
     href: "https://solscan.io/account/DoYYCtcG2vfrE3HtxBBXiNVieMutvWBXsgbF3SKtYCyx" },
@@ -34,9 +34,9 @@ const KEY_STATS: {
   { label: "COOK Holder Wallets", value: "12,528", unit: "wallets on Cookie Chain", highlight: false,
     prov: "snapshot", at: SNAP, source: "cookiescan.io", href: "https://cookiescan.io" },
   { label: "Decimals", value: "6", unit: "SPL Token-2022", highlight: false,
-    prov: "fixed", href: "https://solscan.io/token/36ZrtQoab5MhhySaP1YSTwUahSk6GRVUTtZ6cuVfm9e1" },
+    prov: "fixed", verifiedSince: "Jul 3, 2026", href: "https://solscan.io/token/36ZrtQoab5MhhySaP1YSTwUahSk6GRVUTtZ6cuVfm9e1" },
   { label: "Further Minting", value: "None", unit: "mint authority revoked at creation", highlight: true,
-    prov: "fixed", href: "https://solscan.io/token/36ZrtQoab5MhhySaP1YSTwUahSk6GRVUTtZ6cuVfm9e1" },
+    prov: "fixed", verifiedSince: "Jul 3, 2026", href: "https://solscan.io/token/36ZrtQoab5MhhySaP1YSTwUahSk6GRVUTtZ6cuVfm9e1" },
 ];
 
 const CustomTooltip = ({ active, payload }: any) => {
@@ -162,7 +162,7 @@ export default function Tokenomics() {
               <div style={{ fontSize: "0.7rem", color: "var(--cook-text-muted)", marginBottom: "0.4rem" }}>
                 {stat.unit}
               </div>
-              <DataBadge kind={stat.prov} source={stat.source} at={stat.at} href={stat.href} formula={stat.formula} />
+              <DataBadge kind={stat.prov} source={stat.source} at={stat.at} href={stat.href} formula={stat.formula} verifiedSince={stat.verifiedSince} />
             </div>
           ))}
         </div>
