@@ -6,6 +6,7 @@
 import { useEffect, useRef, useState } from "react";
 import StreamCanvas from "../StreamCanvas";
 import { useTheme } from "@/contexts/ThemeContext";
+import { DataBadge, ProvenanceKind } from "@/components/Provenance";
 
 const METRICS = [
   {
@@ -17,6 +18,8 @@ const METRICS = [
     value: "~110%",
     label: "Exit backing ratio",
     sub: "Every genesis holder's exit is covered",
+    prov: "snapshot" as ProvenanceKind, at: "Jul 3, 2026", source: "whitepaper §3.4",
+    href: "https://invest.cookiechain.wtf/whitepaper",
   },
   {
     icon: (
@@ -28,6 +31,8 @@ const METRICS = [
     value: "6-of-10",
     label: "Multi-sig threshold",
     sub: "Community governance on both chains",
+    prov: "snapshot" as ProvenanceKind, at: "Jul 3, 2026", source: "Squads / Cookiequads (live config)",
+    href: "https://app.squads.so/squads/DoYYCtcG2vfrE3HtxBBXiNVieMutvWBXsgbF3SKtYCyx/home",
   },
   {
     icon: (
@@ -37,8 +42,10 @@ const METRICS = [
       </svg>
     ),
     value: "12,528",
-    label: "Genesis wallets honored",
-    sub: "Every $GOR holder made whole at launch",
+    label: "COOK holder wallets",
+    sub: "Every legacy holder made whole at launch",
+    prov: "snapshot" as ProvenanceKind, at: "Jul 3, 2026", source: "cookiescan.io",
+    href: "https://cookiescan.io",
   },
   {
     icon: (
@@ -49,6 +56,8 @@ const METRICS = [
     value: "1:1",
     label: "Bridge ratio",
     sub: "No minting, no burning — pure custody transfer",
+    prov: "fixed" as ProvenanceKind,
+    href: "https://invest.cookiechain.wtf/whitepaper",
   },
 ];
 
@@ -177,6 +186,9 @@ export default function Performance() {
                 </div>
                 <div style={{ fontSize: "0.7rem", color: "var(--cook-text-muted)", lineHeight: 1.4 }}>
                   {m.sub}
+                </div>
+                <div style={{ marginTop: "0.6rem" }}>
+                  <DataBadge kind={m.prov} source={m.source} at={m.at} href={m.href} />
                 </div>
               </div>
             ))}
