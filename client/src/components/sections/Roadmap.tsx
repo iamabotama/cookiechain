@@ -5,46 +5,50 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const PHASES = [
+const PHASES: {
+  phase: string; title: string; status: string; color: string;
+  items: { t: string; done: boolean }[];
+}[] = [
   {
     phase: "Phase 0",
     title: "Genesis & Launch",
     status: "complete",
     color: "#60A5FA",
     items: [
-      "Genesis snapshot: 279,862,165.78 cCOOK distributed to legacy holders",
-      "Cookie Chain SVM mainnet launched May 26, 2026",
-      "sCOOK deployed on Solana (CA: 36ZrtQoab5...)",
-      "Equity bridge operational (community multi-sig)",
-      "CookieScan block explorer live",
-      "Genesis airdrop distributed",
+      { t: "Genesis snapshot: 279,862,165.78 cCOOK distributed to legacy holders", done: true },
+      { t: "Cookie Chain SVM mainnet launched May 26, 2026", done: true },
+      { t: "sCOOK deployed on Solana (CA: 36ZrtQoab5...)", done: true },
+      { t: "Equity bridge operational (community multi-sig)", done: true },
+      { t: "CookieScan block explorer live", done: true },
+      { t: "Genesis airdrop distributed", done: true },
     ],
   },
   {
     phase: "Phase 1",
     title: "Ecosystem Foundation",
-    status: "active",
+    status: "complete",
     color: "#2563EB",
     items: [
-      "Cookoven staking platform deployment",
-      "CookieSwap DEX launch",
-      "BakedBazaar NFT marketplace",
-      "Validator onboarding program",
-      "Expanded signer transparency",
-      "Community governance proposals",
+      { t: "Two-way equity bridge live from day one", done: true },
+      { t: "Cookoven staking platform deployment", done: true },
+      { t: "CookieSwap DEX launch", done: true },
+      { t: "BakedBazaar NFT marketplace", done: true },
+      { t: "Validator onboarding program", done: true },
+      { t: "Expanded signer transparency", done: true },
+      { t: "Community governance proposals", done: true },
     ],
   },
   {
     phase: "Phase 2",
     title: "Bridge Evolution",
-    status: "upcoming",
+    status: "active",
     color: "#7B2FBE",
     items: [
-      "Hyperlane Warp Route live July 3, 2026 (instant, collateral-type)",
-      "Removal of equity reserve dependency",
-      "Trustless cross-chain transfers",
-      "Additional chain bridge support",
-      "Expanded multi-sig signer pool",
+      { t: "Hyperlane Warp Route live July 3 — out of beta July 6, 2026 (instant, collateral-type)", done: true },
+      { t: "Equity bridge deprecated July 10, 2026 — equity reserve dependency removed", done: true },
+      { t: "Trustless cross-chain transfers", done: true },
+      { t: "Additional chain bridge support", done: true },
+      { t: "Expanded multi-sig signer pool", done: false },
     ],
   },
   {
@@ -53,11 +57,11 @@ const PHASES = [
     status: "future",
     color: "#334155",
     items: [
-      "Broader DAO governance structure",
-      "On-chain proposal and voting system",
-      "Ecosystem grants program",
-      "Developer tooling and SDK",
-      "Institutional integrations",
+      { t: "Broader DAO governance structure", done: false },
+      { t: "On-chain proposal and voting system", done: false },
+      { t: "Ecosystem grants program", done: false },
+      { t: "Developer tooling and SDK", done: false },
+      { t: "Institutional integrations", done: false },
     ],
   },
 ];
@@ -107,7 +111,7 @@ export default function Roadmap() {
             Steady progress.<br />No detours.
           </h2>
           <p style={{ color: "var(--cook-text-secondary)", fontSize: "1rem", maxWidth: "520px", lineHeight: 1.65 }}>
-            Phase 0 shipped on schedule. Phase 1 is underway. Every milestone on this roadmap
+            Phases 0 and 1 shipped on schedule. Phase 2 is nearly complete. Every milestone on this roadmap
             builds on infrastructure that already exists and a community that has demonstrated
             it shows up — consistently, without drama, over the long term.
           </p>
@@ -191,21 +195,32 @@ export default function Roadmap() {
                 </h3>
                 <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                   {phase.items.map((item) => (
-                    <div key={item} style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
-                      <div style={{
-                        width: "5px",
-                        height: "5px",
-                        borderRadius: "50%",
-                        background: phase.status === "complete" ? "#60A5FA" : phase.color,
-                        marginTop: "0.45rem",
-                        flexShrink: 0,
-                      }} />
+                    <div key={item.t} style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
+                      {item.done ? (
+                        <span aria-label="complete" style={{
+                          color: "#22C55E",
+                          fontSize: "0.8rem",
+                          fontWeight: 700,
+                          lineHeight: 1.4,
+                          flexShrink: 0,
+                          width: "0.9rem",
+                        }}>{"\u2713"}</span>
+                      ) : (
+                        <div style={{
+                          width: "5px",
+                          height: "5px",
+                          borderRadius: "50%",
+                          background: phase.color,
+                          margin: "0.45rem 0.2rem 0 0.25rem",
+                          flexShrink: 0,
+                        }} />
+                      )}
                       <span style={{
                         fontSize: "0.875rem",
                         color: phase.status === "future" ? "var(--cook-text-muted)" : "var(--cook-text-secondary)",
                         lineHeight: 1.5,
                       }}>
-                        {item}
+                        {item.t}
                       </span>
                     </div>
                   ))}
