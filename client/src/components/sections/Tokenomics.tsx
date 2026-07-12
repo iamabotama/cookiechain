@@ -6,22 +6,37 @@
 import { useEffect, useRef, useState } from "react";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import { useTheme } from "@/contexts/ThemeContext";
+import { DataBadge, ProvenanceLegend, useLivePair, ProvenanceKind } from "@/components/Provenance";
 
+/* Chain-side allocation, whitepaper v3.0 §3.1 — sums to exactly 1,000,000,000 (verified July 3, 2026) */
 const ALLOCATIONS = [
-  { name: "Vault 0 (Bridge Reserve)", value: 59.02, color: "#2563EB", desc: "Undistributed reserve; source of cCOOK for bridge entries" },
-  { name: "Genesis & Community Holders", value: 27.98, color: "#7B2FBE", desc: "279,862,165.78 cCOOK snapshot distribution to legacy holders; 12,528 wallets hold COOK today" },
-  { name: "LST / Staking Rewards", value: 10.09, color: "#38BDF8", desc: "Staking reward distribution pool" },
-  { name: "Bridge Reserve Wallet", value: 1.72, color: "#60A5FA", desc: "Bridge liquidity and claims support buffer" },
-  { name: "Other / Rounding", value: 1.19, color: "#334155", desc: "Reconciliation buffer" },
+  { name: "Vault 0 (Bridge Vault)", value: 57.72, color: "#2563EB", desc: "577,222,435.93 cCOOK — undistributed reserve; source of cCOOK for bridge entries" },
+  { name: "Genesis & Community Holders", value: 28.74, color: "#7B2FBE", desc: "287,366,410.05 cCOOK — genesis distribution of 279,862,165.78 plus net bridge entries; 12,528 wallets" },
+  { name: "Vault 2 — Baked Reserve (LST)", value: 10.09, color: "#38BDF8", desc: "100,879,769.20 cCOOK — LST/validator staking rewards, backed 1:1 by locked sCOOK" },
+  { name: "Vault 1 — Cookie Jar", value: 3.09, color: "#F5A623", desc: "30,900,000.80 cCOOK — community treasury from app protocol-fee donations" },
+  { name: "Hyperlane Collateral", value: 0.25, color: "#22C55E", desc: "2,543,348.53 cCOOK — instant bridge warp-route pool" },
+  { name: "Bridge Operations", value: 0.11, color: "#60A5FA", desc: "1,088,035.49 cCOOK — legacy bridge working wallet, topped up by public multi-sig proposal" },
 ];
 
-const KEY_STATS = [
-  { label: "Total Supply", value: "1,000,000,000", unit: "$COOK", highlight: true },
-  { label: "Circulating Supply", value: "~584,263,027", unit: "sCOOK on Solana (Jul 3, 2026)", highlight: false },
-  { label: "Exit Backing Ratio", value: "~110%", unit: "equity reserve (Jul 3, 2026)", highlight: true },
-  { label: "COOK Holder Wallets", value: "12,528", unit: "wallets (live on cookiescan.io)", highlight: false },
-  { label: "Decimals", value: "9", unit: "fixed", highlight: false },
-  { label: "Further Minting", value: "None", unit: "fixed supply forever", highlight: true },
+const SNAP = "Jul 3, 2026";
+const KEY_STATS: {
+  label: string; value: string; unit: string; highlight: boolean;
+  prov: ProvenanceKind; source?: string; at?: string; href?: string; formula?: string;
+}[] = [
+  { label: "Initial Mint", value: "1,000,000,000", unit: "$COOK — minting permanently disabled", highlight: true,
+    prov: "fixed", href: "https://solscan.io/token/36ZrtQoab5MhhySaP1YSTwUahSk6GRVUTtZ6cuVfm9e1" },
+  { label: "Circulating Supply", value: "~584,263,027", unit: "sCOOK on Solana", highlight: false,
+    prov: "snapshot", at: SNAP, source: "Solscan", formula: "total supply − lock vault",
+    href: "https://solscan.io/account/DoYYCtcG2vfrE3HtxBBXiNVieMutvWBXsgbF3SKtYCyx" },
+  { label: "Exit Backing Ratio", value: "~110%", unit: "equity reserve vs. user claims", highlight: true,
+    prov: "snapshot", at: SNAP, source: "whitepaper §3.4", formula: "(lock vault − 100M) ÷ user-held cCOOK",
+    href: "https://invest.cookiechain.wtf/whitepaper" },
+  { label: "COOK Holder Wallets", value: "12,528", unit: "wallets on Cookie Chain", highlight: false,
+    prov: "snapshot", at: SNAP, source: "cookiescan.io", href: "https://cookiescan.io" },
+  { label: "Decimals", value: "6", unit: "SPL Token-2022", highlight: false,
+    prov: "fixed", href: "https://solscan.io/token/36ZrtQoab5MhhySaP1YSTwUahSk6GRVUTtZ6cuVfm9e1" },
+  { label: "Further Minting", value: "None", unit: "mint authority revoked at creation", highlight: true,
+    prov: "fixed", href: "https://solscan.io/token/36ZrtQoab5MhhySaP1YSTwUahSk6GRVUTtZ6cuVfm9e1" },
 ];
 
 const CustomTooltip = ({ active, payload }: any) => {
@@ -144,9 +159,10 @@ export default function Tokenomics() {
               <div style={{ fontSize: "0.75rem", color: "var(--cook-text-secondary)", marginBottom: "0.125rem" }}>
                 {stat.label}
               </div>
-              <div style={{ fontSize: "0.7rem", color: "var(--cook-text-muted)" }}>
+              <div style={{ fontSize: "0.7rem", color: "var(--cook-text-muted)", marginBottom: "0.4rem" }}>
                 {stat.unit}
               </div>
+              <DataBadge kind={stat.prov} source={stat.source} at={stat.at} href={stat.href} formula={stat.formula} />
             </div>
           ))}
         </div>

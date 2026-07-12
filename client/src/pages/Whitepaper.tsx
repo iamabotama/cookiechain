@@ -198,6 +198,22 @@ export default function Whitepaper() {
 
         {/* Main content */}
         <main>
+          {/* Provenance banner: the whitepaper is a dated record by design */}
+          <div style={{
+            display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.5rem 1rem",
+            padding: "0.85rem 1.1rem", marginBottom: "1.5rem",
+            background: "rgba(245,166,35,0.07)", border: "1px solid rgba(245,166,35,0.3)",
+            borderRadius: "0.6rem", fontSize: "0.82rem", color: "var(--cook-text-secondary)",
+          }}>
+            <span style={{ color: "var(--color-cook-amber, #F5A623)", fontWeight: 700, letterSpacing: "0.06em", fontSize: "0.7rem" }}>◆ DATED SNAPSHOT</span>
+            <span>
+              This whitepaper states balances as of <strong>July 3, 2026</strong>. Figures drift daily by design —
+              the methodology is the constant. Verify any figure live:{" "}
+              <a href="https://solscan.io/account/DoYYCtcG2vfrE3HtxBBXiNVieMutvWBXsgbF3SKtYCyx" target="_blank" rel="noopener noreferrer" style={{ color: "#60A5FA" }}>lock vault</a>,{" "}
+              <a href="https://solscan.io/token/36ZrtQoab5MhhySaP1YSTwUahSk6GRVUTtZ6cuVfm9e1" target="_blank" rel="noopener noreferrer" style={{ color: "#60A5FA" }}>token supply</a>,{" "}
+              <a href="https://cookiescan.io" target="_blank" rel="noopener noreferrer" style={{ color: "#60A5FA" }}>chain-side wallets</a>.
+            </span>
+          </div>
           {loading && (
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "50vh", gap: "1.5rem" }}>
               <div style={{ width: "40px", height: "40px", border: "2px solid var(--cook-border)", borderTop: "2px solid #2563EB", borderRadius: "50%", animation: "spin 0.8s linear infinite" }} />

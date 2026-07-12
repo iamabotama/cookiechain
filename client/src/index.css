@@ -475,3 +475,8 @@ html.light {
   .fade-up { opacity: 1; transform: none; transition: none; }
   * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+/* Data provenance: live indicator pulse */
+@keyframes cookLivePulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+.cook-live-pulse { animation: cookLivePulse 2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .cook-live-pulse { animation: none; } }

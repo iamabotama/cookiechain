@@ -6,9 +6,56 @@
  */
 
 import { useEffect, useState, useCallback } from "react";
+import { ProvenanceLegend, DataBadge } from "@/components/Provenance";
 import { Link } from "wouter";
 import { ArrowLeft, TrendingUp, TrendingDown, RefreshCw, ExternalLink, Activity, DollarSign, BarChart3, Droplets, Clock } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
+
+const GECKOTERMINAL_EMBED =
+  "https://www.geckoterminal.com/solana/pools/DRaDjBfCtCCD2Kb1rzMtom3oDiGnwTu9LBgA7WA4LEzx?embed=1&info=0&swaps=0";
+const GECKOTERMINAL_PAGE =
+  "https://www.geckoterminal.com/solana/pools/DRaDjBfCtCCD2Kb1rzMtom3oDiGnwTu9LBgA7WA4LEzx";
+
+function GeckoChartCard() {
+  return (
+    <section style={{
+      background: "var(--cook-surface)",
+      border: "1px solid var(--cook-border)",
+      borderRadius: "0.75rem",
+      overflow: "hidden",
+      margin: "2rem 0",
+    }}>
+      <div style={{
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        flexWrap: "wrap", gap: "0.5rem", padding: "0.9rem 1.25rem",
+        borderBottom: "1px solid var(--cook-border)",
+      }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
+          <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: "0.95rem", color: "var(--cook-text-primary)" }}>
+            Live Price & Chart
+          </span>
+          <DataBadge kind="live" source="GeckoTerminal (CoinGecko DEX)" href={GECKOTERMINAL_PAGE} />
+        </div>
+        <span style={{ fontSize: "0.72rem", color: "var(--cook-text-muted)" }}>
+          Data provided by CoinGecko DEX (GeckoTerminal)
+        </span>
+      </div>
+      <iframe
+        src={GECKOTERMINAL_EMBED}
+        title="COOK/SOL live chart — GeckoTerminal"
+        style={{ width: "100%", height: "420px", border: "0", display: "block" }}
+        allow="clipboard-write"
+        loading="lazy"
+      />
+      <div style={{ padding: "0.75rem 1.25rem", borderTop: "1px solid var(--cook-border)" }}>
+        <a href={GECKOTERMINAL_PAGE} target="_blank" rel="noopener noreferrer"
+           style={{ fontSize: "0.85rem", color: "#60A5FA", textDecoration: "none" }}>
+          View live chart on GeckoTerminal ↗
+        </a>
+      </div>
+    </section>
+  );
+}
 
 const DEXSCREENER_API = "https://api.dexscreener.com/latest/dex/tokens/36ZrtQoab5MhhySaP1YSTwUahSk6GRVUTtZ6cuVfm9e1";
 const PAIR_ADDRESS = "DRaDjBfCtCCD2Kb1rzMtom3oDiGnwTu9LBgA7WA4LEzx";
@@ -185,6 +232,8 @@ export default function Markets() {
       </div>
 
       <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "2rem 2rem 4rem" }}>
+        <ProvenanceLegend style={{ marginBottom: "1rem" }} />
+        <GeckoChartCard />
         {/* Page header */}
         <div style={{ marginBottom: "2rem" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.5rem" }}>

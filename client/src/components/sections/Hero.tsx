@@ -7,6 +7,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { LINKS } from "@/lib/links";
 import { useTheme } from "@/contexts/ThemeContext";
+import { DataBadge, useLivePair } from "@/components/Provenance";
 
 const HERO_BG_DARK = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cc-hero-v3-fycfSqHn94rbr25XpikzPM.webp";
 const HERO_BG_LIGHT = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cc-hero-light-v1-c75qfAEzeM35cNG5eSLnku.webp";
@@ -22,6 +23,7 @@ export default function Hero() {
   const [blockHeight, setBlockHeight] = useState("—");
   const [tps, setTps] = useState("—");
   const { isLight } = useTheme();
+  const { pair } = useLivePair();
 
   const fetchChainStats = useCallback(async () => {
     try {
@@ -163,6 +165,25 @@ export default function Hero() {
           }}>
             A high-performance SVM Layer 1 built by the community that chose to stay. Fixed 1B supply. ~110% equity-backed reserves. 6-of-10 multi-sig governance. Instant Hyperlane bridge. Every metric trending forward — no pivots, no resets, no signs of stopping.
           </p>
+
+          {/* Live price strip — data responsibility delegated to provider */}
+          {pair && (
+            <div style={{
+              display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.5rem",
+              fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.95rem",
+              opacity: visible ? 1 : 0, transition: "opacity 0.7s ease 0.25s",
+            }}>
+              <span style={{ color: "var(--cook-text-muted)", fontWeight: 600, letterSpacing: "0.05em" }}>$COOK</span>
+              <span style={{ color: "var(--cook-text-primary)", fontWeight: 700 }}>
+                ${pair.priceUsd < 0.01 ? pair.priceUsd.toFixed(7) : pair.priceUsd.toFixed(4)}
+              </span>
+              <span style={{ color: pair.change24h >= 0 ? "#22C55E" : "#EF4444", fontWeight: 600, fontSize: "0.85rem" }}>
+                {pair.change24h >= 0 ? "+" : ""}{pair.change24h.toFixed(1)}% 24h
+              </span>
+              <DataBadge kind="live" source="DexScreener" at={pair.fetchedAt} cadence="refreshes every 30s"
+                href="https://dexscreener.com/solana/DRaDjBfCtCCD2Kb1rzMtom3oDiGnwTu9LBgA7WA4LEzx" />
+            </div>
+          )}
 
           {/* CTAs */}
           <div style={{
