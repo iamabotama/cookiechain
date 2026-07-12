@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>Cookie Chain — Validator & RPC Census Tool</title>
+<style>
+  body { font-family: ui-monospace, Menlo, Consolas, monospace; background: #0b0b10; color: #e8e8ee; margin: 0; padding: 2rem; line-height: 1.5; }
+  h1 { font-size: 1.15rem; color: #F5A623; }
+  button { background: #2563EB; color: #fff; border: 0; border-radius: 6px; padding: 0.6rem 1.2rem; font-size: 0.95rem; cursor: pointer; margin: 0.4rem 0.6rem 0.4rem 0; }
+  button:disabled { opacity: 0.4; cursor: wait; }
+  #status { margin: 1rem 0; color: #9aa0aa; white-space: pre-wrap; }
+  pre { background: #14141c; border: 1px solid #2a2a36; border-radius: 8px; padding: 1rem; overflow: auto; max-height: 45vh; font-size: 0.78rem; }
+  .ok { color: #22C55E; } .err { color: #EF4444; }
+  h2 { font-size: 0.9rem; color: #9aa0aa; margin-top: 1.6rem; }
+</style>
+</head>
+<body>
+<h1>🍪 Cookie Chain — Validator &amp; RPC Census Tool</h1>
+<p>Read-only diagnostic. Runs in <em>your</em> browser: queries the chain RPC
+(getClusterNodes, getVoteAccounts), geolocates gossip IPs (ipapi.co, ipwho.is
+fallback), and formats the result for <code>client/src/data/validators.ts</code>.
+Nothing is sent anywhere except the reads listed.</p>
+
+<button id="run">Run census</button>
+<button id="copyTs" disabled>Copy validators.ts</button>
+<button id="copyRaw" disabled>Copy raw JSON</button>
+<div id="status"></div>
+
+<h2>validators.ts (paste-ready)</h2>
+<pre id="ts">—</pre>
+<h2>Raw census JSON</h2>
+<pre id="raw">—</pre>
+
+<script>
+const RPC = "https://rpc.cookiescan.io";
+const statusEl = document.getElementById("status");
+const log = (m, cls) => { statusEl.innerHTML += `<span class="${cls||""}">${m}</span>\n`; };
+
+async function rpc(method, params=[]) {
+  const r = await fetch(RPC, { method: "POST", headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({ jsonrpc:"2.0", id:1, method, params }) });
+  const j = await r.json();
+  if (j.error) throw new Error(method + ": " + j.error.message);
+  return j.result;
+}
+
+async function geolocate(ip) {
+  // primary: ipapi.co (HTTPS + CORS). fallback: ipwho.is
+  try {
+    const r = await fetch(`https://ipapi.co/${ip}/json/`);
+    const j = await r.json();
+    if (j && j.latitude != null && !j.error)
+      return { lat:j.latitude, lon:j.longitude, city:j.city, country:j.country_name, org:j.org, src:"ipapi.co" };
+    throw new Error(j.reason || "ipapi miss");
+  } catch (e) {
+    const r = await fetch(`https://ipwho.is/${ip}`);
+    const j = await r.json();
+    if (j && j.success)
+      return { lat:j.latitude, lon:j.longitude, city:j.city, country:j.country, org:(j.connection||{}).isp, src:"ipwho.is" };
+    return { lat:null, lon:null, city:null, country:null, org:null, src:"failed" };
+  }
+}
+
+// Known names from cookiescan.io/validators (Jul 6, 2026); chain data wins if it disagrees.
+const KNOWN_NAMES = {
+  "DL9GPSXrhAEnU5Ads3HLhEJ9fCDLpnmmkzxoe712W4xP": "Oven",
+  "4wHgybVzqEKn17HRh1MXdLDdaZDh6Y59atZrLtygmCew": "Cookiescan",
+  "9MC7fLJmLVfLMAsACJ2g2nAbkzPggQGHvAq4Rr5LNBVi": "BakeYourStake",
+  "8uY6sMQKqgHsb1S1trEYeH25974Zv93jHn1A46Hn6GaV": "Morsel",
+};
+
+let tsOut = "", rawOut = "";
+
+document.getElementById("run").onclick = async () => {
+  const btn = document.getElementById("run");
+  btn.disabled = true; statusEl.textContent = "";
+  try {
+    log("Querying getClusterNodes…");
+    const nodes = await rpc("getClusterNodes");
+    log(`  ${nodes.length} gossip nodes`, "ok");
+
+    log("Querying getVoteAccounts…");
+    const votes = await rpc("getVoteAccounts");
+    const voteByIdentity = {};
+    for (const v of votes.current)    voteByIdentity[v.nodePubkey] = { ...v, status: "active" };
+    for (const v of votes.delinquent) voteByIdentity[v.nodePubkey] = { ...v, status: "delinquent" };
+    log(`  ${votes.current.length} active, ${votes.delinquent.length} delinquent vote accounts`, "ok");
+
+    const ips = [...new Set(nodes.map(n => (n.gossip||"").split(":")[0]).filter(Boolean))];
+    log(`Geolocating ${ips.length} unique IPs…`);
+    const geoByIp = {};
+    for (const ip of ips) {
+      geoByIp[ip] = await geolocate(ip);
+      log(`  ${ip} → ${geoByIp[ip].city ?? "?"}, ${geoByIp[ip].country ?? "?"} (${geoByIp[ip].src})`,
+          geoByIp[ip].lat != null ? "ok" : "err");
+      await new Promise(r => setTimeout(r, 700)); // stay under free-tier rate limits
+    }
+
+    const census = nodes.map(n => {
+      const ip = (n.gossip||"").split(":")[0];
+      const vote = voteByIdentity[n.pubkey];
+      return {
+        identity: n.pubkey,
+        name: KNOWN_NAMES[n.pubkey] ?? null,
+        kind: vote ? "chain_validator" : (n.rpc ? "rpc_node" : "gossip_only"),
+        isRpc: !!n.rpc,
+        gossip: n.gossip ?? null, rpc: n.rpc ?? null, version: n.version ?? null,
+        voteAccount: vote?.votePubkey ?? null,
+        activatedStake: vote ? vote.activatedStake / 1e9 : null,
+        commission: vote?.commission ?? null,
+        status: vote?.status ?? "n/a",
+        geo: ip ? geoByIp[ip] : null,
+      };
+    });
+
+    rawOut = JSON.stringify({ takenAt: new Date().toISOString(), census, totals: {
+      gossipNodes: nodes.length, active: votes.current.length, delinquent: votes.delinquent.length,
+      rpcNodes: census.filter(c => c.isRpc).length } }, null, 2);
+    document.getElementById("raw").textContent = rawOut;
+
+    const today = new Date().toLocaleDateString("en-US", { month:"short", day:"numeric", year:"numeric" });
+    const entries = census
+      .filter(c => c.kind === "chain_validator")
+      .map(c => `  { identity: ${JSON.stringify(c.identity)}, name: ${JSON.stringify(c.name ?? c.identity.slice(0,6)+"…")}, lat: ${c.geo?.lat ?? null}, lon: ${c.geo?.lon ?? null}, city: ${JSON.stringify(c.geo?.city ?? "")}, country: ${JSON.stringify(c.geo?.country ?? "")} },`)
+      .join("\n");
+    tsOut = `export const VALIDATORS_AS_OF = ${JSON.stringify(today)};\n\nexport const VALIDATORS: ValidatorLocation[] = [\n${entries}\n];\n`;
+    document.getElementById("ts").textContent = tsOut;
+
+    document.getElementById("copyTs").disabled = false;
+    document.getElementById("copyRaw").disabled = false;
+    log("Done. Copy either block and hand it to Claude.", "ok");
+  } catch (e) {
+    log("FAILED: " + e.message, "err");
+  } finally { btn.disabled = false; }
+};
+
+document.getElementById("copyTs").onclick  = () => navigator.clipboard.writeText(tsOut);
+document.getElementById("copyRaw").onclick = () => navigator.clipboard.writeText(rawOut);
+</script>
+</body>
+</html>
