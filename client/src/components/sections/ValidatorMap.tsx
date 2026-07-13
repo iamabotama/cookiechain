@@ -82,11 +82,25 @@ export default function ValidatorMap() {
           <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} style={{ width: "100%", height: "auto", display: "block" }} role="img" aria-label="World map of validator locations">
             <path d={path({ type: "Sphere" } as any) ?? undefined} fill="transparent" stroke="var(--cook-border)" strokeWidth={1} />
             <path d={path(land) ?? undefined} fill="var(--cook-surface-2)" stroke="var(--cook-border)" strokeWidth={0.6} />
-            {located.map((v) => {
-              const p = projection([v.lon as number, v.lat as number]);
-              if (!p) return null;
-              const [x, y] = p;
-              return (
+            {(() => {
+              /* group by rounded coordinate; fan out siblings horizontally
+                 in screen space so co-located datacenters stay readable */
+              const groups = new Map<string, number>();
+              const indexOf = new Map<string, number>();
+              for (const v of located) {
+                const k = `${(v.lat as number).toFixed(1)},${(v.lon as number).toFixed(1)}`;
+                indexOf.set(v.identity, groups.get(k) ?? 0);
+                groups.set(k, (groups.get(k) ?? 0) + 1);
+              }
+              return located.map((v) => {
+                const p = projection([v.lon as number, v.lat as number]);
+                if (!p) return null;
+                const k = `${(v.lat as number).toFixed(1)},${(v.lon as number).toFixed(1)}`;
+                const n = groups.get(k) ?? 1;
+                const i = indexOf.get(v.identity) ?? 0;
+                const x = p[0] + (n > 1 ? i * 16 - ((n - 1) * 16) / 2 : 0);
+                const y = p[1];
+                return (
                 <g key={v.identity} transform={`translate(${x},${y})`}>
                   <circle r={10} fill="#22C55E22">
                     <animate attributeName="r" values="7;13;7" dur="3s" repeatCount="indefinite" />
@@ -94,8 +108,9 @@ export default function ValidatorMap() {
                   <circle r={4} fill="#22C55E" stroke="var(--cook-bg)" strokeWidth={1.5} />
                   <title>{`${v.name ?? v.identity.slice(0, 8) + "…"} — ${[v.city, v.country].filter(Boolean).join(", ")}`}</title>
                 </g>
-              );
-            })}
+                );
+              });
+            })()}
           </svg>
         </div>
       </div>
