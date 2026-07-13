@@ -20,13 +20,19 @@ import { geoNaturalEarth1, geoPath } from "d3-geo";
 import { feature } from "topojson-client";
 import land110 from "world-atlas/land-110m.json";
 import { DataBadge } from "@/components/Provenance";
+import { useTheme } from "@/contexts/ThemeContext";
 import { VALIDATORS, VALIDATORS_AS_OF } from "@/data/validators";
 
 const WIDTH = 960;
 const HEIGHT = 470;
 
 export default function ValidatorMap() {
+  const { isLight } = useTheme();
   const located = VALIDATORS.filter((v) => v.lat !== null && v.lon !== null);
+  const landFill   = isLight ? "#D8DDE8" : "#262835";
+  const landStroke = isLight ? "#AAB2C4" : "#4A4E63";
+  const sphereStroke = isLight ? "#C7CCD9" : "#3A3D4F";
+  const oceanFill  = isLight ? "#F4F6FA" : "#0E0F16";
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -80,8 +86,8 @@ export default function ValidatorMap() {
           background: "var(--cook-surface)",
         }}>
           <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} style={{ width: "100%", height: "auto", display: "block" }} role="img" aria-label="World map of validator locations">
-            <path d={path({ type: "Sphere" } as any) ?? undefined} fill="transparent" stroke="var(--cook-border)" strokeWidth={1} />
-            <path d={path(land) ?? undefined} fill="var(--cook-surface-2)" stroke="var(--cook-border)" strokeWidth={0.6} />
+            <path d={path({ type: "Sphere" } as any) ?? undefined} fill={oceanFill} stroke={sphereStroke} strokeWidth={1} />
+            <path d={path(land) ?? undefined} fill={landFill} stroke={landStroke} strokeWidth={0.8} />
             {(() => {
               /* group by rounded coordinate; fan out siblings horizontally
                  in screen space so co-located datacenters stay readable */
@@ -102,10 +108,10 @@ export default function ValidatorMap() {
                 const y = p[1];
                 return (
                 <g key={v.identity} transform={`translate(${x},${y})`}>
-                  <circle r={10} fill="#22C55E22">
+                  <circle r={10} fill={isLight ? "#22C55E33" : "#22C55E2E"}>
                     <animate attributeName="r" values="7;13;7" dur="3s" repeatCount="indefinite" />
                   </circle>
-                  <circle r={4} fill="#22C55E" stroke="var(--cook-bg)" strokeWidth={1.5} />
+                  <circle r={4.5} fill="#22C55E" stroke={isLight ? "#FFFFFF" : "#0B0B10"} strokeWidth={1.8} />
                   <title>{`${v.name ?? v.identity.slice(0, 8) + "…"} — ${[v.city, v.country].filter(Boolean).join(", ")}`}</title>
                 </g>
                 );
