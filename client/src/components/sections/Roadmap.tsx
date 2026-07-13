@@ -6,47 +6,50 @@
 import { useEffect, useRef, useState } from "react";
 
 const PHASES: {
-  phase: string; title: string; status: string; color: string;
-  items: { t: string; done: boolean }[];
+  phase: string; title: string; status: string; color: string; period?: string;
+  items: { t: string; done: boolean; date?: string }[];
 }[] = [
   {
     phase: "Phase 0",
     title: "Genesis & Launch",
+    period: "May 2026",
     status: "complete",
     color: "#60A5FA",
     items: [
-      { t: "Genesis snapshot: 279,862,165.78 cCOOK distributed to legacy holders", done: true },
-      { t: "Cookie Chain SVM mainnet launched May 26, 2026", done: true },
-      { t: "sCOOK deployed on Solana (CA: 36ZrtQoab5...)", done: true },
-      { t: "Equity bridge operational (community multi-sig)", done: true },
+      { t: "Genesis snapshot: 279,862,165.78 cCOOK distributed to legacy holders", done: true, date: "snapshot May 3 · distributed May 26, 2026" },
+      { t: "Cookie Chain SVM mainnet launched", done: true, date: "May 26, 2026" },
+      { t: "sCOOK deployed on Solana (CA: 36ZrtQoab5...)", done: true, date: "May 26, 2026" },
+      { t: "Equity bridge operational (community multi-sig)", done: true, date: "May 26, 2026" },
       { t: "CookieScan block explorer live", done: true },
-      { t: "Genesis airdrop distributed", done: true },
+      { t: "Genesis airdrop distributed", done: true, date: "May 26, 2026" },
     ],
   },
   {
     phase: "Phase 1",
     title: "Ecosystem Foundation",
+    period: "May – Jun 2026",
     status: "complete",
     color: "#2563EB",
     items: [
-      { t: "Two-way equity bridge live from day one", done: true },
+      { t: "Two-way equity bridge live from day one", done: true, date: "May 26, 2026" },
       { t: "Cookoven staking platform deployment", done: true },
       { t: "CookieSwap DEX launch", done: true },
       { t: "BakedBazaar NFT marketplace", done: true },
       { t: "Validator onboarding program", done: true },
       { t: "Expanded signer transparency", done: true },
-      { t: "Community governance proposals", done: true },
+      { t: "Community governance proposals", done: true, date: "on-chain since May 2026" },
     ],
   },
   {
     phase: "Phase 2",
     title: "Bridge Evolution",
+    period: "Jul 2026 →",
     status: "active",
     color: "#7B2FBE",
     items: [
-      { t: "Hyperlane Warp Route live July 3 — out of beta July 6, 2026 (instant, collateral-type)", done: true },
-      { t: "Equity bridge deprecated July 10, 2026 — equity reserve dependency removed", done: true },
-      { t: "Trustless cross-chain transfers", done: true },
+      { t: "Hyperlane Warp Route live (instant, collateral-type)", done: true, date: "live Jul 3 · out of beta Jul 6, 2026" },
+      { t: "Equity bridge deprecated — equity reserve dependency removed", done: true, date: "Jul 10, 2026" },
+      { t: "Trustless cross-chain transfers", done: true, date: "Jul 3, 2026" },
       { t: "Additional chain bridge support", done: true },
       { t: "Expanded multi-sig signer pool", done: false },
     ],
@@ -54,6 +57,7 @@ const PHASES: {
   {
     phase: "Phase 3",
     title: "Full Decentralization",
+    period: "Future",
     status: "future",
     color: "#334155",
     items: [
@@ -191,7 +195,11 @@ export default function Roadmap() {
                   marginBottom: "1rem",
                   letterSpacing: "-0.02em",
                 }}>
-                  {phase.title}
+                  {phase.title}{phase.period && (
+                    <span style={{ fontSize: "0.7rem", fontWeight: 600, color: "var(--cook-text-muted)", marginLeft: "0.6rem", letterSpacing: "0.05em" }}>
+                      {phase.period}
+                    </span>
+                  )}
                 </h3>
                 <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                   {phase.items.map((item) => (
@@ -221,6 +229,11 @@ export default function Roadmap() {
                         lineHeight: 1.5,
                       }}>
                         {item.t}
+                        {item.date && (
+                          <span style={{ display: "block", fontSize: "0.68rem", color: "var(--cook-text-muted)", marginTop: "0.1rem" }}>
+                            {item.date}
+                          </span>
+                        )}
                       </span>
                     </div>
                   ))}
