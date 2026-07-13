@@ -5,6 +5,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { LINKS } from "@/lib/links";
+import BridgeReserves from "@/components/sections/BridgeReserves";
 
 const BRIDGE_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cc-bridge-v3-HoiJzTu5TraFD9bwPP9a6n.webp";
 
@@ -292,7 +293,8 @@ export default function Bridge() {
             </div>
           </div>
         </div>
-      </div>
+        <BridgeReserves />
+        </div>
 
       <style>{`
         @media (max-width: 768px) {
