@@ -10,15 +10,15 @@ import BridgeReserves from "@/components/sections/BridgeReserves";
 const BRIDGE_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663273809872/J3hDDZc9FEamYFSB95Wtww/cc-bridge-v3-HoiJzTu5TraFD9bwPP9a6n.webp";
 
 const ENTER_STEPS = [
-  { n: "01", text: "User deposits sCOOK into the Solana multi-sig lock wallet." },
-  { n: "02", text: "6-of-10 signers approve the release on Cookie Chain via Cookie Squad." },
-  { n: "03", text: "An equal amount of cCOOK is released from Vault 0 to the user's Cookie Chain address." },
+  { n: "01", text: "User sends sCOOK to the Hyperlane warp route on Solana; it locks in the collateral escrow (88q7…eZwq)." },
+  { n: "02", text: "Hyperlane validators attest the transfer and a relayer delivers the message to Cookie Chain." },
+  { n: "03", text: "An equal amount of cCOOK is released from the chain-side collateral pool (CL2J…yAKz) to the user's wallet — within seconds, no manual approvals." },
 ];
 
 const EXIT_STEPS = [
-  { n: "01", text: "User's cCOOK is returned to Vault 0 on Cookie Chain." },
-  { n: "02", text: "6-of-10 signers approve the release on Solana via Squads." },
-  { n: "03", text: "An equal amount of sCOOK is released from the Solana lock wallet to the user." },
+  { n: "01", text: "User sends cCOOK to the Hyperlane warp route on Cookie Chain; it locks in the collateral pool (CL2J…yAKz)." },
+  { n: "02", text: "Hyperlane validators attest the transfer and a relayer delivers the message to Solana." },
+  { n: "03", text: "An equal amount of sCOOK is released from the Solana collateral escrow (88q7…eZwq) to the user — within seconds." },
 ];
 
 const LOCK_WALLET_COMPONENTS = [
@@ -75,7 +75,7 @@ export default function Bridge() {
           transform: visible ? "translateY(0)" : "translateY(24px)",
           transition: "opacity 0.6s ease, transform 0.6s ease",
         }}>
-          <div className="section-label" style={{ marginBottom: "1rem" }}>Equity Bridge</div>
+          <div className="section-label" style={{ marginBottom: "1rem" }}>Bridge</div>
           <h2 style={{
             fontFamily: "'Space Grotesk', sans-serif",
             fontWeight: 700,
@@ -88,8 +88,9 @@ export default function Bridge() {
             Every exit backed.<br />Every wallet public.<br />Every decision on-chain.
           </h2>
           <p style={{ color: "var(--cook-text-secondary)", fontSize: "1rem", maxWidth: "560px", lineHeight: 1.65 }}>
-            The Cookie Chain equity bridge is not a mint/burn system. It is a custody transfer backed
-            by a purchased reserve — the same model used by WBTC and stablecoin bridges.
+            The Cookie Chain bridge is not a mint/burn system. Transfers run instantly through
+            Hyperlane collateral pools, and genesis holders are backed by a purchased reserve under
+            community multi-sig custody — the same model used by WBTC and stablecoin bridges.
             No tokens are created or destroyed. The fixed 1B supply simply changes custody.
           </p>
         </div>
@@ -108,7 +109,7 @@ export default function Bridge() {
           <div style={{ borderRadius: "1rem", overflow: "hidden", border: "1px solid rgba(123,47,190,0.25)", boxShadow: "0 0 40px rgba(123,47,190,0.15)" }}>
             <img
               src={BRIDGE_IMG}
-              alt="Cookie Chain Equity Bridge"
+              alt="Cookie Chain Bridge"
               style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", minHeight: "280px" }}
             />
           </div>
@@ -213,7 +214,7 @@ export default function Bridge() {
                 Approval threshold
               </div>
               <div style={{ fontSize: "0.8rem", color: "var(--cook-text-secondary)", lineHeight: 1.5 }}>
-                Legacy bridge movements require 6-of-10 multi-sig approval on both chains. Instant transfers run on the live Hyperlane bridge.
+                Transfers run instantly on the Hyperlane bridge. Reserve custody remains with the 6-of-10 community multi-sigs on both chains; the legacy escrow flow was deprecated July 10, 2026.
                 Cookie Squad on Cookie Chain. Squads on Solana.
               </div>
             </div>
@@ -283,12 +284,13 @@ export default function Bridge() {
             }} />
             <div>
               <div style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 600, fontSize: "0.875rem", color: "var(--cook-text-primary)", marginBottom: "0.25rem" }}>
-                Live: Hyperlane Bridge (July 3, 2026)
+                Live: Hyperlane Bridge (Jul 3 · beta exit Jul 6 · sole path since Jul 10, 2026)
               </div>
               <div style={{ fontSize: "0.8rem", color: "var(--cook-text-secondary)", lineHeight: 1.55 }}>
-                The Hyperlane Warp Route is live at hyperlane.cookiescan.io: instant, automated, collateral-type transfers. The legacy equity bridge remains available while the community discusses full migration; the original plan for Hyperlane Warp Routes
-                will replace custodial settlement with native burn/mint mechanics, removing reserve dependency
-                entirely and enabling trustless cross-chain transfers.
+                The Hyperlane Warp Route is live at hyperlane.cookiescan.io: instant, automated, collateral-type transfers (out of beta July 6, 2026). The legacy equity bridge was deprecated on July 10, 2026 — Hyperlane is now the sole transfer path. The shipped implementation uses collateral pools rather than the
+                originally planned burn/mint mechanics, achieving the same goal: transfers no longer
+                depend on custodial settlement, and the multi-sig reserves now serve purely as backing
+                rather than routing.
               </div>
             </div>
           </div>
