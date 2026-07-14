@@ -24,7 +24,7 @@ const CHAIN_FACTS = [
   { icon: <Zap size={18} />, label: "Consensus", value: "SVM", unit: "Layer 1", note: "Solana Virtual Machine — battle-tested execution.", color: "#60A5FA" },
   { icon: <Cpu size={18} />, label: "Governance", value: "6-of-10", unit: "multi-sig", note: "No single point of control. Community-secured.", color: "#818CF8" },
   { icon: <Clock size={18} />, label: "Genesis", value: "May 26, 2026", unit: "launched", note: "279.86M cCOOK honored to snapshot holders at genesis.", color: "#38BDF8" },
-  { icon: <Activity size={18} />, label: "Circulating", value: "~607.2M", unit: "$COOK", note: "Remaining held in bridge reserve wallet.", color: "#93C5FD" },
+  { icon: <Activity size={18} />, label: "Circulating", value: "~584.3M", unit: "$COOK", note: "Total minus bridge lock vault — see /supply for live figures.", color: "#93C5FD" },
 ];
 
 export default function Chain() {

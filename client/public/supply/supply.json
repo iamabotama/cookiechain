@@ -1,0 +1,21 @@
+{
+  "token": "COOK",
+  "mint": "36ZrtQoab5MhhySaP1YSTwUahSk6GRVUTtZ6cuVfm9e1",
+  "total_supply": 1000000000,
+  "circulating_supply": 584302780.86,
+  "excluded_wallets": [
+    {
+      "address": "DoYYCtcG2vfrE3HtxBBXiNVieMutvWBXsgbF3SKtYCyx",
+      "label": "Cookie Chain Bridge Lock Vault (Squads multisig)",
+      "balance": 415697219.14,
+      "reason": "SPL COOK locked to back cCOOK circulating natively on Cookie Chain L1. Not freely tradable on Solana.",
+      "links": {
+        "solscan": "https://solscan.io/account/DoYYCtcG2vfrE3HtxBBXiNVieMutvWBXsgbF3SKtYCyx",
+        "squads": "https://app.squads.so/squads/DoYYCtcG2vfrE3HtxBBXiNVieMutvWBXsgbF3SKtYCyx/home"
+      }
+    }
+  ],
+  "methodology": "circulating = total_supply - bridge lock vault balance (live on-chain read). Matches GeckoTerminal's exclusion.",
+  "updated_at": "2026-07-03T00:00:00Z",
+  "note": "Seeded from the Jul 3, 2026 verified snapshot; refreshed automatically every 6h by GitHub Actions."
+}

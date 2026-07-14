@@ -19,6 +19,7 @@ const navLinks = [
 ];
 
 const NAV_WHITEPAPER = "/whitepaper";
+const NAV_SUPPLY = "/supply";
 const NAV_MARKETS = "/markets";
 const NAV_CHAIN = "/chain";
 
@@ -124,6 +125,10 @@ export default function Nav() {
               onMouseEnter={(e) => (e.currentTarget.style.color = "#4ADE80")}
               onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cook-nav-text)")}
             >Markets</a>
+            <a href={NAV_SUPPLY} style={linkStyle}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#4ADE80")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cook-nav-text)")}
+            >Supply</a>
             <a href={NAV_WHITEPAPER} style={linkStyle}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#60A5FA")}
               onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cook-nav-text)")}
@@ -195,6 +200,10 @@ export default function Nav() {
               style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "1.125rem", fontWeight: 600, color: "#60A5FA", textDecoration: "none" }}
               onClick={() => setMobileOpen(false)}
             >Markets</a>
+            <a href={NAV_SUPPLY} style={linkStyle}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#4ADE80")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--cook-nav-text)")}
+            >Supply</a>
             <a href={NAV_WHITEPAPER}
               style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "1.125rem", fontWeight: 600, color: "#38BDF8", textDecoration: "none" }}
               onClick={() => setMobileOpen(false)}

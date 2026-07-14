@@ -1,0 +1,38 @@
+name: Update supply endpoints
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"   # every 6 hours
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-supply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (with PAT so the push triggers the deploy workflow)
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.DEPLOY_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Refresh supply figures from Solana RPC
+        run: node scripts/update-supply.mjs
+
+      - name: Commit if changed
+        run: |
+          git add client/public/supply/
+          if git diff --cached --quiet; then
+            echo "Supply unchanged — nothing to publish."
+            exit 0
+          fi
+          git config user.name "supply-bot"
+          git config user.email "actions@github.com"
+          git commit -m "chore: refresh supply endpoints"
+          git push
