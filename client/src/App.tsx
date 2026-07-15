@@ -9,6 +9,7 @@ import Whitepaper from "./pages/Whitepaper";
 import Markets from "./pages/Markets";
 import Chain from "./pages/Chain";
 import Supply from "./pages/Supply";
+import Apps from "./pages/Apps";
 
 function Router() {
   return (
@@ -18,6 +19,7 @@ function Router() {
       <Route path={"/markets"} component={Markets} />
       <Route path={"/chain"} component={Chain} />
       <Route path={"/supply"} component={Supply} />
+      <Route path={"/apps"} component={Apps} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>

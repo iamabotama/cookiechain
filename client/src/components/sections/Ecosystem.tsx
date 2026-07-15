@@ -10,6 +10,7 @@
  */
 
 import { useEffect, useRef, useState } from "react";
+import { Link } from "wouter";
 import { LINKS } from "@/lib/links";
 import { DataBadge } from "@/components/Provenance";
 
@@ -22,7 +23,7 @@ interface RegistryApp {
   description: string;
   tag: string;
   href: string;
-  x?: string;
+  x?: string | null;
   logo?: string;
   live?: boolean;
 }
@@ -431,7 +432,7 @@ export default function Ecosystem() {
                     <span
                       role="link"
                       title="View on X"
-                      onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(app.x, "_blank", "noopener"); }}
+                      onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(app.x ?? undefined, "_blank", "noopener"); }}
                       style={{ color: "var(--cook-text-muted)", cursor: "pointer", fontWeight: 700 }}
                     >𝕏</span>
                   )}
@@ -446,6 +447,11 @@ export default function Ecosystem() {
           fontSize: "0.85rem", color: "var(--cook-text-muted)", marginTop: "-2.5rem", marginBottom: "3.5rem",
           opacity: visible ? 1 : 0, transition: "opacity 0.6s ease 0.4s",
         }}>
+          Want to see them running?{" "}
+          <Link href="/apps" style={{ color: "#38BDF8", textDecoration: "none" }}>
+            Try every app live in the App Explorer →
+          </Link>
+          <br />
           Building on Cookie Chain?{" "}
           <a href={REGISTRY_REPO} target="_blank" rel="noopener noreferrer" style={{ color: "#38BDF8", textDecoration: "none" }}>
             Add your project to the registry ↗
