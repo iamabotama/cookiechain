@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Whitepaper from "./pages/Whitepaper";
 import Markets from "./pages/Markets";
 import Chain from "./pages/Chain";
+import DApps from "@/pages/DApps";
 import Supply from "./pages/Supply";
 
 function Router() {
@@ -18,6 +19,7 @@ function Router() {
       <Route path={"/markets"} component={Markets} />
       <Route path={"/chain"} component={Chain} />
       <Route path={"/supply"} component={Supply} />
+      <Route path={"/dapps"} component={DApps} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>

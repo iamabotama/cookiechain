@@ -303,6 +303,9 @@ export default function Ecosystem() {
                 the community owns.
               </span>
             </h2>
+          <a href="/dapps" style={{ display: "inline-block", marginTop: "0.5rem", fontSize: "0.9rem", fontWeight: 600, color: "#60A5FA", textDecoration: "none" }}>
+            Try every dApp live — open the explorer →
+          </a>
           </div>
           <div>
             <p style={{ color: "var(--cook-text-secondary)", fontSize: "1rem", lineHeight: 1.7, marginBottom: "0.75rem" }}>
