@@ -16,5 +16,5 @@
     }
   ],
   "methodology": "circulating = total_supply - bridge lock vault balance (live on-chain read). Matches GeckoTerminal's exclusion.",
-  "updated_at": "2026-07-21T00:54:32.018Z"
+  "updated_at": "2026-07-21T07:11:44.584Z"
 }
