@@ -12,7 +12,8 @@
  *   /supply/circulating.txt  -> plain number (CMC/CG "circulating supply" URL)
  *   /supply/supply.json      -> full detail w/ excluded wallets + timestamp
  *
- * Circulating = total (1B, fixed) minus SPL COOK held by the Squads
+ * Circulating = on-chain total supply (live getTokenSupply; ~39,754 was
+ * burned at launch, so total < the 1B initial mint) minus SPL COOK held by the Squads
  * bridge lock vault. Locked tokens back cCOOK circulating natively on
  * Cookie Chain, so they are excluded on the Solana side — the same
  * methodology GeckoTerminal applies.
@@ -28,7 +29,7 @@ import { fileURLToPath } from "node:url";
 const RPC = process.env.SOLANA_RPC || "https://api.mainnet-beta.solana.com";
 const COOK_MINT = "36ZrtQoab5MhhySaP1YSTwUahSk6GRVUTtZ6cuVfm9e1";
 const LOCK_VAULT = "DoYYCtcG2vfrE3HtxBBXiNVieMutvWBXsgbF3SKtYCyx";
-const TOTAL_SUPPLY = 1_000_000_000;
+const MAX_SUPPLY = 1_000_000_000; // initial mint; minting disabled. On-chain total is read live (launch burn ~39,754).
 
 const OUT_DIR = join(
   dirname(fileURLToPath(import.meta.url)),
@@ -45,6 +46,15 @@ async function rpc(method, params) {
   const json = await res.json();
   if (json.error) throw new Error(`RPC error: ${JSON.stringify(json.error)}`);
   return json.result;
+}
+
+async function fetchTotalSupply() {
+  const result = await rpc("getTokenSupply", [COOK_MINT]);
+  const ui = result?.value?.uiAmount;
+  if (typeof ui !== "number" || !(ui > 0)) {
+    throw new Error("getTokenSupply returned no uiAmount — refusing to publish");
+  }
+  return ui;
 }
 
 async function fetchVaultBalance() {
@@ -65,18 +75,24 @@ async function fetchVaultBalance() {
   return total;
 }
 
-function sanity(locked) {
-  if (!(locked > 0 && locked < TOTAL_SUPPLY)) {
+function sanity(total, locked) {
+  // Total: at most the 1B initial mint, and burns should stay a tiny fraction of it.
+  if (!(total > MAX_SUPPLY * 0.99 && total <= MAX_SUPPLY)) {
+    throw new Error(`Total supply ${total} outside sane range — refusing to publish`);
+  }
+  if (!(locked > 0 && locked < total)) {
     throw new Error(`Locked balance ${locked} outside sane range — refusing to publish`);
   }
 }
 
+const totalSupply = await fetchTotalSupply();
 const locked = await fetchVaultBalance();
-sanity(locked);
-const circulating = +(TOTAL_SUPPLY - locked).toFixed(2);
+sanity(totalSupply, locked);
+const total = +totalSupply.toFixed(2);
+const circulating = +(totalSupply - locked).toFixed(2);
 
 mkdirSync(OUT_DIR, { recursive: true });
-writeFileSync(join(OUT_DIR, "total.txt"), String(TOTAL_SUPPLY) + "\n");
+writeFileSync(join(OUT_DIR, "total.txt"), String(total) + "\n");
 writeFileSync(join(OUT_DIR, "circulating.txt"), String(circulating) + "\n");
 writeFileSync(
   join(OUT_DIR, "supply.json"),
@@ -84,7 +100,9 @@ writeFileSync(
     {
       token: "COOK",
       mint: COOK_MINT,
-      total_supply: TOTAL_SUPPLY,
+      max_supply: MAX_SUPPLY,
+      total_supply: total,
+      burned: +(MAX_SUPPLY - total).toFixed(2),
       circulating_supply: circulating,
       excluded_wallets: [
         {
@@ -100,7 +118,7 @@ writeFileSync(
         },
       ],
       methodology:
-        "circulating = total_supply - bridge lock vault balance (live on-chain read). Matches GeckoTerminal's exclusion.",
+        "circulating = on-chain total supply (getTokenSupply) - bridge lock vault balance, both live on-chain reads. Matches the methodology CoinGecko/GeckoTerminal apply.",
       updated_at: new Date().toISOString(),
     },
     null,
@@ -108,4 +126,4 @@ writeFileSync(
   ) + "\n",
 );
 
-console.log(`locked=${locked.toFixed(2)} circulating=${circulating}`);
+console.log(`total=${total} locked=${locked.toFixed(2)} circulating=${circulating}`);
