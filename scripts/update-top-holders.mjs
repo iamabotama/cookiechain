@@ -13,18 +13,35 @@ const OUT_DIR = join(dirname(fileURLToPath(import.meta.url)), "..", "client", "p
 const MINT = "36ZrtQoab5MhhySaP1YSTwUahSk6GRVUTtZ6cuVfm9e1";
 const VAULT_OWNER = "DoYYCtcG2vfrE3HtxBBXiNVieMutvWBXsgbF3SKtYCyx";
 const HYPERLANE_ESCROW = "88q7zoKctwAQRsoTxkMJy95sNE3tntuyEhSrhvR1eZwq";
-const RPC = process.env.SOLANA_RPC || "https://api.mainnet-beta.solana.com";
+const RPCS = [
+  process.env.SOLANA_RPC,
+  "https://api.mainnet-beta.solana.com",
+  "https://solana-rpc.publicnode.com",
+  "https://solana.drpc.org",
+  "https://rpc.ankr.com/solana",
+].filter(Boolean);
 
 async function rpc(method, params) {
-  const res = await fetch(RPC, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({ jsonrpc: "2.0", id: 1, method, params }),
-  });
-  if (!res.ok) throw new Error(`RPC HTTP ${res.status}`);
-  const j = await res.json();
-  if (j.error) throw new Error(`RPC: ${j.error.message}`);
-  return j.result;
+  let lastErr;
+  for (const url of RPCS) {
+    for (let attempt = 0; attempt < 2; attempt++) {
+      try {
+        const res = await fetch(url, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ jsonrpc: "2.0", id: 1, method, params }),
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const j = await res.json();
+        if (j.error) throw new Error(j.error.message);
+        return j.result;
+      } catch (e) {
+        lastErr = e;
+        await new Promise((r) => setTimeout(r, 1500));
+      }
+    }
+  }
+  throw new Error(`all RPCs failed for ${method}: ${lastErr?.message}`);
 }
 
 const supply = (await rpc("getTokenSupply", [MINT])).value.uiAmount;
