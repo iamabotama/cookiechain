@@ -38,13 +38,13 @@ const X_URL = "https://x.com/TheCookieChain";
 const TG_URL = "https://t.me/TheCookieNetChain";
 const MIN_GAP_MS = 5 * 60 * 60 * 1000;
 
-async function firecrawlScrape(url) {
+async function firecrawlScrape(url, extra = {}) {
   for (const endpoint of ["https://api.firecrawl.dev/v2/scrape", "https://api.firecrawl.dev/v1/scrape"]) {
     try {
       const res = await fetch(endpoint, {
         method: "POST",
         headers: { "content-type": "application/json", authorization: `Bearer ${KEY}` },
-        body: JSON.stringify({ url, formats: ["markdown"] }),
+        body: JSON.stringify({ url, formats: ["markdown"], ...extra }),
       });
       if (res.status === 404) continue; // try older API version
       const j = await res.json();
@@ -71,16 +71,27 @@ function parseCount(raw) {
 }
 
 async function getXFollowers() {
-  try {
-    const md = await firecrawlScrape(X_URL);
-    const m = md.match(/([\d.,\u00a0\u202f\sKM]+?)\s*Followers/i);
-    const n = parseCount(m?.[1]?.trim());
-    console.log(`X followers: ${n ?? "not found in page"}`);
-    return n;
-  } catch (e) {
-    console.warn(`X scrape failed (${e.message}) — recording null.`);
-    return null;
+  // X resists plain scraping; try normal first, then Firecrawl's stealth
+  // proxy with a render wait. Null is still possible — later runs retry.
+  const attempts = [
+    {},
+    { proxy: "stealth", waitFor: 4000 },
+  ];
+  for (const extra of attempts) {
+    try {
+      const md = await firecrawlScrape(X_URL, extra);
+      const m = md.match(/([\d.,\u00a0\u202f\sKM]+?)\s*Followers/i);
+      const n = parseCount(m?.[1]?.trim());
+      if (n !== null) {
+        console.log(`X followers: ${n}${extra.proxy ? " (stealth)" : ""}`);
+        return n;
+      }
+      console.warn(`X page scraped but no follower count found${extra.proxy ? " (stealth)" : ""} — ${extra.proxy ? "giving up this run" : "retrying with stealth proxy"}.`);
+    } catch (e) {
+      console.warn(`X scrape failed (${e.message})${extra.proxy ? "" : " — retrying with stealth proxy"}.`);
+    }
   }
+  return null;
 }
 
 async function getTgMembers() {
@@ -103,19 +114,33 @@ if (existsSync(HISTORY_PATH)) {
 
 const last = history.snapshots.at(-1);
 const now = new Date();
-if (last && now - new Date(last.t) < MIN_GAP_MS) {
-  console.log("Last socials snapshot is <5h old — nothing to do.");
+const lastRecent = last && now - new Date(last.t) < MIN_GAP_MS;
+if (lastRecent && last.xFollowers !== null) {
+  console.log("Last socials snapshot is <5h old and complete — nothing to do.");
   process.exit(0);
 }
 
 const [xFollowers, tgMembers] = await Promise.all([getXFollowers(), getTgMembers()]);
 
 if (xFollowers === null && tgMembers === null) {
-  console.warn("Both sources returned nothing — not appending an empty row.");
+  console.warn("Both sources returned nothing — no changes.");
   process.exit(0);
 }
 
-history.snapshots.push({ t: now.toISOString(), xFollowers, tgMembers });
+if (lastRecent) {
+  // Recent row exists but was missing X — patch it in place rather than
+  // appending a near-duplicate.
+  if (xFollowers !== null) {
+    last.xFollowers = xFollowers;
+    if (tgMembers !== null) last.tgMembers = tgMembers;
+    console.log("Patched missing X count into the recent snapshot.");
+  } else {
+    console.log("X still unavailable — leaving recent snapshot as is.");
+    process.exit(0);
+  }
+} else {
+  history.snapshots.push({ t: now.toISOString(), xFollowers, tgMembers });
+}
 mkdirSync(OUT_DIR, { recursive: true });
 writeFileSync(HISTORY_PATH, JSON.stringify(history) + "\n");
 writeFileSync(
