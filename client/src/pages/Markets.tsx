@@ -9,6 +9,7 @@ import { useEffect, useState, useCallback } from "react";
 import { ProvenanceLegend, DataBadge } from "@/components/Provenance";
 import { Link } from "wouter";
 import { ArrowLeft, TrendingUp, TrendingDown, RefreshCw, ExternalLink, Activity, DollarSign, BarChart3, Droplets, Clock } from "lucide-react";
+import MarketHistory from "../components/MarketHistory";
 import { useTheme } from "@/contexts/ThemeContext";
 
 const GECKOTERMINAL_EMBED =
@@ -234,6 +235,8 @@ export default function Markets() {
       <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "2rem 2rem 4rem" }}>
         <ProvenanceLegend style={{ marginBottom: "1rem" }} />
         <GeckoChartCard />
+
+        <MarketHistory />
         {/* Page header */}
         <div style={{ marginBottom: "2rem" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.5rem" }}>

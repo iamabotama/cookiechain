@@ -25,14 +25,17 @@ jobs:
       - name: Refresh supply figures from Solana RPC
         run: node scripts/update-supply.mjs
 
+      - name: Append market history snapshot
+        run: node scripts/update-market-history.mjs
+
       - name: Commit if changed
         run: |
-          git add client/public/supply/
+          git add client/public/supply/ client/public/stats/
           if git diff --cached --quiet; then
             echo "Supply unchanged — nothing to publish."
             exit 0
           fi
           git config user.name "supply-bot"
           git config user.email "actions@github.com"
-          git commit -m "chore: refresh supply endpoints"
+          git commit -m "chore: refresh supply + market history"
           git push

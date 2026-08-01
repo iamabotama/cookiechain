@@ -22,7 +22,7 @@ interface RegistryApp {
   description: string;
   tag: string;
   href: string;
-  x?: string;
+  x?: string | null;
   logo?: string;
   live?: boolean;
 }
@@ -434,7 +434,7 @@ export default function Ecosystem() {
                     <span
                       role="link"
                       title="View on X"
-                      onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(app.x, "_blank", "noopener"); }}
+                      onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(app.x ?? undefined, "_blank", "noopener"); }}
                       style={{ color: "var(--cook-text-muted)", cursor: "pointer", fontWeight: 700 }}
                     >𝕏</span>
                   )}
