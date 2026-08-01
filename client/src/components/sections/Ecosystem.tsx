@@ -227,6 +227,8 @@ const COMMUNITY_LINKS = [
   { label: "Docs", href: LINKS.docs, icon: "📖" },
   { label: "Whitepaper", href: LINKS.whitepaper, icon: "📄" },
   { label: "Community Site", href: LINKS.community_site, icon: "🍪" },
+  { label: "CoinGecko", href: LINKS.coingecko, icon: "🦎" },
+  { label: "CoinMarketCap", href: LINKS.cmc_dexscan, icon: "📊" },
 ];
 
 export default function Ecosystem() {

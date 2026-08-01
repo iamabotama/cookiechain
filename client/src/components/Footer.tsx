@@ -37,6 +37,16 @@ const FOOTER_COLS = [
     ],
   },
   {
+    label: "Listings & Data",
+    links: [
+      { text: "CoinGecko", href: LINKS.coingecko },
+      { text: "CoinMarketCap DEXScan", href: LINKS.cmc_dexscan },
+      { text: "DexScreener", href: LINKS.dexscreener },
+      { text: "DeFi Llama", href: LINKS.defillama },
+      { text: "Listing Verification", href: LINKS.verification },
+    ],
+  },
+  {
     label: "Community",
     links: [
       { text: "X / Twitter", href: LINKS.twitter },

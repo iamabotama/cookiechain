@@ -20,6 +20,13 @@ export const LINKS = {
   whitepaper: "https://github.com/iamabotama/cookienetsites/blob/main/whitepaper.md",
   github: "https://github.com/iamabotama/cookienetsites",
 
+  // Listings & market data
+  coingecko: "https://www.coingecko.com/en/coins/cookie-2",
+  cmc_dexscan: "https://dex.coinmarketcap.com/token/solana/36ZrtQoab5MhhySaP1YSTwUahSk6GRVUTtZ6cuVfm9e1/",
+  dexscreener: "https://dexscreener.com/solana/DRaDjBfCtCCD2Kb1rzMtom3oDiGnwTu9LBgA7WA4LEzx",
+  defillama: "https://defillama.com/chain/cookiechain",
+  verification: "/verification",
+
   // Network
   cookiescan: "https://cookiescan.io",
   bridge: "https://bridge.cookiescan.io",
