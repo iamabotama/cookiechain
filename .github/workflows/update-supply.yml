@@ -28,6 +28,11 @@ jobs:
       - name: Append market history snapshot
         run: node scripts/update-market-history.mjs
 
+      - name: Append socials snapshot (Firecrawl)
+        env:
+          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+        run: node scripts/update-socials.mjs
+
       - name: Commit if changed
         run: |
           git add client/public/supply/ client/public/stats/
