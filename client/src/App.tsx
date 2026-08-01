@@ -9,6 +9,7 @@ import Whitepaper from "./pages/Whitepaper";
 import Markets from "./pages/Markets";
 import Chain from "./pages/Chain";
 import DApps from "@/pages/DApps";
+import Verification from "./pages/Verification";
 import Supply from "./pages/Supply";
 
 function Router() {
