@@ -28,6 +28,9 @@ jobs:
       - name: Append market history snapshot
         run: node scripts/update-market-history.mjs
 
+      - name: Refresh top holders
+        run: node scripts/update-top-holders.mjs
+
       - name: Append socials snapshot (Firecrawl)
         env:
           FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
