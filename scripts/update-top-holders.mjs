@@ -44,6 +44,7 @@ async function rpc(method, params) {
   throw new Error(`all RPCs failed for ${method}: ${lastErr?.message}`);
 }
 
+try {
 const supply = (await rpc("getTokenSupply", [MINT])).value.uiAmount;
 const largest = (await rpc("getTokenLargestAccounts", [MINT])).value.slice(0, 20);
 const infos = (await rpc("getMultipleAccounts", [largest.map(a => a.address), { encoding: "jsonParsed" }])).value;
@@ -71,3 +72,9 @@ writeFileSync(join(OUT_DIR, "top-holders.json"), JSON.stringify({
   holders,
 }, null, 2) + "\n");
 console.log(`Wrote top-holders.json: total=${supply}, top account=${holders[0].amount} (${holders[0].label})`);
+} catch (e) {
+  // Non-fatal: record the error where it gets committed, keep the pipeline alive.
+  mkdirSync(OUT_DIR, { recursive: true });
+  writeFileSync(join(OUT_DIR, "top-holders-error.txt"), `${new Date().toISOString()} ${e.stack || e.message}\n`);
+  console.warn("top-holders failed (recorded):", e.message);
+}
