@@ -20,6 +20,7 @@ function Router() {
       <Route path={"/chain"} component={Chain} />
       <Route path={"/supply"} component={Supply} />
       <Route path={"/dapps"} component={DApps} />
+      <Route path={"/verification"} component={Verification} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>
