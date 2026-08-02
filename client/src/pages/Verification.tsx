@@ -19,6 +19,8 @@ import { ArrowLeft, BadgeCheck, ExternalLink, FileText } from "lucide-react";
 const COOKIE_LOGO = "/cookie-logo.webp";
 const CA = "36ZrtQoab5MhhySaP1YSTwUahSk6GRVUTtZ6cuVfm9e1";
 const PUBLISHED = "August 1, 2026 · 06:00 UTC";
+const CMC_TICKET = "#1442016";
+const SUBMITTED = "Submitted August 1, 2026";
 
 const badge: React.CSSProperties = {
   display: "inline-flex",
@@ -74,6 +76,33 @@ export default function Verification() {
 
         <div style={{ fontSize: "0.8rem", color: "var(--cook-text-secondary)", marginBottom: "1.75rem" }}>
           Published {PUBLISHED}
+        </div>
+
+        {/* CMC ticket number — big and unmissable for verification */}
+        <div style={{
+          background: "linear-gradient(135deg, rgba(56,97,251,0.12), rgba(56,189,248,0.08))",
+          border: "1px solid rgba(56,97,251,0.45)",
+          borderRadius: "16px",
+          padding: "1.5rem 1.75rem",
+          marginBottom: "1.5rem",
+          textAlign: "center",
+        }}>
+          <div style={{ fontSize: "0.75rem", letterSpacing: "0.08em", color: "var(--cook-text-secondary)", textTransform: "uppercase", marginBottom: "0.4rem" }}>
+            CoinMarketCap Application Ticket
+          </div>
+          <div style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: "clamp(2rem, 7vw, 3rem)",
+            fontWeight: 700,
+            color: "#38BDF8",
+            letterSpacing: "0.03em",
+            lineHeight: 1.1,
+          }}>
+            {CMC_TICKET}
+          </div>
+          <div style={{ fontSize: "0.8rem", color: "var(--cook-text-secondary)", marginTop: "0.5rem" }}>
+            {SUBMITTED} · via CoinMarketCap's official request form
+          </div>
         </div>
 
         <div style={{
