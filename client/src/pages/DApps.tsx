@@ -11,12 +11,12 @@
 
 import { useEffect, useState } from "react";
 import { Link } from "wouter";
-import { ArrowLeft, ExternalLink, MonitorPlay, X } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 import EcosystemOrbit from "@/components/EcosystemOrbit";
 
 const REGISTRY_URL = "https://raw.githubusercontent.com/cookiechain/apps/main/apps.json";
 
-/* Hosts that send frame-blocking headers: skip the iframe, show the note. */
+/* Hosts that send frame-blocking headers (kept for future preview use). */
 const NO_EMBED_HOSTS = ["nightly.app", "defillama.com", "metaplex.com", "cookiebox.app", "bakedbazaar.art", "api.cookiescan.io", "github.com"];
 const isNoEmbed = (url: string) => { try { const h = new URL(url).host.replace(/^www\./, ""); return NO_EMBED_HOSTS.some((b) => h === b || h.endsWith("." + b)); } catch { return true; } };
 const hostOf = (url: string) => { try { return new URL(url).host.replace(/^www\./, ""); } catch { return url; } };
@@ -56,7 +56,6 @@ const FALLBACK_APPS: AppInfo[] = [
 ];
 
 function AppCard({ app }: { app: AppInfo }) {
-  const [open, setOpen] = useState(false);
 
   return (
     <div style={{ background: "var(--cook-surface)", border: "1px solid var(--cook-border)", borderRadius: "0.75rem", overflow: "hidden", display: "flex", flexDirection: "column" }}>
@@ -69,38 +68,9 @@ function AppCard({ app }: { app: AppInfo }) {
         <div style={{ fontSize: "0.82rem", color: "var(--cook-text-secondary)", marginTop: "0.3rem" }}>{app.desc}</div>
       </div>
 
-      {open && app.noEmbed && (
-        <div style={{ borderTop: "1px solid var(--cook-border)", height: "160px", display: "grid", placeItems: "center", background: "var(--cook-bg-2)", color: "var(--cook-text-muted)", fontSize: "0.82rem", padding: "1rem", textAlign: "center" }}>
-          This app doesn't allow embedded previews — use "Open app" below.
-        </div>
-      )}
 
-      {open && !app.noEmbed && (
-        <div style={{ position: "relative", borderTop: "1px solid var(--cook-border)" }}>
-          <iframe
-            src={app.url}
-            title={`${app.name} preview`}
-            loading="lazy"
-            sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-            style={{ width: "100%", height: "480px", border: 0, display: "block", background: "var(--cook-bg-2)" }}
-          />
-          <button onClick={() => setOpen(false)} aria-label="Close preview"
-            style={{ position: "absolute", top: "0.5rem", right: "0.5rem", background: "var(--cook-surface)", border: "1px solid var(--cook-border)", borderRadius: "999px", width: "28px", height: "28px", display: "grid", placeItems: "center", cursor: "pointer", color: "var(--cook-text-secondary)" }}>
-            <X size={14} />
-          </button>
-          <div style={{ padding: "0.5rem 1.25rem", fontSize: "0.7rem", color: "var(--cook-text-muted)", borderTop: "1px solid var(--cook-border)" }}>
-            Blank preview? This app blocks embedding — use "Open app" instead. Wallet connections work best in the full app.
-          </div>
-        </div>
-      )}
 
       <div style={{ display: "flex", gap: "0.6rem", padding: "0.9rem 1.25rem", borderTop: "1px solid var(--cook-border)", marginTop: "auto" }}>
-        {!open && (
-          <button onClick={() => setOpen(true)}
-            style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", background: "transparent", border: "1px solid var(--cook-border)", borderRadius: "0.5rem", padding: "0.45rem 0.9rem", cursor: "pointer", color: "var(--cook-text-primary)", fontSize: "0.82rem", fontWeight: 600 }}>
-            <MonitorPlay size={15} /> Preview here
-          </button>
-        )}
         <a href={app.url} target="_blank" rel="noopener noreferrer"
           style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", background: "#2563EB", borderRadius: "0.5rem", padding: "0.45rem 0.9rem", color: "#fff", fontSize: "0.82rem", fontWeight: 600, textDecoration: "none" }}>
           Open app <ExternalLink size={14} />
@@ -143,10 +113,7 @@ export default function DApps() {
           Explore the dApps — live
         </h1>
         <p style={{ color: "var(--cook-text-secondary)", fontSize: "0.95rem", maxWidth: "640px", lineHeight: 1.6, marginBottom: "0.75rem" }}>
-          Every app below is running on or around Cookie Chain right now. Hit "Preview here" to try one inside this page, or open it in a full tab.
-        </p>
-        <p style={{ color: "var(--cook-text-muted)", fontSize: "0.78rem", maxWidth: "640px", lineHeight: 1.5, marginBottom: "2.25rem" }}>
-          Some apps decline to render inside other sites (a standard security setting) and will show a blank preview — the Open app button always works. For wallet connections, always use the full app.
+          Every app below is running on or around Cookie Chain right now. Open any app in a full tab.
         </p>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: "1.25rem" }}>
