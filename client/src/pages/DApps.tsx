@@ -11,17 +11,30 @@ import { Link } from "wouter";
 import { ArrowLeft, ExternalLink, MonitorPlay, X } from "lucide-react";
 import EcosystemOrbit from "@/components/EcosystemOrbit";
 
-const APPS: { name: string; url: string; desc: string; tag: string }[] = [
-  { name: "CookieScan",       url: "https://cookiescan.io",           desc: "Block explorer: slots, transactions, holders, validators.", tag: "Explorer" },
-  { name: "Hyperlane Bridge", url: "https://hyperlane.cookiescan.io", desc: "Instant sCOOK / cCOOK transfers via warp route.",           tag: "Bridge" },
-  { name: "CandyShop",        url: "https://swap.cookiescan.io/",     desc: "Swap aggregator on Cookie Chain.",                          tag: "DEX" },
-  { name: "CookieSwap",       url: "https://cookieswap.fun/",         desc: "Native AMM DEX.",                                           tag: "DEX" },
-  { name: "Cookoven",         url: "https://cookoven.xyz/",           desc: "Staking, .cook domains, and dApp hub.",                     tag: "Staking" },
-  { name: "CookieBox",        url: "https://cookiebox.app/",          desc: "Ecosystem app suite.",                                      tag: "Apps" },
-  { name: "BakedBazaar",      url: "https://bakedbazaar.art",         desc: "NFT marketplace on Cookie Chain.",                          tag: "NFT" },
-  { name: "GorBoy",           url: "https://www.gorboy.com",          desc: "Gaming on Cookienet.",                                      tag: "Gaming" },
-  { name: "Cookie Squad",     url: "https://sig.cookiechain.wtf",     desc: "Community multi-sig dashboard (Squads v4 on Cookie Chain).", tag: "Governance" },
-  { name: "Cookie Docs",      url: "https://docs.cookiechain.wtf",    desc: "Developer and user documentation.",                         tag: "Docs" },
+const APPS: { name: string; url: string; desc: string; tag: string; noEmbed?: boolean }[] = [
+  { name: "CookieScan",         url: "https://cookiescan.io",            desc: "Block explorer: slots, transactions, holders, validators.", tag: "Explorer" },
+  { name: "Hyperlane Bridge",   url: "https://hyperlane.cookiechain.wtf", desc: "Instant sCOOK / cCOOK transfers via warp route.",          tag: "Bridge" },
+  { name: "CandyShop",          url: "https://swap.cookiescan.io/",      desc: "Swap aggregator on Cookie Chain.",                          tag: "DEX" },
+  { name: "CookieSwap",         url: "https://cookieswap.fun/",          desc: "Native AMM DEX.",                                           tag: "DEX" },
+  { name: "MomoSwap",           url: "https://www.momoswap.fun/",        desc: "Bonding-curve launchpad: mint, trade, graduate to a DEX.",  tag: "Launchpad" },
+  { name: "Cookiebox",          url: "https://cookiebox.app/",           desc: "Liquidity hub: pools, fees, swaps, LP positions.",          tag: "DeFi", noEmbed: true },
+  { name: "Bake Your Stake",    url: "https://bakeyourstake.xyz/",       desc: "Stake COOK to support network security and earn rewards.", tag: "Staking" },
+  { name: "Cookoven",           url: "https://cookoven.xyz/",            desc: "Staking, .cook domains, and dApp hub.",                     tag: "Staking" },
+  { name: "CookBook",           url: "https://book.cookoven.xyz",        desc: "Mint and manage .cook domains.",                            tag: "Domains" },
+  { name: "Cookie Lock",        url: "https://lock.cookoven.xyz",        desc: "Token locks and vesting with SPL and Token-2022 support.", tag: "Infra" },
+  { name: "Nightly Wallet",     url: "https://nightly.app/",             desc: "The first COOK-supported cross-chain wallet.",              tag: "Wallet", noEmbed: true },
+  { name: "Morsel Wallet",      url: "https://morselwallet.app/",        desc: "Native home of Cookie Chain assets. SOL, USDC, sCOOK.",     tag: "Wallet" },
+  { name: "Cookie Squad",       url: "https://sig.cookiechain.wtf",      desc: "Community multi-sig dashboard (Squads v4 on Cookie Chain).", tag: "Governance" },
+  { name: "CookieScan DAS API", url: "https://api.cookiescan.io/",       desc: "Public DAS service: enriched, indexed chain data for builders.", tag: "API", noEmbed: true },
+  { name: "DefiLlama",          url: "https://defillama.com/chain/cookiechain", desc: "TVL, volumes, and protocol metrics for Cookie Chain.", tag: "Analytics", noEmbed: true },
+  { name: "Metaplex",           url: "https://www.metaplex.com/",        desc: "The standard for launching tokens and NFTs on the SVM.",    tag: "Infra", noEmbed: true },
+  { name: "Cookie MCP",         url: "https://github.com/cookiechain/cookie-mcp", desc: "MCP server giving AI agents onchain access: trade, launch, LP, stake, bridge.", tag: "AI", noEmbed: true },
+  { name: "Cookie Chat",        url: "https://cookiechat.net/",          desc: "AI assistant for Cookie Chain.",                            tag: "AI" },
+  { name: "Sesamians",          url: "https://sesamians.art",            desc: "Leading NFT collection: identity and culture in the COOK ecosystem.", tag: "NFT" },
+  { name: "BakedBazaar",        url: "https://bakedbazaar.art",          desc: "NFT marketplace on Cookie Chain.",                          tag: "NFT", noEmbed: true },
+  { name: "GorBoy",             url: "https://www.gorboy.com",           desc: "Gaming on Cookienet.",                                      tag: "Gaming" },
+  { name: "GorWeld",            url: "https://gorweld.com",              desc: "Browser welding sim with Burn Relics NFTs and the Dumpster Forge.", tag: "Gaming" },
+  { name: "Cookie Docs",        url: "https://docs.cookiechain.wtf",     desc: "Developer and user documentation.",                         tag: "Docs" },
 ];
 
 function AppCard({ app }: { app: (typeof APPS)[number] }) {
@@ -37,7 +50,13 @@ function AppCard({ app }: { app: (typeof APPS)[number] }) {
         <div style={{ fontSize: "0.82rem", color: "var(--cook-text-secondary)", marginTop: "0.3rem" }}>{app.desc}</div>
       </div>
 
-      {open && (
+      {open && app.noEmbed && (
+        <div style={{ borderTop: "1px solid var(--cook-border)", height: "160px", display: "grid", placeItems: "center", background: "var(--cook-bg-2)", color: "var(--cook-text-muted)", fontSize: "0.82rem", padding: "1rem", textAlign: "center" }}>
+          This app doesn't allow embedded previews — use "Open app" below.
+        </div>
+      )}
+
+      {open && !app.noEmbed && (
         <div style={{ position: "relative", borderTop: "1px solid var(--cook-border)" }}>
           <iframe
             src={app.url}
