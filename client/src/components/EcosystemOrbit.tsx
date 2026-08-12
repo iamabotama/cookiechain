@@ -83,7 +83,7 @@ function Node({ n }: { n: OrbitNode }) {
     <g>
       {n.logo ? (
         <>
-          <circle cx={n.x} cy={n.y} r={15} fill="#141B38" stroke={n.color} strokeWidth={1.5} />
+          <circle cx={n.x} cy={n.y} r={15} fill="#141B38" stroke={n.color} strokeWidth={3} />
           <clipPath id={`eo-clip-${n.name.replace(/\W/g, "")}`}>
             <circle cx={n.x} cy={n.y} r={12} />
           </clipPath>
@@ -120,6 +120,9 @@ export default function EcosystemOrbit() {
           .eo-twk2 { animation: eoTw 1.6s ease-in-out infinite .7s; }
           .eo-dotdn { animation: eoDn 1.9s linear infinite; }
           .eo-dotup { animation: eoUp 1.9s linear infinite .5s; }
+  .eo-led1 { animation: eoLed 1.3s ease-in-out infinite; }
+  .eo-led2 { animation: eoLed 1.3s ease-in-out infinite .45s; }
+  .eo-led3 { animation: eoLed 1.3s ease-in-out infinite .85s; }
         }
         @keyframes eoPl { 0%,100%{opacity:.5} 50%{opacity:1} }
         @keyframes eoTw { 0%,100%{opacity:.25} 50%{opacity:.85} }
@@ -136,8 +139,8 @@ export default function EcosystemOrbit() {
             <line key={n.name} x1={340} y1={430} x2={n.x} y2={n.y} />
           ))}
         </g>
-        {[105, 185, 265].map((r) => (
-          <circle key={r} cx={340} cy={430} r={r} fill="none" stroke="#2E3A66" strokeWidth={0.8} strokeDasharray="3 6" />
+        {([[105, "#F2A93B", "2 6"], [185, "#2FBFA8", "7 7"], [265, "#8B7BF7", "14 7"]] as [number, string, string][]).map(([r, c, d]) => (
+          <circle key={r} cx={340} cy={430} r={r} fill="none" stroke={c} strokeWidth={1.3} strokeDasharray={d} opacity={0.35} />
         ))}
 
         {/* Hyperlane beam to Solana */}
@@ -145,20 +148,20 @@ export default function EcosystemOrbit() {
         <line x1={340} y1={124} x2={340} y2={345} stroke="#14F195" strokeWidth={2} strokeDasharray="6 5" opacity={0.8} />
         <circle cx={336} cy={132} r={3} fill="#14F195" className="eo-dotdn" />
         <circle cx={344} cy={334} r={3} fill="#9945FF" className="eo-dotup" />
-        <circle cx={340} cy={240} r={14} fill="#141B38" stroke="#14F195" strokeWidth={1.5} />
+        <circle cx={340} cy={240} r={14} fill="#141B38" stroke="#14F195" strokeWidth={3} />
         <clipPath id="eo-clip-hyperlane"><circle cx={340} cy={240} r={11} /></clipPath>
         <image href={LOGO("hyperlane.png")} x={329} y={229} width={22} height={22} clipPath="url(#eo-clip-hyperlane)" />
         <text x={360} y={228} fontSize={12} fill="#8A93B8">Hyperlane bridge</text>
 
         {/* Solana */}
         <circle cx={340} cy={92} r={38} fill="#9945FF" opacity={0.15} className="eo-pulse2" />
-        <circle cx={340} cy={92} r={30} fill="#1A1033" stroke="#9945FF" strokeWidth={1.5} />
+        <circle cx={340} cy={92} r={30} fill="#1A1033" stroke="#9945FF" strokeWidth={3} />
         <text x={340} y={96} fontSize={13} fontWeight={500} fill="#C9A8FF" textAnchor="middle">Solana</text>
 
         {/* Core */}
         <circle cx={340} cy={430} r={92} fill="#F2A93B" opacity={0.06} className="eo-pulse" />
         <circle cx={340} cy={430} r={80} fill="#F2A93B" opacity={0.12} />
-        <circle cx={340} cy={430} r={66} fill="#E8A33D" stroke="#B87A1E" strokeWidth={1.5} />
+        <circle cx={340} cy={430} r={66} fill="#E8A33D" stroke="#B87A1E" strokeWidth={3} />
         {[[310, 381], [374, 383], [295, 463], [385, 462], [340, 477]].map(([x, y]) => (
           <circle key={`${x}${y}`} cx={x} cy={y} r={5} fill="#5C3A12" />
         ))}
@@ -166,10 +169,17 @@ export default function EcosystemOrbit() {
         <text x={340} y={450} fontSize={11} fill="#6B4A16" textAnchor="middle">SVM Layer 1 core</text>
 
         {/* Validators */}
-        {VALIDATORS.map((v) => (
+        {VALIDATORS.map((v, i) => (
           <g key={v.label}>
-            <circle cx={v.x} cy={v.y} r={13} fill={COLORS.validator} />
-            <text x={v.x} y={v.y + 4} fontSize={11} fontWeight={500} fill="#3A2408" textAnchor="middle">{v.label}</text>
+            <circle cx={v.x} cy={v.y} r={27} fill="#F2A93B" opacity={0.1} />
+            <rect x={v.x - 14} y={v.y - 17} width={28} height={34} rx={4} fill="#141B38" stroke="#F2A93B" strokeWidth={2} />
+            {[-9, 0, 9].map((dy, j) => (
+              <g key={dy}>
+                <rect x={v.x - 10} y={v.y + dy - 2.5} width={15} height={5} rx={2} fill="#2E3A66" />
+                <circle cx={v.x + 9} cy={v.y + dy} r={1.9} fill={j === 2 ? "#F2A93B" : "#4ADE80"} className={"eo-led" + (((i + j) % 3) + 1)} />
+              </g>
+            ))}
+            <text x={v.x} y={v.y + 31} fontSize={11} fontWeight={500} fill="#F2A93B" textAnchor="middle">{v.label}</text>
           </g>
         ))}
 
@@ -178,11 +188,11 @@ export default function EcosystemOrbit() {
 
         {/* Meme satellites */}
         <circle cx={598} cy={130} r={44} fill="none" stroke={COLORS.meme} strokeWidth={0.7} strokeDasharray="2 5" opacity={0.6} />
-        <circle cx={598} cy={86} r={12} fill="#141B38" stroke={COLORS.meme} strokeWidth={1.5} />
+        <circle cx={598} cy={86} r={12} fill="#141B38" stroke={COLORS.meme} strokeWidth={3} />
         <clipPath id="eo-clip-gorboy"><circle cx={598} cy={86} r={11} /></clipPath>
         <image href={LOGO("gorboy.png")} x={587} y={75} width={22} height={22} clipPath="url(#eo-clip-gorboy)" />
         <text x={598} y={64} fontSize={11} fontWeight={500} fill="#FFB3CE" textAnchor="middle">GORBOY</text>
-        <circle cx={598} cy={174} r={12} fill="#141B38" stroke={COLORS.meme} strokeWidth={1.5} />
+        <circle cx={598} cy={174} r={12} fill="#141B38" stroke={COLORS.meme} strokeWidth={3} />
         <clipPath id="eo-clip-gorweld"><circle cx={598} cy={174} r={11} /></clipPath>
         <image href={LOGO("gorweld.png")} x={587} y={163} width={22} height={22} clipPath="url(#eo-clip-gorweld)" />
         <text x={598} y={200} fontSize={11} fontWeight={500} fill="#FFB3CE" textAnchor="middle">GorWeld</text>
