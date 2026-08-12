@@ -9,6 +9,7 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { ArrowLeft, ExternalLink, MonitorPlay, X } from "lucide-react";
+import EcosystemOrbit from "@/components/EcosystemOrbit";
 
 const APPS: { name: string; url: string; desc: string; tag: string }[] = [
   { name: "CookieScan",       url: "https://cookiescan.io",           desc: "Block explorer: slots, transactions, holders, validators.", tag: "Explorer" },
@@ -78,6 +79,8 @@ export default function DApps() {
         <Link href="/" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem", color: "var(--cook-text-secondary)", textDecoration: "none", fontSize: "0.85rem", marginBottom: "1.5rem" }}>
           <ArrowLeft size={16} /> Back to Home
         </Link>
+
+        <EcosystemOrbit />
 
         <div className="section-label" style={{ marginBottom: "0.75rem" }}>Ecosystem</div>
         <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: "clamp(1.9rem, 4vw, 3rem)", letterSpacing: "-0.03em", color: "var(--cook-text-primary)", margin: "0 0 0.75rem" }}>
