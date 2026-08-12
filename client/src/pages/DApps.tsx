@@ -31,7 +31,7 @@ const EXTRA_APPS: AppInfo[] = [
 /* Fallback if the registry is unreachable — kept in sync manually as a safety net. */
 const FALLBACK_APPS: AppInfo[] = [
   { name: "CookieScan",         url: "https://cookiescan.io",            desc: "Block explorer: slots, transactions, holders, validators.", tag: "Explorer" },
-  { name: "Hyperlane Bridge",   url: "https://hyperlane.cookiescan.io", desc: "Instant sCOOK / cCOOK transfers via warp route.",          tag: "Bridge" },
+  { name: "Hyperlane Bridge",   url: "https://hyperlane.cookiechain.wtf", desc: "Instant sCOOK / cCOOK transfers via warp route.",          tag: "Bridge" },
   { name: "CandyShop",          url: "https://swap.cookiescan.io/",      desc: "Swap aggregator on Cookie Chain.",                          tag: "DEX" },
   { name: "CookieSwap",         url: "https://cookieswap.fun/",          desc: "Native AMM DEX.",                                           tag: "DEX" },
   { name: "MomoSwap",           url: "https://www.momoswap.fun/",        desc: "Bonding-curve launchpad: mint, trade, graduate to a DEX.",  tag: "Launchpad" },
@@ -91,7 +91,7 @@ export default function DApps() {
         if (cancelled || !Array.isArray(entries) || entries.length === 0) return;
         const fromRegistry: AppInfo[] = entries
           .filter((e) => e.live !== false && e.title && e.href)
-          .map((e) => ({ name: e.title, url: e.href.replace("hyperlane.cookiechain.wtf", "hyperlane.cookiescan.io"), desc: e.description ?? "", tag: e.tag ?? "App", logo: e.logo, noEmbed: isNoEmbed(e.href) }));
+          .map((e) => ({ name: e.title, url: e.href, desc: e.description ?? "", tag: e.tag ?? "App", logo: e.logo, noEmbed: isNoEmbed(e.href) }));
         const seen = new Set(fromRegistry.map((a) => hostOf(a.url)));
         setApps([...fromRegistry, ...EXTRA_APPS.filter((x) => !seen.has(hostOf(x.url)))]);
       })
@@ -110,15 +110,12 @@ export default function DApps() {
 
         <div className="section-label" style={{ marginBottom: "0.75rem" }}>Ecosystem</div>
         <h1 style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: "clamp(1.9rem, 4vw, 3rem)", letterSpacing: "-0.03em", color: "var(--cook-text-primary)", margin: "0 0 0.75rem" }}>
-          Explore the dApps — live
+          The Cookie Chain ecosystem
         </h1>
         <p style={{ color: "var(--cook-text-secondary)", fontSize: "0.95rem", maxWidth: "640px", lineHeight: 1.6, marginBottom: "0.75rem" }}>
-          Every app below is running on or around Cookie Chain right now. Open any app in a full tab.
+          Everything in the orbit above is live on or around Cookie Chain today. The full app directory returns here soon.
         </p>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: "1.25rem" }}>
-          {apps.map((a) => <AppCard key={a.url} app={a} />)}
-        </div>
       </div>
     </div>
   );

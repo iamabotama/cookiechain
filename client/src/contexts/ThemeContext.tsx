@@ -26,7 +26,7 @@ function getInitialTheme(): Theme {
   const stored = localStorage.getItem("cook-theme") as Theme | null;
   if (stored === "light" || stored === "dark") return stored;
   // 2. Fall back to system preference
-  if (window.matchMedia?.("(prefers-color-scheme: light)").matches) return "light";
+  // Site defaults to dark; users can still switch via the toggle.
   return "dark";
 }
 
