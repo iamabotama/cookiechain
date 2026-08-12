@@ -1,17 +1,35 @@
 /*
  * DAPPS EXPLORER — /dapps
  * Live previews of every ecosystem app, embedded on demand.
+ *  - App list loads at runtime from the community registry (cookiechain/apps),
+ *    the same source the App Explorer uses — pages can't drift out of sync.
+ *    A hardcoded fallback renders if the registry is unreachable.
  *  - Iframes load ONLY on click, never all at once.
  *  - Frame-blocking sites show a fallback note; "Open app" always works.
  *  - Wallet note: extension wallets often refuse frames; open directly.
  */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "wouter";
 import { ArrowLeft, ExternalLink, MonitorPlay, X } from "lucide-react";
 import EcosystemOrbit from "@/components/EcosystemOrbit";
 
-const APPS: { name: string; url: string; desc: string; tag: string; noEmbed?: boolean }[] = [
+const REGISTRY_URL = "https://raw.githubusercontent.com/cookiechain/apps/main/apps.json";
+
+/* Hosts that send frame-blocking headers: skip the iframe, show the note. */
+const NO_EMBED_HOSTS = ["nightly.app", "defillama.com", "metaplex.com", "cookiebox.app", "bakedbazaar.art", "api.cookiescan.io", "github.com"];
+const isNoEmbed = (url: string) => { try { const h = new URL(url).host.replace(/^www\./, ""); return NO_EMBED_HOSTS.some((b) => h === b || h.endsWith("." + b)); } catch { return true; } };
+const hostOf = (url: string) => { try { return new URL(url).host.replace(/^www\./, ""); } catch { return url; } };
+
+type AppInfo = { name: string; url: string; desc: string; tag: string; noEmbed?: boolean; logo?: string };
+
+/* Apps not (yet) in the community registry — always appended. */
+const EXTRA_APPS: AppInfo[] = [
+  { name: "Cookie Docs", url: "https://docs.cookiechain.wtf", desc: "Developer and user documentation.", tag: "Docs" },
+];
+
+/* Fallback if the registry is unreachable — kept in sync manually as a safety net. */
+const FALLBACK_APPS: AppInfo[] = [
   { name: "CookieScan",         url: "https://cookiescan.io",            desc: "Block explorer: slots, transactions, holders, validators.", tag: "Explorer" },
   { name: "Hyperlane Bridge",   url: "https://hyperlane.cookiechain.wtf", desc: "Instant sCOOK / cCOOK transfers via warp route.",          tag: "Bridge" },
   { name: "CandyShop",          url: "https://swap.cookiescan.io/",      desc: "Swap aggregator on Cookie Chain.",                          tag: "DEX" },
@@ -37,13 +55,14 @@ const APPS: { name: string; url: string; desc: string; tag: string; noEmbed?: bo
   { name: "Cookie Docs",        url: "https://docs.cookiechain.wtf",     desc: "Developer and user documentation.",                         tag: "Docs" },
 ];
 
-function AppCard({ app }: { app: (typeof APPS)[number] }) {
+function AppCard({ app }: { app: AppInfo }) {
   const [open, setOpen] = useState(false);
 
   return (
     <div style={{ background: "var(--cook-surface)", border: "1px solid var(--cook-border)", borderRadius: "0.75rem", overflow: "hidden", display: "flex", flexDirection: "column" }}>
       <div style={{ padding: "1.1rem 1.25rem" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", flexWrap: "wrap" }}>
+          {app.logo && <img src={app.logo} alt="" width={22} height={22} style={{ borderRadius: "6px" }} onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />}
           <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: "1.05rem", color: "var(--cook-text-primary)" }}>{app.name}</span>
           <span style={{ fontSize: "0.62rem", fontWeight: 700, letterSpacing: "0.08em", color: "var(--color-cook-amber, #F5A623)", border: "1px solid var(--color-cook-amber, #F5A623)", borderRadius: "999px", padding: "0.1rem 0.5rem" }}>{app.tag.toUpperCase()}</span>
         </div>
@@ -92,6 +111,24 @@ function AppCard({ app }: { app: (typeof APPS)[number] }) {
 }
 
 export default function DApps() {
+  const [apps, setApps] = useState<AppInfo[]>(FALLBACK_APPS);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch(REGISTRY_URL)
+      .then((r) => { if (!r.ok) throw new Error(String(r.status)); return r.json(); })
+      .then((entries: { title: string; description: string; tag: string; href: string; logo?: string; live?: boolean }[]) => {
+        if (cancelled || !Array.isArray(entries) || entries.length === 0) return;
+        const fromRegistry: AppInfo[] = entries
+          .filter((e) => e.live !== false && e.title && e.href)
+          .map((e) => ({ name: e.title, url: e.href, desc: e.description ?? "", tag: e.tag ?? "App", logo: e.logo, noEmbed: isNoEmbed(e.href) }));
+        const seen = new Set(fromRegistry.map((a) => hostOf(a.url)));
+        setApps([...fromRegistry, ...EXTRA_APPS.filter((x) => !seen.has(hostOf(x.url)))]);
+      })
+      .catch(() => { /* registry unreachable: fallback list stays */ });
+    return () => { cancelled = true; };
+  }, []);
+
   return (
     <div style={{ minHeight: "100vh", background: "var(--cook-bg)", transition: "background 0.3s ease" }}>
       <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "2rem 2rem 4rem" }}>
@@ -113,7 +150,7 @@ export default function DApps() {
         </p>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: "1.25rem" }}>
-          {APPS.map((a) => <AppCard key={a.url} app={a} />)}
+          {apps.map((a) => <AppCard key={a.url} app={a} />)}
         </div>
       </div>
     </div>
