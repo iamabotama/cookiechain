@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-20T00:30:39.409Z",
+  "updated_at": "2026-08-20T06:30:35.289Z",
   "mint": "36ZrtQoab5MhhySaP1YSTwUahSk6GRVUTtZ6cuVfm9e1",
   "total_supply": 999960093.271937,
   "holders": [
@@ -15,16 +15,16 @@
       "rank": 2,
       "token_account": "Ff27woy1qnsCz1ABngenxHdg5EG6Y9RiebGCcXyNK75D",
       "owner": "DRaDjBfCtCCD2Kb1rzMtom3oDiGnwTu9LBgA7WA4LEzx",
-      "amount": 100515975.887562,
-      "pct_of_total": 10.052,
+      "amount": 95328200.669266,
+      "pct_of_total": 9.5332,
       "label": "community"
     },
     {
       "rank": 3,
       "token_account": "88q7zoKctwAQRsoTxkMJy95sNE3tntuyEhSrhvR1eZwq",
       "owner": "88q7zoKctwAQRsoTxkMJy95sNE3tntuyEhSrhvR1eZwq",
-      "amount": 63093411.717064,
-      "pct_of_total": 6.3096,
+      "amount": 64243411.717064,
+      "pct_of_total": 6.4246,
       "label": "hyperlane_escrow"
     },
     {
@@ -95,8 +95,8 @@
       "rank": 12,
       "token_account": "816XTE1yWfnvtJDZt6oNz6CcM7HeZ2o1neAbr6rxHAQc",
       "owner": "GkCr2miyeWdibpUAv9VycjG4qFTcSbwmwaUfDrvDQX9o",
-      "amount": 10609583.644247,
-      "pct_of_total": 1.061,
+      "amount": 11118703.893568,
+      "pct_of_total": 1.1119,
       "label": "community"
     },
     {
