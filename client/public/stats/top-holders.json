@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-22T12:28:16.958Z",
+  "updated_at": "2026-08-22T18:28:12.643Z",
   "mint": "36ZrtQoab5MhhySaP1YSTwUahSk6GRVUTtZ6cuVfm9e1",
   "total_supply": 999960093.270937,
   "holders": [
@@ -15,16 +15,16 @@
       "rank": 2,
       "token_account": "88q7zoKctwAQRsoTxkMJy95sNE3tntuyEhSrhvR1eZwq",
       "owner": "88q7zoKctwAQRsoTxkMJy95sNE3tntuyEhSrhvR1eZwq",
-      "amount": 104738352.861752,
-      "pct_of_total": 10.4743,
+      "amount": 105070353.862752,
+      "pct_of_total": 10.5075,
       "label": "hyperlane_escrow"
     },
     {
       "rank": 3,
       "token_account": "Ff27woy1qnsCz1ABngenxHdg5EG6Y9RiebGCcXyNK75D",
       "owner": "DRaDjBfCtCCD2Kb1rzMtom3oDiGnwTu9LBgA7WA4LEzx",
-      "amount": 96127710.657102,
-      "pct_of_total": 9.6132,
+      "amount": 97178189.964165,
+      "pct_of_total": 9.7182,
       "label": "community"
     },
     {
@@ -141,26 +141,26 @@
     },
     {
       "rank": 18,
-      "token_account": "EvSLKq4vrNVGdM86Cr1u9LrapfqVrkeH9kELmGBe4PyB",
-      "owner": "CSxryDe7PPhuAfpkSncVYFhQy16X1guyPLj1yjhe533Q",
-      "amount": 7000000.689864,
-      "pct_of_total": 0.7,
-      "label": "community"
-    },
-    {
-      "rank": 19,
-      "token_account": "BuWF5NRwZBC1ry2zhkJ97pfLPbznhbPxQ5eU9pEkkjcF",
-      "owner": "HLFDREwYbPUe1D12J9QgU7HyPYJfnQ9ADGRoRXWh3cZK",
-      "amount": 7000000,
-      "pct_of_total": 0.7,
-      "label": "community"
-    },
-    {
-      "rank": 20,
       "token_account": "EJiKFw3CC2N2XzcL44SLk3AXtzLeSPHBdZhXCKctkFqY",
       "owner": "63QaSn1hL5yLKVDjZueuSoiVB1CPR6XkwHVdBSv5Kw7H",
       "amount": 6853402.538683,
       "pct_of_total": 0.6854,
+      "label": "community"
+    },
+    {
+      "rank": 19,
+      "token_account": "BP57xjRtxQzEexuv8uhafbkxio5pAjdYwRQHB5TdM9ma",
+      "owner": "5vhVHywhpPJtAh5ZG6FaH8m6cGooquvYYk8y1ZKF9vzP",
+      "amount": 6701134.695037,
+      "pct_of_total": 0.6701,
+      "label": "community"
+    },
+    {
+      "rank": 20,
+      "token_account": "GMHBa7mJtQmXUr1PPFX4jdxkHKKRq94Fxe4sZyUEiiyP",
+      "owner": "HjK3bs2a8xiJqMCWhkStQCfPyeviy7c8tvUsVFgWmXHh",
+      "amount": 6688706.776185,
+      "pct_of_total": 0.6689,
       "label": "community"
     }
   ]
