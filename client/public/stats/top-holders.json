@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-22T00:29:49.714Z",
+  "updated_at": "2026-08-22T06:28:25.330Z",
   "mint": "36ZrtQoab5MhhySaP1YSTwUahSk6GRVUTtZ6cuVfm9e1",
   "total_supply": 999960093.270937,
   "holders": [
@@ -15,16 +15,16 @@
       "rank": 2,
       "token_account": "88q7zoKctwAQRsoTxkMJy95sNE3tntuyEhSrhvR1eZwq",
       "owner": "88q7zoKctwAQRsoTxkMJy95sNE3tntuyEhSrhvR1eZwq",
-      "amount": 105533774.027373,
-      "pct_of_total": 10.5538,
+      "amount": 105272774.031473,
+      "pct_of_total": 10.5277,
       "label": "hyperlane_escrow"
     },
     {
       "rank": 3,
       "token_account": "Ff27woy1qnsCz1ABngenxHdg5EG6Y9RiebGCcXyNK75D",
       "owner": "DRaDjBfCtCCD2Kb1rzMtom3oDiGnwTu9LBgA7WA4LEzx",
-      "amount": 92503704.569831,
-      "pct_of_total": 9.2507,
+      "amount": 93884279.386192,
+      "pct_of_total": 9.3888,
       "label": "community"
     },
     {
