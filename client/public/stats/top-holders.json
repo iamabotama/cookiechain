@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-24T06:30:00.308Z",
+  "updated_at": "2026-08-24T12:30:05.482Z",
   "mint": "36ZrtQoab5MhhySaP1YSTwUahSk6GRVUTtZ6cuVfm9e1",
   "total_supply": 999960093.270937,
   "holders": [
@@ -15,16 +15,16 @@
       "rank": 2,
       "token_account": "Ff27woy1qnsCz1ABngenxHdg5EG6Y9RiebGCcXyNK75D",
       "owner": "DRaDjBfCtCCD2Kb1rzMtom3oDiGnwTu9LBgA7WA4LEzx",
-      "amount": 97290197.477857,
-      "pct_of_total": 9.7294,
+      "amount": 92383322.325141,
+      "pct_of_total": 9.2387,
       "label": "community"
     },
     {
       "rank": 3,
       "token_account": "88q7zoKctwAQRsoTxkMJy95sNE3tntuyEhSrhvR1eZwq",
       "owner": "88q7zoKctwAQRsoTxkMJy95sNE3tntuyEhSrhvR1eZwq",
-      "amount": 91306207.139352,
-      "pct_of_total": 9.131,
+      "amount": 88806207.139352,
+      "pct_of_total": 8.881,
       "label": "hyperlane_escrow"
     },
     {
@@ -93,6 +93,14 @@
     },
     {
       "rank": 12,
+      "token_account": "BuWF5NRwZBC1ry2zhkJ97pfLPbznhbPxQ5eU9pEkkjcF",
+      "owner": "HLFDREwYbPUe1D12J9QgU7HyPYJfnQ9ADGRoRXWh3cZK",
+      "amount": 10099916.159881,
+      "pct_of_total": 1.01,
+      "label": "community"
+    },
+    {
+      "rank": 13,
       "token_account": "9XjL5Nwzo1SkrxoT5kaJCM5bxBKscFuz2SJ2cbNGGfCy",
       "owner": "DPKfyLL9FLQYt2d9bWkW1bz4Nag9wGVDteng4RWRraED",
       "amount": 10003562.943379,
@@ -100,7 +108,7 @@
       "label": "community"
     },
     {
-      "rank": 13,
+      "rank": 14,
       "token_account": "7WGaBrooPTo9BRkhrXpVrSf7VutFkYuEoQXVVUhmyYJs",
       "owner": "5tjzf5MP1fGrtU7E5GtjcWaDVzFiWXQew1zpwvZH4WNC",
       "amount": 9776807.586287,
@@ -108,7 +116,7 @@
       "label": "community"
     },
     {
-      "rank": 14,
+      "rank": 15,
       "token_account": "5Fw3Ua7FWAPsJDA4BcEZLaLhAShaAEBi1sZ39UD2voB2",
       "owner": "7uzVrUVbjzDEudnLYFF1cgvBMBfuMSNFEL3YQ3xLAMSr",
       "amount": 9776807.586287,
@@ -116,7 +124,7 @@
       "label": "community"
     },
     {
-      "rank": 15,
+      "rank": 16,
       "token_account": "75T29StmsgXPca8Aqx41UuXPbvNRSKt3d3QDYeKRHBrr",
       "owner": "spLdFv8B3U6yZXYw4yn67HtHz1QoMG8bKSPNH7hnCvq",
       "amount": 9762143.9398,
@@ -124,7 +132,7 @@
       "label": "community"
     },
     {
-      "rank": 16,
+      "rank": 17,
       "token_account": "8m1GeACxFuccoWsLwb3TaQfgK2LuFgbA7tczf7QE9fHz",
       "owner": "5KCu5wJ5EnhZLiM1icLzHKSmh1NEgtpQ2t3AFzug2KAJ",
       "amount": 9245477.227775,
@@ -132,7 +140,7 @@
       "label": "community"
     },
     {
-      "rank": 17,
+      "rank": 18,
       "token_account": "6Ldzps55p69FLWBEyQo9Ee6wHQswvLXUX14gbmHZddnX",
       "owner": "7C5YikDinmDnRu15aDW4pC76c5wJSDrCAv9ZRrX2qL4p",
       "amount": 7320834.462312,
@@ -140,7 +148,7 @@
       "label": "community"
     },
     {
-      "rank": 18,
+      "rank": 19,
       "token_account": "2CsXCwawYSeeHMp9VQ5wnt8FBypiEWHtRTTwPXQ2eGFK",
       "owner": "BGZbY92tMAsai3fvVXFNoqR5p8VUEoo6qEudrNfCZv4q",
       "amount": 7114910.678691,
@@ -148,19 +156,11 @@
       "label": "community"
     },
     {
-      "rank": 19,
+      "rank": 20,
       "token_account": "EJiKFw3CC2N2XzcL44SLk3AXtzLeSPHBdZhXCKctkFqY",
       "owner": "63QaSn1hL5yLKVDjZueuSoiVB1CPR6XkwHVdBSv5Kw7H",
       "amount": 6853402.538683,
       "pct_of_total": 0.6854,
-      "label": "community"
-    },
-    {
-      "rank": 20,
-      "token_account": "BP57xjRtxQzEexuv8uhafbkxio5pAjdYwRQHB5TdM9ma",
-      "owner": "5vhVHywhpPJtAh5ZG6FaH8m6cGooquvYYk8y1ZKF9vzP",
-      "amount": 6701134.695037,
-      "pct_of_total": 0.6701,
       "label": "community"
     }
   ]
