@@ -1,3 +1,3 @@
-2026-08-28T09:28:27.139Z Error: all RPCs failed for getTokenLargestAccounts: HTTP 403
+2026-08-28T16:27:21.247Z Error: all RPCs failed for getTokenLargestAccounts: HTTP 403
     at rpc (file:///home/runner/work/cookiechain/cookiechain/scripts/update-top-holders.mjs:44:9)
     at async file:///home/runner/work/cookiechain/cookiechain/scripts/update-top-holders.mjs:49:18
