@@ -18,5 +18,5 @@
     }
   ],
   "methodology": "circulating = on-chain total supply (getTokenSupply) - bridge lock vault balance, both live on-chain reads. Matches the methodology CoinGecko/GeckoTerminal apply.",
-  "updated_at": "2026-09-01T11:41:13.226Z"
+  "updated_at": "2026-09-01T16:41:46.854Z"
 }
