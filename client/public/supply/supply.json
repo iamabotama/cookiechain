@@ -4,7 +4,7 @@
   "max_supply": 1000000000,
   "total_supply": 999960093.27,
   "burned": 39906.73,
-  "circulating_supply": 584262874.13,
+  "circulating_supply": 584262874.12,
   "excluded_wallets": [
     {
       "address": "DoYYCtcG2vfrE3HtxBBXiNVieMutvWBXsgbF3SKtYCyx",
@@ -18,5 +18,5 @@
     }
   ],
   "methodology": "circulating = on-chain total supply (getTokenSupply) - bridge lock vault balance, both live on-chain reads. Matches the methodology CoinGecko/GeckoTerminal apply.",
-  "updated_at": "2026-09-01T21:03:34.530Z"
+  "updated_at": "2026-09-02T04:37:35.537Z"
 }
