@@ -2,9 +2,9 @@
   "token": "COOK",
   "mint": "36ZrtQoab5MhhySaP1YSTwUahSk6GRVUTtZ6cuVfm9e1",
   "max_supply": 1000000000,
-  "total_supply": 999960035.36,
-  "burned": 39964.64,
-  "circulating_supply": 584270316.22,
+  "total_supply": 999959979.36,
+  "burned": 40020.64,
+  "circulating_supply": 584270260.22,
   "excluded_wallets": [
     {
       "address": "DoYYCtcG2vfrE3HtxBBXiNVieMutvWBXsgbF3SKtYCyx",
@@ -18,5 +18,5 @@
     }
   ],
   "methodology": "circulating = on-chain total supply (getTokenSupply) - bridge lock vault balance, both live on-chain reads. Matches the methodology CoinGecko/GeckoTerminal apply.",
-  "updated_at": "2026-09-19T15:54:01.660Z"
+  "updated_at": "2026-09-19T20:42:50.994Z"
 }
