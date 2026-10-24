@@ -4,12 +4,12 @@
   "max_supply": 1000000000,
   "total_supply": 999959694.05,
   "burned": 40305.95,
-  "circulating_supply": 584269974.9,
+  "circulating_supply": 583786252.33,
   "excluded_wallets": [
     {
       "address": "DoYYCtcG2vfrE3HtxBBXiNVieMutvWBXsgbF3SKtYCyx",
       "label": "Cookie Chain Bridge Lock Vault (Squads multisig)",
-      "balance": 415689719.14,
+      "balance": 416173441.72,
       "reason": "SPL COOK locked to back cCOOK circulating natively on Cookie Chain L1. Not freely tradable on Solana.",
       "links": {
         "solscan": "https://solscan.io/account/DoYYCtcG2vfrE3HtxBBXiNVieMutvWBXsgbF3SKtYCyx",
@@ -18,5 +18,5 @@
     }
   ],
   "methodology": "circulating = on-chain total supply (getTokenSupply) - bridge lock vault balance, both live on-chain reads. Matches the methodology CoinGecko/GeckoTerminal apply.",
-  "updated_at": "2026-10-23T21:25:48.484Z"
+  "updated_at": "2026-10-24T04:39:58.707Z"
 }
